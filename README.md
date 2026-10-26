@@ -11,7 +11,7 @@ Run the next command
 ```
 docker-compose up -d
 ```
-You should see 3 container:
+You should see 4 container:
 
 1. caddy webserver (act as a proxy)
 2. frontend
