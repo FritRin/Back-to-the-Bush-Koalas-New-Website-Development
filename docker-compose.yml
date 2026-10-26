@@ -1,0 +1,81 @@
+services:
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - frontend_net
+      - backend_net
+
+
+  frontend:
+    build: ./frontend
+    ports:
+    - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0
+    networks:
+      - frontend_net
+    depends_on:
+      - backend
+
+
+  backend:
+    build: ./backend
+    ports:
+    - "3000:3000"
+    volumes:
+    - ./backend:/app
+    - /app/node_modules
+    command: npm run dev
+    networks:
+      - frontend_net
+      - backend_net
+    environment:
+      PG_USER: ${PG_USER}
+      PG_PASSWORD: ${PG_PASSWORD}
+      PG_DB: ${PG_DB}
+      PG_HOST: ${PG_HOST}
+      PG_PORT: ${PG_PORT}
+    depends_on:
+      database:
+        condition: service_healthy
+
+
+  database:
+    image: postgres:16
+    networks:
+      - backend_net
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/database:/docker-entrypoint-initdb.d 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+      # Define the networks 
+networks:
+  frontend_net:
+    driver: bridge
+  backend_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
