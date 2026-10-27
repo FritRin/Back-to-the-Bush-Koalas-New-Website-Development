@@ -34,11 +34,12 @@ The "docker-compose.yml" will install all the depenedecie in package.json so far
     - dotenv
     - express
     - pg (postgresql)
+    - Sequilize (To make connection to the DB)	
 
 - Frontend
     - react
     - react-dom
     - tailwindcss
-    - axios
+    - axios (Fetch)
 
 If is missing any package go for it. 
