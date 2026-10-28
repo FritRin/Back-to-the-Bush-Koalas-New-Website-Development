@@ -4,4 +4,4 @@ function ContactUS(){
     )
 }
 
-export default ContactUS
+export default ContactUS;

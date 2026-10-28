@@ -4,4 +4,4 @@ function OurFacilities(){
     )
 }
 
-export default OurFacilities
+export default OurFacilities;

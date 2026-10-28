@@ -4,4 +4,4 @@ function OurStory(){
     )
 }
 
-export default OurStory
+export default OurStory;

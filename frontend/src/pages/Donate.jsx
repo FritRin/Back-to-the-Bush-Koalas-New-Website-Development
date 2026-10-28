@@ -1,7 +1,12 @@
+import { Outlet } from "react-router-dom";
+
 function Donate(){
     return(
-        <h1>Donate</h1>
+        <div>
+            <h1>Donate</h1>
+            <Outlet/>
+        </div>
     )
 }
 
-export default Donate
+export default Donate;
