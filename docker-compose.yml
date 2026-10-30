@@ -54,6 +54,8 @@ services:
 
   database:
     image: postgres:16
+    ports:
+        - "5432:5432"
     networks:
       - backend_net
     environment:
