@@ -1,4 +1,5 @@
-//import 'css'
+//import css
+import Link from "react-router-dom";
 
 function Home(){
     return(
@@ -6,9 +7,9 @@ function Home(){
             <h1>Home</h1>
             <div className="featuredStory">
                 <img src="example.jpg" alt="example image"></img>
-                <ul>
+                <ul className="featuredStoryLink">
                     <li>
-                        <link to="">Featured Story</link>
+                        <Link to="">Featured Story</Link>
                     </li>
                 </ul>
             </div>
@@ -16,7 +17,7 @@ function Home(){
                 <img></img>
                 <ul className="storyLink">
                     <li>
-                        <link to="">Story 1</link>
+                        <Link to="">Story 1</Link>
                     </li>
                 </ul>
             </div>
@@ -24,7 +25,7 @@ function Home(){
                 <img></img>
                 <ul className="storyLink">
                     <li>
-                        <link to="">Story 2</link>
+                        <Link to="">Story 2</Link>
                     </li>
                 </ul>
             </div>
@@ -32,7 +33,7 @@ function Home(){
                 <img></img>
                 <ul className="storyLink">
                     <li>
-                        <link to="">Story 3</link>
+                        <Link to="">Story 3</Link>
                     </li>
                 </ul>
             </div>
@@ -40,7 +41,7 @@ function Home(){
                 <img></img>
                 <ul className="storyLink">
                     <li>
-                        <link to="">Story 4</link>
+                        <Link to="">Story 4</Link>
                     </li>
                 </ul>
             </div>
