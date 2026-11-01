@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 function Donate(){
     return(
-        <div>
+        <div className="pageContainer">
             <div className="wishlistButton">
                 <a href="/Wishlist">Our Wishlist</a>
             </div>

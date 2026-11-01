@@ -28,7 +28,7 @@ link to the Backend [http://localhost:3000](http://localhost:3000)
 
 link to the Documentation (swagger or postman optional) To test the endpoints. [http://localhost/doc](http://localhost/doc)
 
-The "docker-compose.yml" will install all the depenedecie in package.json, the ones currently installed are:
+The "docker-compose.yml" will install all the depenedecies in package.json, the ones currently installed are:
 - Backend: 
     - cors
     - dotenv

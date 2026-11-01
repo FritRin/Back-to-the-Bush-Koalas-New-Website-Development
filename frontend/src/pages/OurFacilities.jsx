@@ -1,7 +1,7 @@
 //gallery will be reworked into imigx components 
 function OurFacilities(){
     return(
-        <div>
+        <div className="pageContainer">
             <h1>Our Koala Hospital</h1>
             
             <div className="ourHospitalMediaGallery">

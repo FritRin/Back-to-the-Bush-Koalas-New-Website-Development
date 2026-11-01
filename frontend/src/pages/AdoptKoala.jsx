@@ -1,7 +1,7 @@
 import KoalaTest from "../components/KoalaTest";
 function AdoptKoala(){
     return(
-        <div>
+        <div className="pageContainer">
             <h1>Adopt A Koala</h1>
 
             {/* component to re use many times The KoalaTest alredy have style */}

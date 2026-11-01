@@ -1,7 +1,7 @@
 import Link from "react-router-dom"
 function KoalaStories(){
     return(
-        <div>
+        <div className="pageContainer">
             <h1>
                 Koala Success Stories
             </h1>

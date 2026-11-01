@@ -3,7 +3,7 @@ import Link from "react-router-dom";
 
 function Home(){
     return(
-        <div>
+        <div className="pageContainer">
             <h1>Home</h1>
             <div className="featuredStory">
                 <img src="example.jpg" alt="example image"></img>

@@ -21,8 +21,8 @@ function AppRoutes() {
       <Route element={<MainLayout />}>
 
         <Route path="/" element={<Home />} />
-        <Route path="/our-story-and-inspection" element={<OurStory />} />
-        <Route path="/our-facilities-and-location" element={<OurFacilites />} />
+        <Route path="/our-story" element={<OurStory />} />
+        <Route path="/our-facilities" element={<OurFacilites />} />
 
         <Route path="/our-achievements" element={<OurAchievements />}/>
           {/* Sub-pages */}

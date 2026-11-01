@@ -1,6 +1,6 @@
 function OurStory(){
     return(
-        <div>
+        <div className="pageContainer">
             <h1>Our Story</h1>
             <div className="ourStoryHistory">
                 <h2>Our History</h2>

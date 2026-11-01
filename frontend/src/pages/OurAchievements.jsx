@@ -4,13 +4,13 @@ import Link from "react-router-dom";
 
 function OurCommunity(){
     return(
-        <div>
+        <div className="pageContainer">
             <h1>Our Achievements</h1>
             <Outlet/>
             <div>
                 <ul className="">
                     <li>
-                        <Link to="/KoalaStories">Koala Success Stories</Link>
+                        <Link to="/koala-success-stories">Koala Success Stories</Link>
                     </li>
                 </ul>
             </div>
