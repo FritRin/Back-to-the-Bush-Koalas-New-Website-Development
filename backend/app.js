@@ -7,7 +7,8 @@ const express = require("express");
 const cors = require("cors");
 const sequelize = require("./utils/database");
 
-
+//TODO IMPORT Middleware here
+const notFoundHandler = require("./middleware/notFoundHandler");
 
 // start the Express application
 const app = express();
@@ -23,18 +24,18 @@ app.use(express.json()); // Built-in middleware to parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
 
 
-//TODO IMPORT Middleware here
-
 //TODO Swagger or Postman ? up to you
 
 //TODO IMPORT Router files here
 
 //TODO IMPORT API 
 
-
 app.get("/", (req, res) => {
     res.send("holaaaaaaaaaa...");
 });
+
+// Handle Request to routes that do not exist
+app.use(notFoundHandler);
 
 // From .env
 const PORT = process.env.PORT || 3000;
