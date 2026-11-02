@@ -1,6 +1,6 @@
 //import css
 import { Outlet } from "react-router-dom";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function OurCommunity(){
     return(
