@@ -1,4 +1,4 @@
-//import css
+//import Router
 import { Link } from "react-router-dom";
 
 function Home(){

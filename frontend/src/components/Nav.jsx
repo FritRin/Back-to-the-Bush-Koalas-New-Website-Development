@@ -2,7 +2,13 @@ import { Link } from "react-router-dom";
 
 function Nav() {
     return (
-        <nav className="flex items-center gap-6 font-medium text-white">
+        <nav className="
+            flex justify-between 
+            gap-6 
+            font-bold 
+            text-white 
+            text-lg
+        ">
             <Link
                 to="/"
                 className="hover:text-[#4B4C2C] transition"
@@ -11,54 +17,46 @@ function Nav() {
             </Link>
 
             <Link
-                to="/our-story-and-inspection"
+                to="/our-story"
                 className="hover:text-[#4B4C2C] transition"
             >
-                Our Story & Inspection
+                Our Story
             </Link>
 
             <Link
-                to="/our-facilities-and-location"
+                to="/our-facilities"
                 className="hover:text-[#4B4C2C] transition"
             >
-                Facilities & Location
+                Our Facilities
             </Link>
 
             {/* Our Community Dropdown */}
             <div className="relative group">
-                <Link className="hover:text-[#4B4C2C] transition" to="/our-community">
-                    Our Community
+                <Link
+                    to="/our-achievements"
+                    className="hover:text-[#4B4C2C] transition"
+                >
+                    Our Archivements
                 </Link>
-
-                <div className="absolute left-0 top-full hidden group-hover:block bg-[#9FA659] shadow-lg rounded-md min-w-64 border">
-                    <Link
-                        className="block px-4 py-3 hover:bg-[#797641]"
-                        to="/volunteer-quotes"
-                    >
-                        Volunteer Quotes
-                    </Link>
-
-                    <Link
-                        className="block px-4 py-3 hover:bg-[#797641]"
-                        to="/koala-success-stories"
-                    >
-                        Koala Success Stories
-                    </Link>
-
-                    <Link
-                        className="block px-4 py-3 hover:bg-[#797641]"
-                        to="/school-engagements"
-                    >
-                        School Engagements
-                    </Link>
-
+                {/* <div className="
+                    absolute 
+                    left-0 
+                    top-full 
+                    hidden 
+                    group-hover:block 
+                    bg-[#9FA659] 
+                    shadow-lg 
+                    rounded-md 
+                    min-w-64 
+                    border
+                ">
                     <Link
                         className="block px-4 py-3 hover:bg-[#797641]"
                         to="/tree-planting-engagements"
                     >
                         Tree Planting Engagements
                     </Link>
-                </div>
+                </div> */}
             </div>
 
             {/* Donate Dropdown */}
@@ -67,8 +65,18 @@ function Nav() {
                     Donate
                 </Link>
 
-                <div className="absolute left-0 top-full hidden group-hover:block bg-[#9FA659] shadow-lg rounded-md min-w-56 border">
-
+                <div className="
+                    absolute 
+                    left-0 
+                    top-full 
+                    hidden 
+                    group-hover:block 
+                    bg-[#9FA659] 
+                    shadow-lg 
+                    rounded-md 
+                    min-w-56 
+                    border
+                ">
                     <Link
                         className="block px-4 py-3 hover:bg-[#797641]"
                         to="/adopt-a-koala"
