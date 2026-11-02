@@ -17,17 +17,17 @@ function Nav() {
             </Link>
 
             <Link
-                to="/our-story-and-inspection"
+                to="/our-story"
                 className="hover:text-[#4B4C2C] transition"
             >
-                Our Story & Inspection
+                Our Story
             </Link>
 
             <Link
-                to="/our-facilities-and-location"
+                to="/our-facilities"
                 className="hover:text-[#4B4C2C] transition"
             >
-                Facilities & Location
+                Our Facilities
             </Link>
 
             {/* Our Community Dropdown */}
