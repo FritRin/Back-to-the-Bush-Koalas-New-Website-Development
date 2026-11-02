@@ -10,6 +10,7 @@ const sequelize = require("./utils/database");
 //TODO IMPORT Middleware here
 const notFoundHandler = require("./middleware/notFoundHandler");
 const errorHandler = require("./middleware/errorHandler");
+const koalaRoutes = require("./routes/koalaRoutes");
 
 // start the Express application
 const app = express();
@@ -29,7 +30,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //TODO IMPORT Router files here
 
-//TODO IMPORT API 
+//API Routes
+app.use("/api/koalas", koalaRoutes); 
 
 app.get("/", (req, res) => {
     res.status(200).json({
@@ -39,6 +41,7 @@ app.get("/", (req, res) => {
     })
 });
 
+//This will need to be updated later
 app.get("/test-error", (req, res, next) => {
     const error = new Error("This is a test");
     next(error);
