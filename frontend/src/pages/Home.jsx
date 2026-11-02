@@ -1,5 +1,5 @@
-//import css
-import Link from "react-router-dom";
+//import Router
+import { Link } from "react-router-dom";
 
 function Home(){
     return(
