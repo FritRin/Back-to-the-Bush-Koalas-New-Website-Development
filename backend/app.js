@@ -9,6 +9,7 @@ const sequelize = require("./utils/database");
 
 //TODO IMPORT Middleware here
 const notFoundHandler = require("./middleware/notFoundHandler");
+const errorHandler = require("./middleware/errorHandler");
 
 // start the Express application
 const app = express();
@@ -31,11 +32,21 @@ app.use(express.urlencoded({ extended: true }));
 //TODO IMPORT API 
 
 app.get("/", (req, res) => {
-    res.send("holaaaaaaaaaa...");
+    res.status(200).json({
+        success: true,
+        status: 200,
+        message: "Server is running correctly",
+    })
 });
 
-// Handle Request to routes that do not exist
+app.get("/test-error", (req, res, next) => {
+    const error = new Error("This is a test");
+    next(error);
+});
+
+// Error Handling
 app.use(notFoundHandler);
+app.use(errorHandler);
 
 // From .env
 const PORT = process.env.PORT || 3000;
