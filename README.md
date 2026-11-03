@@ -2,6 +2,27 @@
 
 Repository for CSC3600 ICT Professional project 
 
+### Gitea Repo Instuctions
+- Get the latest code
+    git switch main
+    git pull origin main
+
+- Create a Feature Branch
+    Eg: git switch -c feature/donation-system
+
+- Commit Changes
+    git add .
+    git commit -m "good comment"
+
+- Push to Branch
+    git push -u origin feature/donation-system
+
+- Create pull request in Gitea
+
+- Update Local Main branch
+    git switch main
+    git pull origin main
+
 ### Before running the app
 - have Docker or the Docker Desktop app and ensure it is running
 - Install necessary dependencies
