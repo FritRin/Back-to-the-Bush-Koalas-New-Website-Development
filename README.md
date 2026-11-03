@@ -26,7 +26,7 @@ Link to the Frontend [http://localhost](http://localhost) (recommended to use Fi
 
 link to the Backend [http://localhost:3000](http://localhost:3000)
 
-link to the Documentation to test the endpoints [http://localhost/doc](http://localhost/doc)
+link to the Documentation to test the endpoints [http://localhost:3000/docs](http://localhost:3000/docs)
 
 The "docker-compose.yml" will install all the depenedecies in package.json, the ones currently installed are:
 - Backend: 
