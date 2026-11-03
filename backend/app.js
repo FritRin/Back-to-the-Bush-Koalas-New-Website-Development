@@ -27,6 +27,10 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //TODO Swagger or Postman ? up to you
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerYAML = YAML.load(path.join(__dirname, "swagger.yaml"));
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerYAML, {swaggerOptions: { withCredentials: true }}));
 
 //TODO IMPORT Router files here
 

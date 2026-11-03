@@ -1,0 +1,41 @@
+openapi: 3.0.0
+
+info:
+  title: Back to the Bush Koalas API
+  version: 1.0.0
+  description: API documentation for the Back to the Bush Koalas website.
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /api/koalas:
+    get:
+      summary: Retrieve all koalas
+      tags:
+        - Koalas
+      responses:
+        '200':
+          description: Successfully retrieved koalas
+        '500':
+          description: Internal Server Error
+
+  /api/koalas/{id}:
+    get:
+      summary: Retrieve a koala by ID
+      tags:
+        - Koalas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Koala's ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved koala
+        '404':
+          description: Koala not found
+        '500':
+          description: Internal Server Error
