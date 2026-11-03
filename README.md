@@ -34,8 +34,8 @@ The "docker-compose.yml" will install all the depenedecies in package.json, the 
     - dotenv
     - express
     - pg (postgresql)
-    - Sequelize (To make connection to the DB)	
-    - Swagger (For API Documentation)
+    - sequelize (To make connection to the DB)	
+    - swagger (For API Documentation)
 
 - Frontend
     - react
