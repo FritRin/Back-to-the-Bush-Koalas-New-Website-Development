@@ -10,7 +10,7 @@ function Footer() {
                 bg-[url('./assets/banner.png')] 
                 bg-cover bg-center"
             >
-                <div className="bg-black/70">
+                <div className="bg-black/80">
                     <div className="
                         max-w-6xl 
                         mx-auto 
@@ -29,7 +29,7 @@ function Footer() {
                                 font-extrabold 
                                 tracking-wide  
                                 leading-loose
-                                shadow-2xl
+                                text-shadow-lg/100
                                 ">
                                 Back to the Bush Koalas, Ltd endeavours to respectfully look after the land.
                                 In the spirit of reconciliation and honour, we acknowledge the Traditional

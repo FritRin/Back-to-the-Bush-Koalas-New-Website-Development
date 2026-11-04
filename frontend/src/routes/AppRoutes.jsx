@@ -12,8 +12,14 @@ import Emergency from "../pages/Emergency"
 
 //Sub-pages
 import KoalaStories from "../pages/KoalaStories";
-import TreePlantingEng from "../pages/TreePlantingEng";
 import AdoptKoala from "../pages/AdoptKoala";
+import Wishlist from "../pages/Wishlist";
+
+//Login & Admin Panel pages
+import LoginLayout from "../layouts/LoginLayout"
+import Login from "../pages/Login"
+import AdminPanelLayout from "../layouts/AdminPanelLayout"
+import AdminDashboard from "../pages/AdminDashboard"
 
 function AppRoutes() {
   return (
@@ -24,19 +30,27 @@ function AppRoutes() {
         <Route path="/our-story" element={<OurStory />} />
         <Route path="/our-facilities" element={<OurFacilites />} />
 
-        <Route path="/our-achievements" element={<OurAchievements />}/>
-          {/* Sub-pages */}
+        <Route path="/our-achievements" element={<OurAchievements />} />
+        {/* Sub-pages */}
         <Route path="/koala-success-stories" element={<KoalaStories />} />
-        <Route path="/tree-planting-engagements" element={<TreePlantingEng />} />
-        
 
-        <Route path="/donate" element={<Donate />}/>
-          {/* Sub-pages */}
+
+        <Route path="/donate" element={<Donate />} />
+        {/* Sub-pages */}
         <Route path="/adopt-a-koala" element={<AdoptKoala />} />
+        <Route path="/wishlist" element={<Wishlist />} />
 
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/emergency" element={<Emergency />} />
 
+
+      </Route>
+      <Route element={<LoginLayout />}>
+        <Route path="/login" element={<Login />} />
+      </Route>
+
+      <Route element={<AdminPanelLayout />}>
+        <Route path="/admin" element={<AdminDashboard />} />
       </Route>
     </Routes>
   );

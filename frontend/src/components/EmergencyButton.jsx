@@ -8,7 +8,7 @@ function EmergencyButton() {
     return (
         <div>
             <Link to="/emergency">
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2">
                     <PiPhoneCallFill />
                     <span>Koala Rescue 24/7</span>
                 </button>
