@@ -20,22 +20,116 @@ paths:
         '500':
           description: Internal Server Error
 
+    post:
+      summary: Create a new koala
+      tags:
+        - Koalas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - admin_id
+                - koala_name
+                - description
+                - status
+              properties:
+                admin_id:
+                  type: integer
+                  example: 1
+                koala_name:
+                  type: string
+                  example: Barry
+                description:
+                  type: string
+                  example: A young koala recovering from an injury.
+                image_url:
+                  type: string
+                  nullable: true
+                  example: https://example.com/koala.jpg
+                status:
+                  type: string
+                  example: Recovering
+      responses:
+        '201':
+          description: Koala successfully created
+        '400':
+          description: Invalid input or admin ID does not exist
+        '500':
+          description: Internal Server Error
+
   /api/koalas/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Koala's ID
+        schema:
+          type: integer
+
     get:
       summary: Retrieve a koala by ID
       tags:
         - Koalas
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: Koala's ID
-          schema:
-            type: integer
       responses:
         '200':
           description: Successfully retrieved koala
+        '400':
+          description: Invalid koala ID
         '404':
           description: Koala not found
+        '500':
+          description: Internal Server Error
+
+    put:
+      summary: Update an existing koala
+      tags:
+        - Koalas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              minProperties: 1
+              properties:
+                koala_name:
+                  type: string
+                  example: Barry
+                description:
+                  type: string
+                  example: Barry is recovering well.
+                image_url:
+                  type: string
+                  nullable: true
+                  example: https://example.com/updated-koala.jpg
+                status:
+                  type: string
+                  example: Ready for release
+      responses:
+        '200':
+          description: Koala successfully updated
+        '400':
+          description: Invalid input or no update fields provided
+        '404':
+          description: Koala not found
+        '500':
+          description: Internal Server Error
+
+    delete:
+      summary: Delete a koala
+      tags:
+        - Koalas
+      responses:
+        '200':
+          description: Koala successfully deleted
+        '400':
+          description: Invalid koala ID
+        '404':
+          description: Koala not found
+        '409':
+          description: Cannot delete koala because it is referenced by another record
         '500':
           description: Internal Server Error
