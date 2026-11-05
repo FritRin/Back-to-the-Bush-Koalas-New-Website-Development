@@ -15,9 +15,9 @@ paths:
       tags:
         - Koalas
       responses:
-        '200':
+        "200":
           description: Successfully retrieved koalas
-        '500':
+        "500":
           description: Internal Server Error
 
     post:
@@ -53,11 +53,11 @@ paths:
                   type: string
                   example: Recovering
       responses:
-        '201':
+        "201":
           description: Koala successfully created
-        '400':
+        "400":
           description: Invalid input or admin ID does not exist
-        '500':
+        "500":
           description: Internal Server Error
 
   /api/koalas/{id}:
@@ -74,13 +74,13 @@ paths:
       tags:
         - Koalas
       responses:
-        '200':
+        "200":
           description: Successfully retrieved koala
-        '400':
+        "400":
           description: Invalid koala ID
-        '404':
+        "404":
           description: Koala not found
-        '500':
+        "500":
           description: Internal Server Error
 
     put:
@@ -109,13 +109,13 @@ paths:
                   type: string
                   example: Ready for release
       responses:
-        '200':
+        "200":
           description: Koala successfully updated
-        '400':
+        "400":
           description: Invalid input or no update fields provided
-        '404':
+        "404":
           description: Koala not found
-        '500':
+        "500":
           description: Internal Server Error
 
     delete:
@@ -123,13 +123,99 @@ paths:
       tags:
         - Koalas
       responses:
-        '200':
+        "200":
           description: Koala successfully deleted
-        '400':
+        "400":
           description: Invalid koala ID
-        '404':
+        "404":
           description: Koala not found
-        '409':
+        "409":
           description: Cannot delete koala because it is referenced by another record
-        '500':
+        "500":
+          description: Internal Server Error
+
+  /api/customers:
+    get:
+      summary: Retrieve all customers
+      tags:
+        - Customers
+      responses:
+        "200":
+          description: Successfully retrieved customers
+        "500":
+          description: Internal Server Error
+
+    post:
+      summary: Create a new customer
+      tags:
+        - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: Jack
+                last_name:
+                  type: string
+                  example: Smith
+                email:
+                  type: string
+                  example: jack@example.com
+                phone:
+                  type: string
+                  example: "0400123456"
+                street_number:
+                  type: string
+                  example: "10"
+                street_name:
+                  type: string
+                  example: Main Street
+                suburb:
+                  type: string
+                  example: Toowoomba
+                state:
+                  type: string
+                  example: Queensland
+                postcode:
+                  type: string
+                  example: "4350"
+                country:
+                  type: string
+                  example: Australia
+                company_name:
+                  type: string
+                  example: Example Company
+      responses:
+        "201":
+          description: Customer successfully created
+        "400":
+          description: Invalid customer data
+        "500":
+          description: Internal Server Error
+
+  /api/customers/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Customer's ID
+        schema:
+          type: integer
+
+    get:
+      summary: Retrieve a customer by ID
+      tags:
+        - Customers
+      responses:
+        "200":
+          description: Successfully retrieved customer
+        "400":
+          description: Invalid customer ID
+        "404":
+          description: Customer not found
+        "500":
           description: Internal Server Error
