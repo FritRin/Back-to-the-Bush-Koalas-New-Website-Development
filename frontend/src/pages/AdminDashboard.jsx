@@ -3,15 +3,16 @@ import StatisticCard from "../components/StatisticCard";
 function AdminDashboard() {
   return (
     <div className="pageContainer"> 
-        <h1>Admin Dashboard</h1>
 
         <div className="dashboardOverview">
             <h2>Overview</h2>
             
-            <StatisticCard title="Title" value="--" />
-            <StatisticCard title="Title" value="--" />
-            <StatisticCard title="Title" value="--" />
-            <StatisticCard title="Title" value="--" />
+            <div className="statisticContainer">
+                <StatisticCard title="Title" value="--" />
+                <StatisticCard title="Title" value="--" />
+                <StatisticCard title="Title" value="--" />
+                <StatisticCard title="Title" value="--" />
+            </div>
         </div>
 
         <div className="dashboardAnalytics">
@@ -36,4 +37,4 @@ function AdminDashboard() {
   )
 }
 
-export default AdminDashboard;
+export default AdminDashboard; 
