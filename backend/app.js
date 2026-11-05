@@ -11,6 +11,7 @@ const sequelize = require("./utils/database");
 const notFoundHandler = require("./middleware/notFoundHandler");
 const errorHandler = require("./middleware/errorHandler");
 const koalaRoutes = require("./routes/koalaRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 
 // start the Express application
 const app = express();
@@ -36,6 +37,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerYAML, {swaggerOptions: 
 
 //API Routes
 app.use("/api/koalas", koalaRoutes); 
+app.use("/api/customers", customerRoutes);
 
 app.get("/", (req, res) => {
     res.status(200).json({
