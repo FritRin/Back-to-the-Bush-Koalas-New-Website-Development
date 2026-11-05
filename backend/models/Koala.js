@@ -21,7 +21,7 @@ const Koala = sequelize.define(
         },
     
     koala_name: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING(100),
         allowNull: false,
         },
     
@@ -36,7 +36,7 @@ const Koala = sequelize.define(
         },
     
     status: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(50),
         allowNull: false,
         },
 
