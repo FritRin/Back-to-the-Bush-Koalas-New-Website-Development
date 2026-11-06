@@ -11,6 +11,10 @@ const sequelize = require("./utils/database");
 const notFoundHandler = require("./middleware/notFoundHandler");
 const errorHandler = require("./middleware/errorHandler");
 const koalaRoutes = require("./routes/koalaRoutes");
+const customerRoutes = require("./routes/customerRoutes");
+const koalaStoryRoutes = require("./routes/koalaStoryRoutes");
+const wishlistItemRoutes = require("./routes/wishlistItemRoutes");
+const adoptionRoutes = require("./routes/adoptionRoutes");
 
 // start the Express application
 const app = express();
@@ -27,11 +31,19 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //TODO Swagger or Postman ? up to you
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerYAML = YAML.load(path.join(__dirname, "swagger.yaml"));
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerYAML, {swaggerOptions: { withCredentials: true }}));
 
 //TODO IMPORT Router files here
 
 //API Routes
 app.use("/api/koalas", koalaRoutes); 
+app.use("/api/customers", customerRoutes);
+app.use("/api/koala-stories", koalaStoryRoutes);
+app.use("/api/wishlist-items", wishlistItemRoutes);
+app.use("/api/adoptions", adoptionRoutes);
 
 app.get("/", (req, res) => {
     res.status(200).json({

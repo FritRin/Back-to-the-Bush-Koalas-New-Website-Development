@@ -2,6 +2,27 @@
 
 Repository for CSC3600 ICT Professional project 
 
+### Gitea Repo Instuctions
+- Get the latest code
+    git switch main
+    git pull origin main
+
+- Create a Feature Branch
+    Eg: git switch -c feature/donation-system
+
+- Commit Changes
+    git add .
+    git commit -m "good comment"
+
+- Push to Branch
+    git push -u origin feature/donation-system
+
+- Create pull request in Gitea
+
+- Update Local Main branch
+    git switch main
+    git pull origin main
+
 ### Before running the app
 - have Docker or the Docker Desktop app and ensure it is running
 - Install necessary dependencies
@@ -26,7 +47,7 @@ Link to the Frontend [http://localhost](http://localhost) (recommended to use Fi
 
 link to the Backend [http://localhost:3000](http://localhost:3000)
 
-link to the Documentation (swagger or postman optional) To test the endpoints. [http://localhost/doc](http://localhost/doc)
+link to the Documentation to test the endpoints [http://localhost:3000/docs](http://localhost:3000/docs)
 
 The "docker-compose.yml" will install all the depenedecies in package.json, the ones currently installed are:
 - Backend: 
@@ -34,7 +55,8 @@ The "docker-compose.yml" will install all the depenedecies in package.json, the 
     - dotenv
     - express
     - pg (postgresql)
-    - Sequilize (To make connection to the DB)	
+    - sequelize (To make connection to the DB)	
+    - swagger (For API Documentation)
 
 - Frontend
     - react
