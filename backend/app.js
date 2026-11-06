@@ -12,6 +12,7 @@ const notFoundHandler = require("./middleware/notFoundHandler");
 const errorHandler = require("./middleware/errorHandler");
 const koalaRoutes = require("./routes/koalaRoutes");
 const customerRoutes = require("./routes/customerRoutes");
+const authRoutes = require('./routes/authRoutes');
 
 // start the Express application
 const app = express();
@@ -36,6 +37,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerYAML, {swaggerOptions: 
 //TODO IMPORT Router files here
 
 //API Routes
+app.use("/api/auth", authRoutes);
 app.use("/api/koalas", koalaRoutes); 
 app.use("/api/customers", customerRoutes);
 
