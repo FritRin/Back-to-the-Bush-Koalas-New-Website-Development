@@ -9,6 +9,7 @@ servers:
   - url: http://localhost:3000
 
 paths:
+  # KOALAS
   /api/koalas:
     get:
       summary: Retrieve all koalas
@@ -55,6 +56,10 @@ paths:
       responses:
         "201":
           description: Koala successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Koala"
         "400":
           description: Invalid input or admin ID does not exist
         "500":
@@ -76,6 +81,10 @@ paths:
       responses:
         "200":
           description: Successfully retrieved koala
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Koala"
         "400":
           description: Invalid koala ID
         "404":
@@ -111,6 +120,10 @@ paths:
       responses:
         "200":
           description: Koala successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Koala"
         "400":
           description: Invalid input or no update fields provided
         "404":
@@ -134,6 +147,7 @@ paths:
         "500":
           description: Internal Server Error
 
+  # CUSTOMERS
   /api/customers:
     get:
       summary: Retrieve all customers
@@ -142,6 +156,21 @@ paths:
       responses:
         "200":
           description: Successfully retrieved customers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: integer
+                  count:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Customer"
         "500":
           description: Internal Server Error
 
@@ -192,6 +221,10 @@ paths:
       responses:
         "201":
           description: Customer successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
         "400":
           description: Invalid customer data
         "500":
@@ -213,9 +246,442 @@ paths:
       responses:
         "200":
           description: Successfully retrieved customer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
         "400":
           description: Invalid customer ID
         "404":
           description: Customer not found
         "500":
           description: Internal Server Error
+
+  # KOALA STORIES
+  /api/koala-stories:
+    get:
+      summary: Retrieve all koala stories
+      tags:
+        - Koala Stories
+      responses:
+        "200":
+          description: Koala stories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: integer
+                  count:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/KoalaStory"
+        "500":
+          description: Internal Server Error
+
+    post:
+      summary: Create a new koala story
+      tags:
+        - Koala Stories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - koala_id
+                - admin_id
+                - title
+                - content
+              properties:
+                koala_id:
+                  type: integer
+                  example: 1
+                admin_id:
+                  type: integer
+                  example: 1
+                title:
+                  type: string
+                  example: "Tim - A Koala's Recovery"
+                content:
+                  type: string
+                  example: This koala is recovering well after receiving care.
+      responses:
+        "201":
+          description: Koala story created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    $ref: "#/components/schemas/KoalaStory"
+        "400":
+          description: Invalid request data
+        "500":
+          description: Internal Server Error
+
+  /api/koala-stories/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Koala story ID
+        schema:
+          type: integer
+
+    get:
+      summary: Retrieve a koala story by ID
+      tags:
+        - Koala Stories
+      responses:
+        "200":
+          description: Koala story retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KoalaStory"
+        "400":
+          description: Invalid Koala Story ID
+        "404":
+          description: Koala story not found
+        "500":
+          description: Internal Server Error
+
+    put:
+      summary: Update a koala story
+      tags:
+        - Koala Stories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              minProperties: 1
+              properties:
+                koala_id:
+                  type: integer
+                  example: 1
+                admin_id:
+                  type: integer
+                  example: 1
+                title:
+                  type: string
+                  example: Updated Koala Recovery Story
+                content:
+                  type: string
+                  example: The koala has made further progress in recovery.
+      responses:
+        "200":
+          description: Koala story updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KoalaStory"
+        "400":
+          description: Invalid request data
+        "404":
+          description: Koala story not found
+        "500":
+          description: Internal Server Error
+
+    delete:
+      summary: Delete a koala story
+      tags:
+        - Koala Stories
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Koala story deleted successfully
+        "400":
+          description: Invalid Koala Story ID
+        "404":
+          description: Koala story not found
+        "500":
+          description: Internal Server Error
+
+  # WHISHLIST
+  /api/wishlist-items:
+    get:
+      summary: Get all wishlist items
+      tags:
+        - Wishlist Items
+      responses:
+        "200":
+          description: Wishlist items retrieved successfully
+        "500":
+          description: Internal Server Error
+
+    post:
+      summary: Create a wishlist item
+      tags:
+        - Wishlist Items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WishlistItemInput"
+      responses:
+        "201":
+          description: Wishlist item created successfully
+        "400":
+          description: Invalid wishlist item details
+        "500":
+          description: Internal Server Error
+
+  /api/wishlist-items/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+
+    get:
+      summary: Get a wishlist item by ID
+      tags:
+        - Wishlist Items
+      responses:
+        "200":
+          description: Wishlist item retrieved successfully
+        "400":
+          description: Invalid wishlist item ID
+        "404":
+          description: Wishlist item not found
+        "500":
+          description: Internal Server Error
+
+    put:
+      summary: Update a wishlist item
+      tags:
+        - Wishlist Items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WishlistItemUpdate"
+      responses:
+        "200":
+          description: Wishlist item updated successfully
+        "400":
+          description: Invalid update details
+        "404":
+          description: Wishlist item not found
+        "500":
+          description: Internal Server Error
+
+    delete:
+      summary: Delete a wishlist item
+      tags:
+        - Wishlist Items
+      responses:
+        "200":
+          description: Wishlist item deleted successfully
+        "400":
+          description: Invalid wishlist item ID
+        "404":
+          description: Wishlist item not found
+        "409":
+          description: Wishlist item is referenced by a purchase
+        "500":
+          description: Internal Server Error
+
+components:
+  schemas:
+    Koala:
+      type: object
+      properties:
+        koala_id:
+          type: integer
+          example: 1
+        admin_id:
+          type: integer
+          example: 1
+        koala_name:
+          type: string
+          example: Barry
+        description:
+          type: string
+          example: A young koala recovering from an injury.
+        image_url:
+          type: string
+          nullable: true
+          example: https://example.com/koala.jpg
+        status:
+          type: string
+          example: Recovering
+        date_added:
+          type: string
+          format: date-time
+
+    Customer:
+      type: object
+      properties:
+        customer_id:
+          type: integer
+          example: 1
+        first_name:
+          type: string
+          nullable: true
+          example: Jack
+        last_name:
+          type: string
+          nullable: true
+          example: Smith
+        email:
+          type: string
+          nullable: true
+          example: jack@example.com
+        phone:
+          type: string
+          nullable: true
+          example: "0400123456"
+        street_number:
+          type: string
+          nullable: true
+          example: "10"
+        street_name:
+          type: string
+          nullable: true
+          example: Main Street
+        suburb:
+          type: string
+          nullable: true
+          example: Toowoomba
+        state:
+          type: string
+          nullable: true
+          example: Queensland
+        postcode:
+          type: string
+          nullable: true
+          example: "4350"
+        country:
+          type: string
+          nullable: true
+          example: Australia
+        company_name:
+          type: string
+          nullable: true
+          example: Example Company
+        created_date:
+          type: string
+          format: date-time
+
+    KoalaStory:
+      type: object
+      properties:
+        story_id:
+          type: integer
+          example: 1
+        koala_id:
+          type: integer
+          example: 1
+        admin_id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Tim - A Koala's Recovery"
+        content:
+          type: string
+          example: This koala is recovering well after receiving care.
+        created_at:
+          type: string
+          format: date-time
+
+        WishlistItem:
+      type: object
+      properties:
+        item_id:
+          type: integer
+        item_name:
+          type: string
+        item_description:
+          type: string
+        item_image_url:
+          type: string
+          nullable: true
+        status:
+          type: string
+          minLength: 1
+          maxLength: 1
+        number_of_items:
+          type: integer
+        price:
+          type: number
+          format: double
+
+    WishlistItemInput:
+      type: object
+      required:
+        - item_name
+        - item_description
+        - status
+        - number_of_items
+        - price
+      properties:
+        item_name:
+          type: string
+          maxLength: 50
+        item_description:
+          type: string
+          maxLength: 100
+        item_image_url:
+          type: string
+          maxLength: 100
+          nullable: true
+        status:
+          type: string
+          minLength: 1
+          maxLength: 1
+        number_of_items:
+          type: integer
+          minimum: 0
+        price:
+          type: number
+          minimum: 0
+
+    WishlistItemUpdate:
+      type: object
+      properties:
+        item_name:
+          type: string
+          maxLength: 50
+        item_description:
+          type: string
+          maxLength: 100
+        item_image_url:
+          type: string
+          maxLength: 100
+          nullable: true
+        status:
+          type: string
+          minLength: 1
+          maxLength: 1
+        number_of_items:
+          type: integer
+          minimum: 0
+        price:
+          type: number
+          minimum: 0
