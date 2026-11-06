@@ -4,3 +4,369 @@ body {
   font-family: 'Roboto Serif', serif;
   background-color: #EEF2DB;
 }
+
+/* Typography */
+h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 550;
+  line-height: 1;
+  margin-left: 1rem;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+p {
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 1.2;
+  margin-left: 5px;
+}
+
+/* Homepage styles */
+div.featuredStory {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 800px;
+  background-color: #9FA659;
+  max-width: 45%;
+  padding: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+div.homeHeading {
+  display: flex;
+  justify-content: center;
+}
+
+img.featuredStory {
+  height: auto;
+  max-width: 95%;
+  margin: 1rem;
+}
+
+h1.featuredStory {
+  color: white;
+}
+
+.storyContainer {
+  height: auto;
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  background-color: #9FA659;
+  margin: 1rem;
+}
+
+img.storyContainer {
+  max-width: 100%;
+  max-height: auto;
+}
+
+h2.storyContainer {
+  color: white;
+}
+
+.storyPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.storySubPanel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+div.aboutUsText {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+div.aboutUsImg {
+  background-color: #4B4C2C;
+  width: 20%;
+  height: 10%;
+}
+
+img.aboutUsImg {
+  height: 10%;
+  width: 20%;
+}
+
+div.statisticDiv {
+  background-color: #4B4C2C;
+  height: 20%;
+  width: 10%;
+  display: -ms-flexbox;
+  -ms-flex-item-align: center;
+  justify-content: center;
+  margin: 2%;
+}
+
+h1.statisticDiv {
+  color:#9FA659;
+  margin: auto;
+}
+
+h4.statisticDiv {
+  color:#EEF2DB;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin: auto;
+}
+
+.statisticPanel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 5px;
+}
+
+/* Our Story Styles */
+
+h1.ourStoryHeading {
+  display: flex;
+  justify-content: center;
+}
+
+div.ourStoryHistory {
+  border-width: 0.5rem;
+  border-color: #9FA659;
+  max-width: 95%;
+  margin: auto;
+}
+
+h2.ourStoryHistory {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+img.ourStoryHistory {
+  max-width: 50%;
+  height: auto;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+p.ourStoryHistory {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ourStoryContainer {
+  display: flex;
+}
+
+h2.boardOfDirectors {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+div.directorIntro {
+  border-width: 0.5rem;
+  border-color: #9FA659;
+  width: 95%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+div.director {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.directorPhoto {
+  max-width: 30%;
+  margin: 1rem;
+}
+
+.directorContent {
+  display: flex;
+}
+/* Contact Us Styles */
+
+.contactUsHeading {
+  margin: auto;
+  height: auto;
+  width: 35%;
+}
+
+div.formInput {
+  margin-bottom: 1rem;
+  width: 20em;
+  height: 15%;
+  background-color: lightgray;
+  color: grey;
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+
+p.contactForm {
+  margin: auto;
+  width: 25%;
+  height: auto;
+}
+
+div.formMessage {
+  width: 20em;
+  height: 10em;
+  background-color: lightgrey;
+  color: grey;
+  margin-left: 4%;
+  font-size: 1.2rem;
+}
+
+div.contactForm {
+  margin: auto;
+  display: flex;
+  width: 20%;
+  height: auto;
+}
+
+.contactUsPanel {
+  margin-top: 6%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+div.contactUsBox {
+  border-color: #9FA659;
+  border-width: 0.5rem;
+  width: 20%;
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+p.contactUsBox {
+  margin: auto;
+}
+
+a.contactUsBox {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  margin: auto;
+}
+
+a.contactUsBox:hover {
+  color: blue;
+}
+
+.faqButton {
+  color: white;
+  width: 100%;
+  background-color: #9FA659;
+  margin: auto;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+h1.faq {
+  margin: auto;
+  width: 28%;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.faqContent {
+  padding: 1rem;
+}
+
+
+/* Emergency Page styles */
+
+h1.emergencyHeading {
+  color: red;
+  font-weight: bold;
+  margin: auto;
+}
+
+div.emergencyHeading {
+  width: 30%;
+  height: auto;
+  margin: auto;
+  padding: 1%
+}
+
+div.emergencySubtitle {
+  width: 35%;
+  height: auto;
+  margin: auto;
+  margin-bottom: 2%;
+}
+
+div.emergencyNumber {
+  border-color:#9FA659;
+  border-width: 0.5rem;
+  padding: 1rem;
+  width: 15%;
+  margin-right: 7%;
+  margin-bottom: 2%;
+  margin-left: 7%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  -ms-flex-align: center;
+}
+
+a.emergencyNumber {
+  font-size: 1.2rem;
+  margin: auto;
+  text-decoration: underline;
+}
+
+a.emergencyNumber:hover {
+  color: blue;
+}
+
+p.emergencyNumber {
+  margin: auto;
+}
+
+.emergencyNumberLink {
+  margin: auto;
+}
+
+.emergencyNumberPanel {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10%;
+}
+
+.emergencyButton {
+  background-color: red; 
+  color: white ;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  -ms-flex-item-align: center;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.emergencyButton:hover {
+  background-color: darkred;
+}
