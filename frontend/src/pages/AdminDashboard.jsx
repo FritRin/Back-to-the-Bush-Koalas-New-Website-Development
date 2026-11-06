@@ -1,4 +1,6 @@
-import StatisticCard from "../components/StatisticCard";
+import StatisticCard from "../components/StatisticDisplay";
+import DonationLineChart from "../components/DonationLineChart";
+import DonationPieChart from "../components/DonationPieChart";
 
 function AdminDashboard() {
   return (
@@ -8,7 +10,7 @@ function AdminDashboard() {
             <h2>Overview</h2>
             
             <div className="statisticContainer">
-                <StatisticCard title="Title" value="--" />
+                <StatisticCard title="Total Donations" value="$--" />
                 <StatisticCard title="Title" value="--" />
                 <StatisticCard title="Title" value="--" />
                 <StatisticCard title="Title" value="--" />
@@ -17,20 +19,24 @@ function AdminDashboard() {
 
         <div className="dashboardAnalytics">
             <h2>Analytics</h2>
+
+            <div className="analyticsGrid">
             
-            <div className="donationAnalytics">
-                <h3>Analytics 1 placeholder</h3>
-                <p>Recharts placeholder</p>
-            </div>
+                <div className="donationAnalytics">
+                    <h3>Donations Over Time Placeholder</h3>
+                    <DonationLineChart />
+                </div>
 
-            <div className="donationAnalytics">
-                <h3>Analytics 2 placeholder</h3>
-                <p>Recharts placeholder</p>
-            </div>
+                <div className="donationAnalytics">
+                    <h3>Payment Methods placeholder</h3>
+                    <DonationPieChart />
+                </div>
 
-            <div className="donationAnalytics">
-                <h3>Analytics 3 placeholder</h3>
-                <p>Recharts placeholder</p>
+                <div className="donationAnalytics">
+                    <h3>Analytics 3 placeholder</h3>
+                    <p>Recharts placeholder</p>
+                </div>
+
             </div>
         </div>
     </div>
