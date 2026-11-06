@@ -8,6 +8,9 @@ export default defineConfig({
   plugins: [react(), tailwindcss(),],
   server: {
     host: '0.0.0.0',
-    allowedHosts: true
-  }
+    allowedHosts: true,
+    watch: {
+    usePolling: true,
+    },
+  },
 })

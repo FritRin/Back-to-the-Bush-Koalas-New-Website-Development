@@ -1,10 +1,12 @@
 function ContactUS(){
     return(
         <div className="pageContainer">
-            <h1>Contact Us</h1>
+            <div className="contactUsHeading">
+                <h1 className="contactUsHeading">Contact Us</h1>
+            </div>
+            <p className="contactForm">Ask a Question (all queries are sent to our email)</p>
             <div className="contactForm">
                 <form>
-                    <label>Ask a Question (all queries are sent to our email)</label>
                     <div className="formInput">
                         <input
                         type="text"
@@ -37,7 +39,7 @@ function ContactUS(){
                         required
                         />
                     </div>
-                    <div className="formInput">
+                    <div className="formMessage">
                         <input
                         type="textarea"
                         defaultValue={"Message*"}
@@ -46,29 +48,32 @@ function ContactUS(){
                     </div>
                 </form>
             </div>
-            <div className="contactUsBox">
-                <p>Info</p>
-                <p>Info</p>
-                <p>Etc</p>
-            </div>
-            <div className="contactUsBox">
-                <p>For more information email:</p>
-                <a href="mailto:info@backtothebushkoalas.com.au">info@backtothebushkoalas.com.au</a>
-            </div>
-            <div className="contactUsBox">
-                <p>Follow Us</p>
+            <div className="contactUsPanel">
+                <div className="contactUsBox">
+                    <p className="contactUsBox">Info</p>
+                    <p className="contactUsBox">Info</p>
+                    <p className="contactUsBox">Etc</p>
+                </div>
+                <div className="contactUsBox">
+                    <p className="contactUsBox">For more information email:</p>
+                    <a href="mailto:info@backtothebushkoalas.com.au" className="contactUsBox">info@backtothebushkoalas.com.au</a>
+                </div>
+                <div className="contactUsBox">
+                    <p className="contactUsBox">Follow Us</p>
+                </div>
             </div>
             <div className="faq">
+                <h1 className="faq">Frequently Asked Questions</h1>
                 <button type="button" className="faqButton">Question</button>
-                 <div>
+                 <div className="faqContent">
                     <p>Content</p>
                 </div>
                 <button type="button" className="faqButton">Question</button>
-                 <div>
+                 <div className="faqContent">
                     <p>Content</p>
                 </div>
                 <button type="button" className="faqButton">Question</button>
-                 <div>
+                 <div className="faqContent">
                     <p>Content</p>
                 </div>
             </div>
