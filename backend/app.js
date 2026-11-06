@@ -13,6 +13,7 @@ const errorHandler = require("./middleware/errorHandler");
 const koalaRoutes = require("./routes/koalaRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 const koalaStoryRoutes = require("./routes/koalaStoryRoutes");
+const wishlistItemRoutes = require("./routes/wishlistItemRoutes");
 
 // start the Express application
 const app = express();
@@ -40,6 +41,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerYAML, {swaggerOptions: 
 app.use("/api/koalas", koalaRoutes); 
 app.use("/api/customers", customerRoutes);
 app.use("/api/koala-stories", koalaStoryRoutes);
+app.use("/api/wishlist-items", wishlistItemRoutes);
 
 app.get("/", (req, res) => {
     res.status(200).json({
