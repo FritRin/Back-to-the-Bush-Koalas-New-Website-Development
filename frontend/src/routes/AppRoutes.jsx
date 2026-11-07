@@ -19,7 +19,7 @@ import Wishlist from "../pages/Wishlist";
 import LoginLayout from "../layouts/LoginLayout"
 import Login from "../pages/Login"
 import AdminPanelLayout from "../layouts/AdminPanelLayout"
-import AdminDashboard from "../pages/AdminDashboard"
+import AdminDashboard from "../pages/admin/AdminDashboard"
 
 function AppRoutes() {
   return (

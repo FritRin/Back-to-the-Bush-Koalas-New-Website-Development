@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import NavAdmin from "../components/NavAdmin";
+import NavAdmin from "../components/admin/NavAdmin";
 
 function AdminPanelLayout() {
   return (
