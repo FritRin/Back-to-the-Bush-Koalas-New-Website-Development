@@ -5,6 +5,7 @@ body {
   background-color: #EEF2DB;
 }
 
+
 /* Typography */
 h1 {
   font-size: 3rem;
@@ -369,4 +370,77 @@ p.emergencyNumber {
 
 .emergencyButton:hover {
   background-color: darkred;
+}
+
+/* Admin Dashboard styles */
+
+/* Statistic Card container */
+div.adminStatisticContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  gap: 20px;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+/* Individual statistic cards */
+div.adminStatisticDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex: 1;
+  height: 200px;
+  min-height: 200px;
+  background-color: #ffffff;
+  border: 2px solid #9fa659;
+  border-radius: 10px;
+  padding: 2%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Statistic card headings */
+div.adminStatisticDiv h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #666666;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+/* Analytics Grid */
+.adminAnalyticsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 20px;
+  margin-left: 2%;
+  margin-right: 2%;
+  align-items: center;
+}
+
+/* Individual analytics cards */
+.adminDonationAnalytics {
+  background-color: #ffffff;
+  border: 2px solid #9fa659;
+  border-radius: 10px;
+  padding: 2%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.adminDonationAnalytics h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #666666;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.adminDonationChart {
+  width: 100%;
+  height: 280px;
+  min-width: 0;
 }
