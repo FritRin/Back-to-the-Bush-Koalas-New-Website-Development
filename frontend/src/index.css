@@ -3,36 +3,12 @@
 body {
   font-family: 'Roboto Serif', serif;
   background-color: #EEF2DB;
-  line-height: 40px;
-  letter-spacing: 0.02em;
-}
-
-h1 {
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 1.2;
-  margin-top: 2%;
-  margin-left: 2%;
-}
-
-h2 {
-  font-size: 2.5rem;
-  font-weight: 550;
-  line-height: 1;
-  margin: 5px;
-}
-
-p {
-  font-size: 1.5rem;
-  font-weight: 100;
-  line-height: 1.2;
-  margin-left: 5px;
 }
 
 /* Admin Dashboard styles */
 
 /* Statistic Card container */
-div.statisticContainer {
+div.adminStatisticContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -43,7 +19,7 @@ div.statisticContainer {
 }
 
 /* Individual statistic cards */
-div.statisticDiv {
+div.adminStatisticDiv {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -60,7 +36,7 @@ div.statisticDiv {
 }
 
 /* Statistic card headings */
-div.statisticDiv h3 {
+div.adminStatisticDiv h3 {
   font-size: 1.2rem;
   font-weight: 500;
   color: #666666;
@@ -69,7 +45,7 @@ div.statisticDiv h3 {
 }
 
 /* Analytics Grid */
-.analyticsGrid {
+.adminAnalyticsGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 20px;
@@ -79,7 +55,7 @@ div.statisticDiv h3 {
 }
 
 /* Individual analytics cards */
-.donationAnalytics {
+.adminDonationAnalytics {
   background-color: #ffffff;
   border: 2px solid #9fa659;
   border-radius: 10px;
@@ -88,7 +64,7 @@ div.statisticDiv h3 {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.donationAnalytics h3 {
+.adminDonationAnalytics h3 {
   font-size: 1.2rem;
   font-weight: 500;
   color: #666666;
@@ -96,7 +72,7 @@ div.statisticDiv h3 {
   margin-bottom: 15px;
 }
 
-.donationChart {
+.adminDonationChart {
   width: 100%;
   height: 280px;
   min-width: 0;

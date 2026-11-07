@@ -14,7 +14,7 @@ function DonationLineChart() {
     ];
 
     return (
-        <div className="donationChart">
+        <div className="adminDonationChart">
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={placeholderData}>
                 

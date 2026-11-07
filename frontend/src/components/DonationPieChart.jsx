@@ -9,7 +9,7 @@ const Colours = ["#9FA659", "#797641"]
 
 function DonationPieChart() {
     return (
-        <div className="donationChart">
+        <div className="adminDonationChart">
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie
