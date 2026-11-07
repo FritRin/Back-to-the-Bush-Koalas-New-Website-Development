@@ -1,11 +1,12 @@
-import StatisticCard from "../components/StatisticDisplay";
-import DonationLineChart from "../components/DonationLineChart";
-import DonationPieChart from "../components/DonationPieChart";
+import StatisticCard from "../../components/admin/StatisticDisplay";
+import DonationLineChart from "../../components/admin/DonationLineChart";
+import DonationPieChart from "../../components/admin/DonationPieChart";
+import TotalKoalas from "../../components/admin/TotalKoalas";
 
 function AdminDashboard() {
   return (
     <div className="adminDashboard">
-        <div className="adminSectionContainer adminDashboardOverview">
+        <div className="adminDashboardOverview">
                 <h2>Overview</h2>
             </div>
             
@@ -14,7 +15,7 @@ function AdminDashboard() {
 
                 <div className="adminStatisticWrapper">
                     <StatisticCard title="Total Donations" value="$--" />
-                    <StatisticCard title="Title" value="--" />
+                    <TotalKoalas /> 
                     <StatisticCard title="Title" value="--" />
                     <StatisticCard title="Title" value="--" />
             </div>

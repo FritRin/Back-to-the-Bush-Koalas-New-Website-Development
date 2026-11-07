@@ -18,16 +18,21 @@ function DonationLineChart() {
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={placeholderData}>
                 
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day" />
+                <CartesianGrid
+                    strokeDasharray="3 3" 
+                />
+                <XAxis 
+                    dataKey="day" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
                 <Line
                     type="monotone"
                     dataKey="donations"
-                    stroke="#9FA659"
-                    strokeWidth={3} 
+                    stroke="#9fa659"
+                    strokeWidth={3}
+                    dot={{ fill: "#797641, r: 4"}}
+                    activeDot={{ fill: "#9FA659", r: 6}}
                 />
                 </LineChart>
             </ResponsiveContainer>
