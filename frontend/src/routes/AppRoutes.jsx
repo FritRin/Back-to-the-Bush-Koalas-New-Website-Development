@@ -4,7 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 
 import Home from "../pages/Home"
 import OurStory from "../pages/OurStory"
-import OurFacilites from "../pages/OurFacilities"
+import OurFacilities from "../pages/OurFacilities"
 import OurAchievements from "../pages/OurAchievements"
 import Donate from "../pages/Donate"
 import ContactUs from "../pages/ContactUs"
@@ -21,36 +21,42 @@ import Login from "../pages/Login"
 import AdminPanelLayout from "../layouts/AdminPanelLayout"
 import AdminDashboard from "../pages/admin/AdminDashboard"
 
+
 function AppRoutes() {
   return (
     <Routes>
+      {/* Public Website */}
       <Route element={<MainLayout />}>
+        <Route index element={<Home />} />
+        <Route path="our-story" element={<OurStory />} />
+        <Route path="our-facilities" element={<OurFacilities />} />
 
-        <Route path="/" element={<Home />} />
-        <Route path="/our-story" element={<OurStory />} />
-        <Route path="/our-facilities" element={<OurFacilites />} />
+        <Route path="our-achievements">
+          <Route index element={<OurAchievements />} />
+          <Route
+            path="koala-success-stories"
+            element={<KoalaStories />}
+          />
+        </Route>
 
-        <Route path="/our-achievements" element={<OurAchievements />} />
-        {/* Sub-pages */}
-        <Route path="/koala-success-stories" element={<KoalaStories />} />
+        <Route path="donate">
+          <Route index element={<Donate />} />
+          <Route path="adopt-a-koala" element={<AdoptKoala />} />
+          <Route path="wishlist" element={<Wishlist />} />
+        </Route>
 
-
-        <Route path="/donate" element={<Donate />} />
-        {/* Sub-pages */}
-        <Route path="/adopt-a-koala" element={<AdoptKoala />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/emergency" element={<Emergency />} />
-
-
+        <Route path="contact-us" element={<ContactUs />} />
+        <Route path="emergency" element={<Emergency />} />
       </Route>
+
+      {/* Login */}
       <Route element={<LoginLayout />}>
         <Route path="/login" element={<Login />} />
       </Route>
 
-      <Route element={<AdminPanelLayout />}>
-        <Route path="/admin" element={<AdminDashboard />} />
+      {/* Admin */}
+      <Route path="/admin" element={<AdminPanelLayout />}>
+        <Route index element={<AdminDashboard />} />
       </Route>
     </Routes>
   );
