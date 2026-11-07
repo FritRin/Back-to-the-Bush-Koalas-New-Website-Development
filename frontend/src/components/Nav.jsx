@@ -36,7 +36,7 @@ function Nav() {
                     to="/our-achievements"
                     className="hover:text-[#4B4C2C] transition"
                 >
-                    Our Archivements
+                    Our Achievements
                 </Link>
                 {/* <div className="
                     absolute 
