@@ -4,24 +4,26 @@ import DonationPieChart from "../components/DonationPieChart";
 
 function AdminDashboard() {
   return (
-    <div className="pageContainer"> 
-
-        <div className="dashboardOverview">
-            <h2>Overview</h2>
+    <div className="adminDashboard">
+        <div className="adminSectionContainer adminDashboardOverview">
+                <h2>Overview</h2>
+            </div>
             
-            <div className="adminStatisticContainer">
-                <StatisticCard title="Total Donations" value="$--" />
-                <StatisticCard title="Title" value="--" />
-                <StatisticCard title="Title" value="--" />
-                <StatisticCard title="Title" value="--" />
+            <div className="adminSectionContainer">
+                <h3 className="adminSectionTitle">Statistics</h3>
+
+                <div className="adminStatisticWrapper">
+                    <StatisticCard title="Total Donations" value="$--" />
+                    <StatisticCard title="Title" value="--" />
+                    <StatisticCard title="Title" value="--" />
+                    <StatisticCard title="Title" value="--" />
             </div>
         </div>
 
-        <div className="dashboardAnalytics">
-            <h2>Analytics</h2>
+        <div className="adminSectionContainer">
+            <h3 className="adminSectionTitle">Analytics</h3>
 
             <div className="adminAnalyticsGrid">
-            
                 <div className="adminDonationAnalytics">
                     <h3>Donations Over Time Placeholder</h3>
                     <DonationLineChart />

@@ -1,5 +1,3 @@
-import React from 'react';
-
 function StatisticCard({ title, value }) {
     return (
         <div className="adminStatisticDiv">
