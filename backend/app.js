@@ -14,6 +14,8 @@ const koalaRoutes = require("./routes/koalaRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 const koalaStoryRoutes = require("./routes/koalaStoryRoutes");
 const wishlistItemRoutes = require("./routes/wishlistItemRoutes");
+const adoptionRoutes = require("./routes/adoptionRoutes");
+const donationRoutes = require("./routes/donationRoutes");
 
 // start the Express application
 const app = express();
@@ -42,6 +44,8 @@ app.use("/api/koalas", koalaRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/koala-stories", koalaStoryRoutes);
 app.use("/api/wishlist-items", wishlistItemRoutes);
+app.use("/api/adoptions", adoptionRoutes);
+app.use("/api/donations", donationRoutes);
 
 app.get("/", (req, res) => {
     res.status(200).json({

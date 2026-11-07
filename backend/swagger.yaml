@@ -506,6 +506,206 @@ paths:
         "500":
           description: Internal Server Error
 
+  # Adoptions
+  /api/adoptions:
+    get:
+      summary: Retrieve all adoptions
+      tags:
+        - Adoptions
+      responses:
+        '200':
+          description: List of all adoptions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  count:
+                    type: integer
+                    example: 2
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Adoption'
+
+    post:
+      summary: Create a new adoption
+      tags:
+        - Adoptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdoptionInput'
+            example:
+              customer_id: 1
+              koala_id: 1
+              status: Active
+              amount: 50.00
+              payment_method: Credit Card
+              transaction_reference: TXN-123456
+      responses:
+        '201':
+          description: Adoption created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 201
+                  message:
+                    type: string
+                    example: Adoption created successfully
+                  data:
+                    $ref: '#/components/schemas/Adoption'
+        '400':
+          description: Invalid adoption details or customer/koala ID does not exist
+
+  /api/adoptions/{id}:
+    get:
+      summary: Retrieve an adoption by ID
+      tags:
+        - Adoptions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Adoption ID
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Adoption retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  data:
+                    $ref: '#/components/schemas/Adoption'
+        '400':
+          description: Invalid adoption ID
+        '404':
+          description: Adoption not found
+
+  # DONATIONS
+  /api/donations:
+    get:
+      summary: Get all donations
+      tags:
+        - Donations
+      responses:
+        "200":
+          description: Donations retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: integer
+                  count:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Donation"
+        "500":
+          description: Internal server error
+
+    post:
+      summary: Create a donation
+      tags:
+        - Donations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DonationInput"
+            example:
+              customer_id: 1
+              currency: AUD
+              amount: 50.00
+              payment_method: Credit Card
+              transaction_reference: DON-123456
+      responses:
+        "201":
+          description: Donation recorded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    $ref: "#/components/schemas/Donation"
+        "400":
+          description: Invalid donation details
+        "409":
+          description: Customer ID does not exist
+        "500":
+          description: Internal server error
+
+  /api/donations/{id}:
+    get:
+      summary: Get a donation by ID
+      tags:
+        - Donations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Donation ID
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Donation retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: integer
+                  data:
+                    $ref: "#/components/schemas/Donation"
+        "400":
+          description: Invalid donation ID
+        "404":
+          description: Donation not found
+        "500":
+          description: Internal server error
+
 components:
   schemas:
     Koala:
@@ -610,7 +810,7 @@ components:
           type: string
           format: date-time
 
-        WishlistItem:
+    WishlistItem:
       type: object
       properties:
         item_id:
@@ -685,3 +885,137 @@ components:
         price:
           type: number
           minimum: 0
+    
+    Adoption:
+      type: object
+      properties:
+        adoption_id:
+          type: integer
+          example: 1
+        customer_id:
+          type: integer
+          example: 1
+        koala_id:
+          type: integer
+          example: 1
+        status:
+          type: string
+          maxLength: 50
+          example: Active
+        amount:
+          type: number
+          format: double
+          example: 50.00
+        payment_method:
+          type: string
+          maxLength: 50
+          example: Credit Card
+        transaction_reference:
+          type: string
+          nullable: true
+          maxLength: 255
+          example: TXN-123456
+        adoption_date:
+          type: string
+          format: date-time
+          example: '2026-11-06T07:00:00.000Z'
+
+    AdoptionInput:
+      type: object
+      required:
+        - customer_id
+        - koala_id
+        - status
+        - amount
+        - payment_method
+      properties:
+        customer_id:
+          type: integer
+          minimum: 1
+          example: 1
+        koala_id:
+          type: integer
+          minimum: 1
+          example: 1
+        status:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: Active
+        amount:
+          type: number
+          minimum: 0
+          example: 50.00
+        payment_method:
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: Credit Card
+        transaction_reference:
+          type: string
+          nullable: true
+          maxLength: 255
+          example: TXN-123456
+    
+    Donation:
+      type: object
+      properties:
+        donation_id:
+          type: integer
+          example: 1
+        customer_id:
+          type: integer
+          example: 1
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+          example: AUD
+        amount:
+          type: number
+          format: double
+          example: 50.00
+        payment_method:
+          type: string
+          maxLength: 50
+          example: Credit Card
+        donation_date:
+          type: string
+          format: date-time
+          example: "2026-11-07T10:30:00.000Z"
+        transaction_reference:
+          type: string
+          nullable: true
+          maxLength: 100
+          example: DON-123456
+
+    DonationInput:
+      type: object
+      required:
+        - customer_id
+        - currency
+        - amount
+        - payment_method
+      properties:
+        customer_id:
+          type: integer
+          example: 1
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+          example: AUD
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 50.00
+        payment_method:
+          type: string
+          maxLength: 50
+          example: Credit Card
+        transaction_reference:
+          type: string
+          nullable: true
+          maxLength: 100
+          example: DON-123456
