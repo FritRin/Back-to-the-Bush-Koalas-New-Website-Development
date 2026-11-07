@@ -37,6 +37,13 @@ function Home(){
                     </div>
                 </div>
             </div>
+            <div className="homeHeadingBox">
+                <h2 className="homeHeadingBox">Who We Are</h2>
+            </div>
+            <h3 className="homeIntroduction">
+                Back to the Bush Koalas, Ltd is an established not-for-profit koala rehabilitation centre serving the Toowoomba and Lockyer Valley region. Our on-site veterinarian specialises in treating and rehabilitating injured and orphaned koalas. Our focus is on successfully 
+                releasing koalas back into the wild.
+            </h3>
             <h2 className="aboutUsHeading">Our Vision</h2>
             <div className="aboutUsText">
                 <p className="aboutUsText1">

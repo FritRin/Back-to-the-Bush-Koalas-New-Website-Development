@@ -161,6 +161,24 @@ h4.statisticDiv {
   margin: 5px;
 }
 
+div.homeHeadingBox {
+  background-color: #9FA659;
+  height: 3rem;
+  margin: auto;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2.homeHeadingBox {
+  color: white;
+}
+
+h3.homeIntroduction {
+  margin: 1rem;
+  margin-bottom: 3rem;
+}
 /* Our Story Styles */
 
 h1.ourStoryHeading {
