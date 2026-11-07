@@ -37,40 +37,37 @@ function Home(){
                     </div>
                 </div>
             </div>
+            <div className="homeHeadingBox">
+                <h2 className="homeHeadingBox">Who We Are</h2>
+            </div>
+            <h3 className="homeIntroduction">
+                Back to the Bush Koalas, Ltd is an established not-for-profit koala rehabilitation centre serving the Toowoomba and Lockyer Valley region. Our on-site veterinarian specialises in treating and rehabilitating injured and orphaned koalas. Our focus is on successfully 
+                releasing koalas back into the wild.
+            </h3>
+            <h2 className="aboutUsHeading">Our Vision</h2>
             <div className="aboutUsText">
-                <h2>Our Purpose</h2>
-                <p>Content</p>
-                <div className="aboutUsImg">
-                <img src="example.jpg"></img>
+                <p className="aboutUsText1">
+                    Our purpose is to establish and sustainably operate a dedicated regional koala hospital providing 24/7 veterinary treatment and rehabilitation services in an under-served area. 
+                    Back to the Bush Koalas Ltd is developing this hospital on a quiet 26-acre property on the southern edge of Toowoomba. With over seven years of rehabilitating injured and orphaned koalas, we already have substantial infrastructure completed. 
+                    This hospital will serve the Toowoomba/Lockyer Valley/ Sommerset/Granite Belt regions, offering a closer option of high-quality care for these iconic animals.
+                </p>
+                <img src={hospitalPhoto} className="aboutUsImg1"></img>
             </div>
-            </div>
+
+            <h3 className="aboutUsSubHeading">The Problem and our Important Niche</h3>
             <div className="aboutUsText">
-                <h2>Our Mission</h2>
-                <p>Content</p>
-                <div className="aboutUsImg">
-                    <img></img>
-                </div>
+                <img src={hospitalPhoto} className="aboutUsImg2"/>
+                <p className="aboutUsText2">Content</p>
             </div>
+            <h3 className="aboutUsSubHeading">The Regional Need</h3>
             <div className="aboutUsText">
-                <h2>The Problem and our Important Niche</h2>
-                <p>Content</p>
+                <p className="aboutUsText1">Content</p>
+                <img src={hospitalPhoto} className="aboutUsImg1"></img>
             </div>
-            <div className="aboutUsImg">
-                <img></img>
-            </div>
+            <h3 className="aboutUsSubHeading">The Regional Solution</h3>
             <div className="aboutUsText">
-                <h2>The Regional Need</h2>
-                <p>Content</p>
-            </div>
-            <div className="aboutUsImg">
-                <img></img>
-            </div>
-            <div className="aboutUsText">
-                <h2>The Regional Solution</h2>
-                <p>Content</p>
-            </div>
-            <div className="aboutUsImg">
-                <img></img>
+                <img src={hospitalPhoto} className="aboutUsImg2"/>
+                <p className="aboutUsText2">Content</p>
             </div>
             <div className="statisticPanel">
                 <div className="statisticDiv">
