@@ -79,14 +79,14 @@ function Nav() {
                 ">
                     <Link
                         className="block px-4 py-3 hover:bg-[#797641]"
-                        to="/Wishlist"
+                        to="/donate/Wishlist"
                     >
                         Wishlist
                     </Link>
 
                     <Link
                         className="block px-4 py-3 hover:bg-[#797641]"
-                        to="/adopt-a-koala"
+                        to="/donate/adopt-a-koala"
                     >
                         Adopt a Koala
                     </Link>
