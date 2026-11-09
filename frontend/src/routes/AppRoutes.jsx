@@ -20,6 +20,7 @@ import LoginLayout from "../layouts/LoginLayout"
 import Login from "../pages/Login"
 import AdminPanelLayout from "../layouts/AdminPanelLayout"
 import AdminDashboard from "../pages/admin/AdminDashboard"
+import AdminManageKoalas from "../pages/admin/AdminManageKoalas";
 
 
 function AppRoutes() {
@@ -39,7 +40,7 @@ function AppRoutes() {
           />
         </Route>
 
-        <Route path="donate">
+        <Route path="/donate">
           <Route index element={<Donate />} />
           <Route path="adopt-a-koala" element={<AdoptKoala />} />
           <Route path="wishlist" element={<Wishlist />} />
@@ -57,6 +58,7 @@ function AppRoutes() {
       {/* Admin */}
       <Route path="/admin" element={<AdminPanelLayout />}>
         <Route index element={<AdminDashboard />} />
+        <Route path="manage-koalas" element={<AdminManageKoalas/>} />
       </Route>
     </Routes>
   );

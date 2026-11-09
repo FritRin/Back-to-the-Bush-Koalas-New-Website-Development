@@ -47,6 +47,10 @@ app.use("/api/wishlist-items", wishlistItemRoutes);
 app.use("/api/adoptions", adoptionRoutes);
 app.use("/api/donations", donationRoutes);
 
+// Api to allow upload PNG images in the DB and store in the
+// folder Public/images
+app.use("/images",express.static("public/images"));
+
 app.get("/", (req, res) => {
     res.status(200).json({
         success: true,

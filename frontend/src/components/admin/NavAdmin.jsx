@@ -12,7 +12,7 @@ function NavAdmin() {
                         </li>
 
                         <li>
-                            <NavLink to="/admin/koalas" className="adminSidebarLink">
+                            <NavLink to="/admin/manage-koalas" className="adminSidebarLink">
                                 Manage Koalas
                             </NavLink>
                         </li>
