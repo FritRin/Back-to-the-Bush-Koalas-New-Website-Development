@@ -18,7 +18,7 @@ function Donate() {
                 m-15 
                 gap-10
                 ">
-                <Link to="/wishlist">
+                <Link to="/donate/wishlist">
                     <div className="
                         relative 
                         w-80 
@@ -60,7 +60,7 @@ function Donate() {
                     </div>
                 </Link>
                 {/* Adopt a Koala Link */}
-                <Link to="/adopt-a-koala">
+                <Link to="/donate/adopt-a-koala">
                     <div className="
                         relative 
                         w-80 
