@@ -1,25 +1,14 @@
 //import css
-import { Outlet } from "react-router-dom";
-import { Link } from "react-router-dom";
-
-function OurCommunity(){
-    return(
-        <div className="pageContainer">
-            <h1>Our Achievements</h1>
-            <Outlet/>
-            <div>
-                <ul className="">
-                    <li>
-                        <Link to="/koala-success-stories">Koala Success Stories</Link>
-                    </li>
-                </ul>
+import Timeline from "../components/TimeLine";
+function OurAchievements() {
+    return (
+        <div>
+            <div className="flex justify-center">
+                <h1>Our Achievements</h1>
             </div>
-            <div className="achievementsPageContent">
-                <h2>Heading</h2>
-                <p>Page content TBD</p>
-            </div>
+            <Timeline />
         </div>
     )
 }
 
-export default OurCommunity;
+export default OurAchievements;
