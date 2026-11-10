@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,10 +10,44 @@ function Login() {
 
   const navigate = useNavigate();
 
+  const validateLogin = () => {
+    const cleanEmail = email.trim().toLowerCase();
+
+    if (!cleanEmail || cleanEmail.length > 255) {
+      return "Please enter a valid email address.";
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(cleanEmail)) {
+      return "Please enter a valid email address.";
+    }
+
+    if (!password) {
+      return "Please enter your password.";
+    }
+
+    // bcrypt only processes passwords up to 72 UTF-8 bytes.
+    const passwordBytes = new TextEncoder().encode(password).length;
+
+    if (passwordBytes > 72) {
+      return "Password must not exceed 72 bytes.";
+    }
+
+    return "";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setError("");
+
+    const validationError = validateLogin();
+
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -54,27 +89,31 @@ function Login() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block mb-2 font-medium">
+          <label className="block mb-2 font-medium" htmlFor="email">
             Email
           </label>
 
           <input
+            id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            maxLength={255}
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9FA659]"
             placeholder="admin@email.com"
             required
             autoComplete="username"
+            aria-invalid={!!error}
           />
         </div>
 
         <div>
-          <label className="block mb-2 font-medium">
+          <label className="block mb-2 font-medium" htmlFor="password">
             Password
           </label>
 
           <input
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
