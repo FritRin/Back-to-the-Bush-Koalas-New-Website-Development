@@ -1,28 +1,42 @@
 import { Pie, PieChart, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-const placeholderData = [
-        { PaymentMethod: "Give Now", value: 4 },
-        { PaymentMethod: "PayPal", value: 10 }
-];
+function DonationPieChart({ donations }) {
+    // Group donations by payment method
+    const donationsByMethod = {};
 
-const Colours = ["#9FA659", "#797641"]
+    donations.forEach((donation) => {
+        const method = donation.payment_method;
 
-function DonationPieChart() {
+        donationsByMethod[method] = (donationsByMethod[method] || 0) + 1;
+    });
+        
+
+    // Convert the grouped donations into Recharts data
+    const chartData = Object.entries(donationsByMethod)
+        .map(([method, count]) => ({
+            name: method,
+            value: count
+        }));
+
+    console.log(chartData);
+
+    const Colours = ["#9FA659", "#797641"]
+    
     return (
         <div className="adminDonationChart">
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                     <Pie
-                        data={placeholderData}
+                        data={chartData}
                         dataKey="value"
-                        nameKey="PaymentMethod"
+                        nameKey="name"
                         cx="50%"
                         cy="50%"
                         outerRadius={100}
                         label
                     >
-                        {placeholderData.map((entry, index) => (
-                            <Cell key={entry.PaymentMethod} fill={Colours[index % Colours.length]} />
+                        {chartData.map((entry, index) => (
+                            <Cell key={entry.name} fill={Colours[index % Colours.length]} />
                         ))}
                     </Pie>
                     <Tooltip />

@@ -625,6 +625,38 @@ p.emergencyNumber {
   min-width: 0;
 }
 
+/* Admin Date Filter */
+.adminDateFilter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.adminDateFilter label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4b4c2c;
+}
+
+.adminDateFilter select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #DDE3C3;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #4b4c2c;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.adminDateFilter select:focus {
+  outline: 2px solid #9FA659;
+  outline-offset: 2px;
+}
+
+
+
 /* Admin Layout */
 .adminPanelLayout {
   min-height: 100vh;

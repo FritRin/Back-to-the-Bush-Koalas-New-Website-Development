@@ -1,53 +1,27 @@
-import { useState, useEffect } from "react"; 
-import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, darkTheme } from 'recharts'
+import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-import { getAllDonations } from '../../services/donationService';
+function DonationLineChart({ donations }) {
+    const donationsByDate = {};
 
-function DonationLineChart() {
-    const [chartData, setChartData] = useState([]);
-    const [loading, setLoading] = useState(true);
     
-    useEffect(() => {
-        async function fetchDonations() {
-            try {
-                const data = await getAllDonations();
-                const donationsByDate = {};
-                data.data.forEach((donation) => {
-                    const date = new Date(donation.donation_date)
-                        .toLocaleDateString("en-AU", { timeZone: "UTC"});
-                    
-                      donationsByDate[date] = (donationsByDate[date] || 0) + 1;
-
-            });
-
+    donations.forEach((donation) => {
+        const date = new Date(donation.donation_date)
+            .toLocaleDateString("en-AU", { timeZone: "UTC"});
+        
+        donationsByDate[date] = (donationsByDate[date] || 0) + 1;
+    });
+        
             // Convert the grouped donations into Recharts data
-            const formattedData = Object.entries(donationsByDate)
-                .map(([date, donations]) => ({
+            const chartData = Object.entries(donationsByDate)
+                .map(([date, count]) => ({
                     day: date,
-                    donations: donations
+                    donations: count
                 }))
                 .sort((a, b) => {
                     const [dayA, monthA, yearA] = a.day.split("/");
                     const [dayB, monthB, yearB] = b.day.split("/");
                     return new Date(yearA, monthA - 1, dayA) - new Date(yearB, monthB - 1, dayB);
                 }); 
-            
-                console.log(formattedData);
-            setChartData(formattedData);
-
-        } catch (error) {
-            console.error("Error fetching donations", error);
-        } finally {
-            setLoading(false);
-        }
-    }
-    
-    fetchDonations();
-    }, []);
-
-    if (loading) {
-        return <p>Loading donation data</p>;
-    }
 
     return (
         <div className="adminDonationChart">
@@ -57,7 +31,13 @@ function DonationLineChart() {
                 <CartesianGrid
                     strokeDasharray="3 3" 
                 />
-                <XAxis dataKey="day" />
+                <XAxis 
+                    dataKey="day"
+                    interval={0}
+                    angle={-45}
+                    textAnchor="end"
+                    height={70}
+                />
                 <YAxis allowDecimals={false} />
                 <Tooltip />
                 <Legend />
