@@ -59,12 +59,12 @@ function AdminDashboard() {
 
             <div className="adminAnalyticsGrid">
                 <div className="adminDonationAnalytics">
-                    <h3>Donations Over Time Placeholder</h3>
+                    <h3>Total Donations Over Time</h3>
                     <DonationLineChart donations={filteredDonations} />
                 </div>
 
                 <div className="adminDonationAnalytics">
-                    <h3>Payment Methods placeholder</h3>
+                    <h3>Payment Method Breakdown</h3>
                     <DonationPieChart donations={filteredDonations} />
                 </div>
 

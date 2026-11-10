@@ -22,6 +22,7 @@ import Login from "../pages/Login"
 import AdminPanelLayout from "../layouts/AdminPanelLayout"
 import AdminDashboard from "../pages/admin/AdminDashboard"
 import AdminManageKoalas from "../pages/admin/AdminManageKoalas";
+import AdminDonations from "../pages/admin/AdminDonations";
 
 
 function AppRoutes() {
@@ -61,6 +62,7 @@ function AppRoutes() {
         <Route path="/admin" element={<AdminPanelLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="manage-koalas" element={<AdminManageKoalas />} />
+          <Route path="donations" element={<AdminDonations />} />
         </Route>
       </Route>
     </Routes>

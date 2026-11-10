@@ -690,6 +690,58 @@ p.emergencyNumber {
   background-color: #EEF2DB;
 }
 
+/* Admin Donations page */
+.adminDonationsTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+}
+
+.adminDonationsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.adminDonationsTable th,
+.adminDonationsTable td {
+  padding: 1rem;
+  border-bottom: 1px solid #DDE3C3;
+  white-space: nowrap;
+}
+
+.adminDonationsTable th {
+  background-color: #DDE3C3;
+  color: #4b4c2c;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.adminDonationsTable td {
+  font-size: 0.9rem;
+  color: #4b4c2c;
+}
+
+.adminDonationsTable tbody tr:nth-child(even) {
+  background-color: #F2F5E8;
+}
+
+.adminDonationsTable tbody tr:nth-child(even) {
+  background-color: #F2F5E8;
+}
+
+.adminDonationsTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.adminDonationsTableWrapper p {
+  padding: 1rem;
+  color: #4b4c2c;
+  font-size: 1rem;
+  text-align: center;
+}
+
 /* Admin Sidebar */
 
 .adminSidebar {
