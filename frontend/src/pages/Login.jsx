@@ -1,16 +1,45 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // temporary login
-    localStorage.setItem("loggedIn", "true");
+    setError("");
+    setLoading(true);
 
-    console.log(email, password);
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          email: email.trim().toLowerCase(),
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed.");
+      }
+
+      navigate("/admin", { replace: true });
+    } catch (err) {
+      setError(err.message || "Unable to connect to the server.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,6 +65,7 @@ function Login() {
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9FA659]"
             placeholder="admin@email.com"
             required
+            autoComplete="username"
           />
         </div>
 
@@ -51,27 +81,26 @@ function Login() {
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9FA659]"
             placeholder="********"
             required
+            autoComplete="current-password"
           />
         </div>
 
+        {error && (
+          <p className="text-red-600 text-sm" role="alert">
+            {error}
+          </p>
+        )}
+
         <button
           type="submit"
-          className="
-            w-full
-            bg-[#9FA659]
-            hover:bg-[#7E844B]
-            text-white
-            font-semibold
-            py-3
-            rounded-lg
-            transition
-          "
+          disabled={loading}
+          className="w-full bg-[#9FA659] hover:bg-[#7E844B] disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition"
         >
-          Login
+          {loading ? "Signing in..." : "Login"}
         </button>
       </form>
     </div>
   );
 }
 
-export default Login
+export default Login;

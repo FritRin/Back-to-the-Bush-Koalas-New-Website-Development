@@ -16,6 +16,7 @@ import AdoptKoala from "../pages/AdoptKoala";
 import Wishlist from "../pages/Wishlist";
 
 //Login & Admin Panel pages
+import ProtectedRoute from "../components/ProtectedRoute";
 import LoginLayout from "../layouts/LoginLayout"
 import Login from "../pages/Login"
 import AdminPanelLayout from "../layouts/AdminPanelLayout"
@@ -56,9 +57,11 @@ function AppRoutes() {
       </Route>
 
       {/* Admin */}
-      <Route path="/admin" element={<AdminPanelLayout />}>
-        <Route index element={<AdminDashboard />} />
-        <Route path="manage-koalas" element={<AdminManageKoalas/>} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/admin" element={<AdminPanelLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="manage-koalas" element={<AdminManageKoalas />} />
+        </Route>
       </Route>
     </Routes>
   );

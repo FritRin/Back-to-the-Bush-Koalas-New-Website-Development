@@ -5,6 +5,7 @@ require("dotenv").config({ path: path.join(__dirname, "../.env") });
 // TODO import The important neccessary modules of each deparments
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const sequelize = require("./utils/database");
 
 //TODO IMPORT Middleware here
@@ -16,19 +17,27 @@ const koalaStoryRoutes = require("./routes/koalaStoryRoutes");
 const wishlistItemRoutes = require("./routes/wishlistItemRoutes");
 const adoptionRoutes = require("./routes/adoptionRoutes");
 const donationRoutes = require("./routes/donationRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 // start the Express application
 const app = express();
 
-//This is a debbuger see any request method in the terminal
+// log incoming requests to terminal
 app.use((req, res, next) => {
     console.log(`>>> Incoming Request: ${req.method} ${req.url}`);
-    next(); 
+    next();
 });
 
-app.use(cors()); // Enable Cross-Origin Resource Sharing
-app.use(express.json()); // Built-in middleware to parse JSON bodies
-app.use(express.urlencoded({ extended: true }));
+// Configure CORS to allow request from frontend
+// Allow the browser to end and recieve auth cookies
+app.use(cors({
+    origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173",
+    credentials: true,
+}));
+
+app.use(express.json({ limit: "10kb" }));
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(cookieParser());
 
 
 //TODO Swagger or Postman ? up to you
@@ -40,6 +49,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerYAML, {swaggerOptions: 
 //TODO IMPORT Router files here
 
 //API Routes
+app.use("/api/auth", authRoutes);
 app.use("/api/koalas", koalaRoutes); 
 app.use("/api/customers", customerRoutes);
 app.use("/api/koala-stories", koalaStoryRoutes);

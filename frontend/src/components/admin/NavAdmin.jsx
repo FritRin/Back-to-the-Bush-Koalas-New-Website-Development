@@ -29,12 +29,6 @@ function NavAdmin() {
                             </NavLink>
                         </li>
 
-                        <li>
-                            <NavLink to="/login" className="adminSidebarLogout">
-                                Logout
-                            </NavLink>
-                        </li>
-
                     </ul>
                 </nav>
             </aside>
