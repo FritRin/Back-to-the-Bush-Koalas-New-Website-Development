@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # AUTOMATIC INSTALLATION: This installs node_modules inside the container
-RUN npm install
+RUN npm ci
 
 # Copy the rest of your server source code
 COPY . .

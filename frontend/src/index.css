@@ -627,6 +627,38 @@ p.emergencyNumber {
   min-width: 0;
 }
 
+/* Admin Date Filter */
+.adminDateFilter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.adminDateFilter label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4b4c2c;
+}
+
+.adminDateFilter select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #DDE3C3;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #4b4c2c;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.adminDateFilter select:focus {
+  outline: 2px solid #9FA659;
+  outline-offset: 2px;
+}
+
+
+
 /* Admin Layout */
 .adminPanelLayout {
   min-height: 100vh;
@@ -658,6 +690,58 @@ p.emergencyNumber {
   min-width: 0;
   padding: 1.5rem;
   background-color: #EEF2DB;
+}
+
+/* Admin Donations page */
+.adminDonationsTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+}
+
+.adminDonationsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.adminDonationsTable th,
+.adminDonationsTable td {
+  padding: 1rem;
+  border-bottom: 1px solid #DDE3C3;
+  white-space: nowrap;
+}
+
+.adminDonationsTable th {
+  background-color: #DDE3C3;
+  color: #4b4c2c;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.adminDonationsTable td {
+  font-size: 0.9rem;
+  color: #4b4c2c;
+}
+
+.adminDonationsTable tbody tr:nth-child(even) {
+  background-color: #F2F5E8;
+}
+
+.adminDonationsTable tbody tr:nth-child(even) {
+  background-color: #F2F5E8;
+}
+
+.adminDonationsTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.adminDonationsTableWrapper p {
+  padding: 1rem;
+  color: #4b4c2c;
+  font-size: 1rem;
+  text-align: center;
 }
 
 /* Admin Sidebar */
