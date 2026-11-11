@@ -1,4 +1,9 @@
-import hospital from "../assets/KoalaHospital.JPG"
+import hospitalView from "../assets/Hospitalview.jpg"
+import hospitalProperty from "../assets/Hospitalproperty.jpg"
+import enclosureInfo from "../assets/enclosureinfo.jpeg"
+import enclosurePhoto1 from "../assets/Enclosure2.jpg"
+import enclosurePhoto2 from "../assets/Enclosure3.jpeg"
+
 function OurFacilities(){
     return(
         <div className="pageContainer">
@@ -48,12 +53,12 @@ function OurFacilities(){
             <li className="ourHospitalTextContent">Pre-release plantation with 38 large koala feed trees</li>
             <li className="ourHospitalTextContent">Onsite koala fodder trees-over 2000 planted thus far.</li>
             
-            <img src={hospital} alt="Koala Hospital Site" className="ourHospitalMainImage"/>
+            <img src={hospitalView} alt="Koala Hospital Site" className="ourHospitalMainImage"/>
             <div className="ourHospitalGallery">
-                <img src={hospital} alt="example image" className="ourHospitalGallery"/>
-                <img src={hospital} alt="example image" className="ourHospitalGallery"/>
-                <img src={hospital} alt="example image" className="ourHospitalGallery"/>
-                <img src={hospital} alt="example image" className="ourHospitalGallery"/>
+                <img src={hospitalProperty} alt="Hospital Property" className="ourHospitalGalleryHorizontal"/>
+                <img src={enclosureInfo} alt="Enclosure without koalas" className="ourHospitalGalleryHorizontal"/>
+                <img src={enclosurePhoto1} alt="Enclosure with koalas 1" className="ourHospitalGalleryVertical"/>
+                <img src={enclosurePhoto2} alt="Enclosure with koalas 2" className="ourHospitalGalleryVertical"/>
             </div>
         </div>
     )
