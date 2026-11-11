@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const FormPopUp = ({ open, close }) => {
+  const paypal = useRef(null);
   const [donateWithCompany, setCompanyDonation] = useState("no");
   const [donationMethod, setDonationMethod] = useState("");
   const [formErrors, setFormErrors] = useState({});
@@ -101,7 +102,12 @@ const FormPopUp = ({ open, close }) => {
       country,
       comments,
       donationMethod,
-    });
+    })
+
+    if (donationMethod === "paypal") {
+      paypal.current?.submit();
+    };
+
   };
 
   if (!open) return null;
@@ -403,6 +409,12 @@ const FormPopUp = ({ open, close }) => {
             Continue
           </button>
         </form>
+
+        {/* Please change action to https://www.paypal.com/donate and use the actual hosted_button_id for production */}
+        <form ref={paypal} action="https://www.sandbox.paypal.com/donate" method="post" target="_top" className="hidden">
+          <input type="hidden" name="hosted_button_id" value="AQMHG8VQ86H8Y"/>
+        </form>
+
       </div>
     </div>
   );
