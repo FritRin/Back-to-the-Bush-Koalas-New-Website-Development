@@ -1,111 +1,785 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
+@import "tailwindcss";
 
 body {
-  margin: 0;
+  font-family: 'Roboto Serif', serif;
+  background-color: #EEF2DB;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+
+/* Typography */
+h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 550;
+  line-height: 1;
+  margin-left: 1rem;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+p {
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 1.2;
+  margin-left: 5px;
+}
+
+/* Homepage styles */
+div.featuredStory {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 800px;
+  background-color: #9FA659;
+  max-width: 45%;
+  padding: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+div.homeHeading {
+  display: flex;
+  justify-content: center;
+}
+
+img.featuredStory {
+  height: auto;
+  max-width: 95%;
+  margin: 1rem;
+}
+
+h1.featuredStory {
+  color: white;
+}
+
+.storyContainer {
+  height: auto;
+  max-width: 20%;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  background-color: #9FA659;
+  margin: 1rem;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+img.storyContainer {
+  max-width: 100%;
+  max-height: auto;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+h2.storyContainer {
+  color: white;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+
+.storyPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
 }
-p {
+
+.storySubPanel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+div.aboutUsText {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+p.aboutUsText1 {
+  margin-right: 1rem;
+  line-height: 2;
+}
+
+img.aboutUsImg1 {
+  height: auto;
+  max-width: 20%;
+  margin-right: 5rem;
+}
+
+img.aboutUsImg2 {
+  height: auto;
+  max-width: 20%;
+  margin-left: 5rem;
+}
+
+p.aboutUsText2 {
+  margin-left: 1rem;
+  line-height: 2;
+}
+
+p.aboutUsTextBold {
+  margin-left: 1rem;
+  line-height: 2;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutUsSubHeading {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.aboutUsHeading {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+li.aboutUsList {
+  font-size: 1.5rem;
+  line-height: 2;
+  display: list-item;
+  margin-left: 2rem;
+}
+
+div.statisticDiv {
+  background-color: #4B4C2C;
+  min-height: 60%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 5rem;
+  border-radius: 1rem;
+}
+
+h1.statisticDiv {
+  color:#9FA659;
+  margin: auto;
+  font-size: 5rem;
+}
+
+h4.statisticDiv {
+  color:#EEF2DB;
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 20%;
+  margin-left: 10%;
+}
+
+.statisticPanel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 5px;
+}
+
+div.homeHeadingBox {
+  background-color: #9FA659;
+  height: 3rem;
+  margin: auto;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2.homeHeadingBox {
+  color: white;
+}
+
+h3.homeIntroduction {
+  margin: 1rem;
+  margin-bottom: 3rem;
+  line-height: 1.5;
+}
+/* Our Story Styles */
+
+h1.ourStoryHeading {
+  display: flex;
+  justify-content: center;
+}
+
+div.ourStoryHistory {
+  border-width: 0.5rem;
+  border-color: #9FA659;
+  max-width: 95%;
+  margin: auto;
+}
+
+h2.ourStoryHistory {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+img.ourStoryHistory {
+  max-width: 50%;
+  height: auto;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+p.ourStoryHistory {
+  display: flex;
+  justify-content: flex-end;
+  line-height: 2.5;
+}
+
+.ourStoryContainer {
+  display: flex;
+}
+
+h2.boardOfDirectors {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+div.directorIntro {
+  border-width: 0.5rem;
+  border-color: #9FA659;
+  width: 95%;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+div.director {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.directorPhoto {
+  max-width: 15%;
+  margin: 1rem;
+}
+
+.directorContent {
+  display: flex;
+}
+
+.directorContentText {
+  line-height: 2.5;
+}
+
+/* Our Facilities Styles */
+h1.ourHospitalHeading {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+img.ourHospitalMainImage {
+  max-width: 75%;
+  max-height: auto;
+  margin: auto;
+  margin-bottom: 1rem;
+}
+
+div.ourHospitalGallery {
+  display: flex;
+  align-items: center; 
+}
+
+img.ourHospitalGallery {
+  max-width: 25%;
+}
+
+h3.ourHospitalInfoBox {
+  color: white;
+  font-weight: 600;
+}
+
+div.ourHospitalInfoBox {
+  background-color: #9FA659;
+  width: 95%;
+  height: 3rem;
+  margin: auto;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ourHospitalTextContent {
+  width: 95%;
+  margin: auto;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+li.ourHospitalTextContent {
+  margin-left: 2rem;
+}
+
+p.ourHospitalTextContent {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+/* Contact Us Styles */
+
+.contactUsHeading {
+  margin: auto;
+  height: auto;
+  width: 35%;
+}
+
+div.formInput {
+  margin-bottom: 1rem;
+  width: 20em;
+  height: 15%;
+  background-color: lightgray;
+  color: grey;
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+
+p.contactForm {
+  margin: auto;
+  width: 25%;
+  height: auto;
+}
+
+div.formMessage {
+  width: 20em;
+  height: 10em;
+  background-color: lightgrey;
+  color: grey;
+  margin-left: 4%;
+  font-size: 1.2rem;
+}
+
+div.contactForm {
+  margin: auto;
+  display: flex;
+  width: 20%;
+  height: auto;
+}
+
+.contactUsPanel {
+  margin-top: 6%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+div.contactUsBox {
+  border-color: #9FA659;
+  border-width: 0.5rem;
+  width: 20%;
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+p.contactUsBox {
+  margin: auto;
+}
+
+a.contactUsBox {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  margin: auto;
+}
+
+a.contactUsBox:hover {
+  color: blue;
+}
+
+.faqButton {
+  color: white;
+  width: 100%;
+  background-color: #9FA659;
+  margin: auto;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+h1.faq {
+  margin: auto;
+  width: 28%;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.faqContent {
+  padding: 1rem;
+}
+
+
+/* Emergency Page styles */
+
+h1.emergencyHeading {
+  color: red;
+  font-weight: bold;
+  margin: auto;
+}
+
+div.emergencyHeading {
+  width: 30%;
+  height: auto;
+  margin: auto;
+  padding: 1%
+}
+
+div.emergencySubtitle {
+  width: 35%;
+  height: auto;
+  margin: auto;
+  margin-bottom: 2%;
+}
+
+div.emergencyNumber {
+  border-color:#9FA659;
+  border-width: 0.5rem;
+  padding: 1rem;
+  width: 15%;
+  margin-right: 7%;
+  margin-bottom: 2%;
+  margin-left: 7%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  -ms-flex-align: center;
+}
+
+a.emergencyNumber {
+  font-size: 1.2rem;
+  margin: auto;
+  text-decoration: underline;
+}
+
+a.emergencyNumber:hover {
+  color: blue;
+}
+
+p.emergencyNumber {
+  margin: auto;
+}
+
+.emergencyNumberLink {
+  margin: auto;
+}
+
+.emergencyNumberPanel {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10%;
+}
+
+.emergencyButton {
+  background-color: red; 
+  color: white ;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  -ms-flex-item-align: center;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.emergencyButton:hover {
+  background-color: darkred;
+}
+
+/* Admin Dashboard styles */
+.adminDashboard {
+  background-color: #EEF2DB;
+  min-height: 100vh;
+  padding: 1rem 0;
+}
+
+.adminPanelHeader h1 {
+  Color: #4b4c2c;
+}
+
+.adminDashboardOverview {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.adminDashboardOverview h2 {
+  color: #4b4c2c;
+  font-size: 2.5rem;
+  font-weight: 700;
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+
+
+
+/* Dahboard section containers */
+.adminSectionContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 2%;
+  gap: 20px;
+  margin-top: 20px;
+  margin-left: 1%;
+  margin-right: 1%;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* Dashboard section titles */
+.adminSectionTitle {
+  color: #4b4c2c;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.adminStatisticWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px; 
+}
+
+/* Individual statistic cards */
+.adminStatisticDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+  height: 150px;
+  min-height: 150px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Statistic card headings */
+.adminStatisticDiv h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #4b4c2c;
+  margin: 0 0 10px 0;
+}
+
+.adminStatisticDiv h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #4b4c2c;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Hover effects */
+.adminStatisticDiv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Analytics Grid */
+.adminAnalyticsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Individual analytics cards */
+.adminDonationAnalytics {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 2%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.adminDonationAnalytics h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #4B4C2C;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.adminDonationChart {
+  width: 100%;
+  height: 280px;
+  min-width: 0;
+}
+
+/* Admin Date Filter */
+.adminDateFilter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.adminDateFilter label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4b4c2c;
+}
+
+.adminDateFilter select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #DDE3C3;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #4b4c2c;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.adminDateFilter select:focus {
+  outline: 2px solid #9FA659;
+  outline-offset: 2px;
+}
+
+
+
+/* Admin Layout */
+.adminPanelLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #EEF2DB;
+}
+
+.adminPanelHeader {
+  background-color: #9FA659;
+  color: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.adminPanelHeader h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.adminPanelContent {
+  display: flex;
+  flex: 1;
+}
+
+.adminPanelMain {
+  flex: 1;
+  min-width: 0;
+  padding: 1.5rem;
+  background-color: #EEF2DB;
+}
+
+/* Admin Donations page */
+.adminDonationsTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+}
+
+.adminDonationsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.adminDonationsTable th,
+.adminDonationsTable td {
+  padding: 1rem;
+  border-bottom: 1px solid #DDE3C3;
+  white-space: nowrap;
+}
+
+.adminDonationsTable th {
+  background-color: #DDE3C3;
+  color: #4b4c2c;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.adminDonationsTable td {
+  font-size: 0.9rem;
+  color: #4b4c2c;
+}
+
+.adminDonationsTable tbody tr:nth-child(even) {
+  background-color: #F2F5E8;
+}
+
+.adminDonationsTable tbody tr:nth-child(even) {
+  background-color: #F2F5E8;
+}
+
+.adminDonationsTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.adminDonationsTableWrapper p {
+  padding: 1rem;
+  color: #4b4c2c;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Admin Sidebar */
+
+.adminSidebar {
+  width: 16rem;
+  flex-shrink: 0;
+  background-color: #EEF2DB;
+  border-right: 1px solid #EEF2DB;
+  color: #4b4c2c;
+}
+
+.adminSidebarLinks {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.adminSidebarLink,
+.adminSidebarLogout {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 0;
+  text-decoration: none;
+  color: #4B4C2C;
+  transition: background-color 0.2s ease;
+}
+
+.adminSidebarLink.active {
+  background-color: #DDE3C3;
+  border-left: 4px solid #4b4c2c;
+  font-weight: 700;
+}
+
+.adminSidebarLink:hover {
+  background-color: #DDE3C3;
+}
+
+.adminSidebarLogout:hover {
+  background-color: #DDE3C3;
 }

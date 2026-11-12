@@ -2,39 +2,61 @@
 
 Repository for CSC3600 ICT Professional project 
 
-### Before to run the app
-- have docker ready make sure is on
-- Install Dependencies neccesary
+### Gitea Repo Instuctions
+- Get the latest code
+    git switch main
+    git pull origin main
 
-Run the next command
+- Create a Feature Branch
+    Eg: git switch -c feature/donation-system
+
+- Commit Changes
+    git add .
+    git commit -m "good comment"
+
+- Push to Branch
+    git push -u origin feature/donation-system
+
+- Create pull request in Gitea
+
+- Update Local Main branch
+    git switch main
+    git pull origin main
+
+### Before running the app
+- have Docker or the Docker Desktop app and ensure it is running
+- Install necessary dependencies
+
+Run the following command(s):
 
 ```
 docker-compose up -d
 ```
-You should see 4 container:
+You should see 4 containers:
 
-1. caddy webserver (act as a proxy)
+1. caddy webserver (proxy server)
 2. frontend
 3. backend
 4. database
 
-to destroy:
+To bring down the containers:
 ```
 docker-compose down
 ```
-Link to the Frontend [http://localhost](http://localhost) (recommedable FireFox), If not working go to [http://localhost:5173](http://localhost:5173)
+Link to the Frontend [http://localhost](http://localhost) (recommended to use FireFox), If not working go to [http://localhost:5173](http://localhost:5173)
 
 link to the Backend [http://localhost:3000](http://localhost:3000)
 
-link to the Documentation (swagger or postman optional) To test the endpoints Up to you. [http://localhost/doc](http://localhost/doc)
+link to the Documentation to test the endpoints [http://localhost:3000/docs](http://localhost:3000/docs)
 
-The "docker-compose.yml" will install all the depenedecie in package.json so far what are installed are:
+The "docker-compose.yml" will install all the depenedecies in package.json, the ones currently installed are:
 - Backend: 
     - cors
     - dotenv
     - express
     - pg (postgresql)
-    - Sequilize (To make connection to the DB)	
+    - sequelize (To make connection to the DB)	
+    - swagger (For API Documentation)
 
 - Frontend
     - react
@@ -42,4 +64,4 @@ The "docker-compose.yml" will install all the depenedecie in package.json so far
     - tailwindcss
     - axios (Fetch)
 
-If is missing any package go for it. 
+If there are any missing packages feel free to manually install them. 
