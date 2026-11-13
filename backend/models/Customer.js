@@ -19,8 +19,9 @@ const Customer = sequelize.define(
             allowNull: true,
         },
         email: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(255),
             allowNull: true,
+            unique: true,
         },
         phone: {
             type: DataTypes.STRING(20),
@@ -31,10 +32,14 @@ const Customer = sequelize.define(
             allowNull: true,
         },
         street_name: {
-            type: DataTypes.STRING(50),
+            type: DataTypes.STRING(150),
             allowNull: true,
         },
         suburb: {
+            type: DataTypes.STRING(50),
+            allowNull: true,
+        },
+        state: {
             type: DataTypes.STRING(50),
             allowNull: true,
         },
