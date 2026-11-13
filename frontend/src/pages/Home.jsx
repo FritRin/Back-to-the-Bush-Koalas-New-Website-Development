@@ -1,17 +1,16 @@
 import '../index.css';
-import { Link } from "react-router-dom";
-import hospitalPhoto from "../assets/KoalaHospital.JPG"
-import ShowSories from "../components/ShowStories"
+import hospitalPhoto from "../assets/KoalaHospital.JPG";
+import ShowSories from "../components/ShowStories";
 
 function Home() {
-
-    
     return (
         <div className="pageContainer">
-            <div className="homeHeading">
-                <h1>Home</h1>
-            </div>
             <ShowSories />
+            <h1 className="homeHeading">
+                Answering the need for a full-service koala hospital serving the Toowoomba and surrounding regions.
+            </h1>
+
+
             <div className="homeHeadingBox">
                 <h2 className="homeHeadingBox">Who We Are</h2>
             </div>
@@ -26,12 +25,12 @@ function Home() {
                     Back to the Bush Koalas Ltd is developing this hospital on a quiet 26-acre property on the southern edge of Toowoomba. With over seven years of rehabilitating injured and orphaned koalas, we already have substantial infrastructure completed.
                     This hospital will serve the Toowoomba/Lockyer Valley/ Sommerset/Granite Belt regions, offering a closer option of high-quality care for these iconic animals.
                 </p>
-                <img src={hospitalPhoto} className="aboutUsImg1"></img>
+                <img src={hospitalPhoto} alt="Koala Hospital" className="aboutUsImg1" />
             </div>
 
             <h3 className="aboutUsSubHeading">The Problem and our Important Niche</h3>
             <div className="aboutUsText">
-                <img src={hospitalPhoto} className="aboutUsImg2" />
+                <img src={hospitalPhoto} alt="Koala Hospital" className="aboutUsImg2" />
                 <p className="aboutUsText2">
                     Koalas injured or requiring veterinary treatment in the Toowoomba and surrounding regions must currently face lengthy transport of 2 or more hours to
                     approved wildlife hospitals. Further, veterinary assessment is not usually available overnight, leaving an injured koala without triage and pain medicine
@@ -47,14 +46,14 @@ function Home() {
             <div className="aboutUsText">
                 <p className="aboutUsText1">
                     Working with all the local koala rescuers, we have gathered rescue data for the past seven years. We anticipate seeing between 300-500 koalas each year at
-                    our hospital, saving countless hours of driving by local wildlife rescuers.  Areas we will serve include Warwick, Stanthorpe, Toowoomba, Highfields, Crows Nest,
+                    our hospital, saving countless hours of driving by local wildlife rescuers. Areas we will serve include Warwick, Stanthorpe, Toowoomba, Highfields, Crows Nest,
                     Gatton, and Sommerset.
                 </p>
-                <img src={hospitalPhoto} className="aboutUsImg1"></img>
+                <img src={hospitalPhoto} alt="Koala Hospital" className="aboutUsImg1" />
             </div>
             <h3 className="aboutUsSubHeading">The Regional Solution</h3>
             <div className="aboutUsText">
-                <img src={hospitalPhoto} className="aboutUsImg2" />
+                <img src={hospitalPhoto} alt="Koala Hospital" className="aboutUsImg2" />
                 <p className="aboutUsText2">
                     Back to the Bush Koalas has already launched our initiative to operate a full-service koala hospital. We provide a complimentary regional facility rather
                     than competing with existing hospitals. Because we only see koalas in this region, other wildlife hospitals can continue to offer exceptional care for all other
@@ -85,7 +84,7 @@ function Home() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Home;

@@ -3,29 +3,49 @@ const router = express.Router();
 
 const koalaStoryControllers = require("../controllers/koalaStoryControllers");
 const upload = require("../middleware/upload");
+const authenticateAdmin = require("../middleware/authMiddleware");
 
-// Retireve all koala stories
+// Retrieve all koala stories
 router.get("/", koalaStoryControllers.getAllKoalaStories);
 
 // Retrieve one story by ID
 router.get("/:id", koalaStoryControllers.getKoalaStoryById);
 
-// Create a story
-router.post("/", upload.array("images", 10), koalaStoryControllers.createKoalaStory);
+// Create a story (authenticated + image upload)
+router.post(
+    "/",
+    authenticateAdmin,
+    upload.array("images", 10),
+    koalaStoryControllers.createKoalaStory
+);
 
-// create image
-router.post( "/:id/images", upload.single("image"), koalaStoryControllers.addStoryImage);
+// Add single image to a story
+router.post(
+    "/:id/images",
+    authenticateAdmin,
+    upload.single("image"),
+    koalaStoryControllers.addStoryImage
+);
 
 // Update a story
-router.put("/:id",koalaStoryControllers.updateKoalaStory);
+router.put("/:id", authenticateAdmin, koalaStoryControllers.updateKoalaStory);
 
-// Remplace a specific images
-router.patch("/:id/images/:index", upload.single("image"), koalaStoryControllers.updateStoryImage );
+// Replace a specific image
+router.patch(
+    "/:id/images/:index",
+    authenticateAdmin,
+    upload.single("image"),
+    koalaStoryControllers.updateStoryImage
+);
 
-// delete specific Image
-router.delete("/:id/images/:index", koalaStoryControllers.deleteStoryImage);
+// Delete a specific image
+router.delete(
+    "/:id/images/:index",
+    authenticateAdmin,
+    koalaStoryControllers.deleteStoryImage
+);
 
 // Delete a story
-router.delete("/:id", koalaStoryControllers.deleteKoalaStory);
+router.delete("/:id", authenticateAdmin, koalaStoryControllers.deleteKoalaStory);
 
 module.exports = router;

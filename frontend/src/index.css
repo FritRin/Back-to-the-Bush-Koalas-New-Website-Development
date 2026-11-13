@@ -10,7 +10,7 @@ body {
 h1 {
   font-size: 3rem;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 2;
   margin-top: 1rem;
   margin-left: 1rem;
 }
@@ -18,20 +18,20 @@ h1 {
 h2 {
   font-size: 2.5rem;
   font-weight: 550;
-  line-height: 1;
+  line-height: 2;
   margin-left: 1rem;
 }
 
 h3 {
   font-size: 2rem;
   font-weight: 500;
-  line-height: 1;
+  line-height: 2;
 }
 
 p {
   font-size: 1.5rem;
   font-weight: 100;
-  line-height: 1.2;
+  line-height: 2;
   margin-left: 5px;
 }
 
@@ -48,19 +48,22 @@ div.featuredStory {
   margin-right: 1rem;
 }
 
-div.homeHeading {
+h1.homeHeading {
+  line-height: 1.2;
+  font-size: 2.5rem;
   display: flex;
   justify-content: center;
 }
 
 img.featuredStory {
-  height: auto;
+  max-height: 90%;
   max-width: 95%;
   margin: 1rem;
 }
 
 h1.featuredStory {
   color: white;
+  line-height: 1;
 }
 
 .storyContainer {
@@ -74,17 +77,18 @@ h1.featuredStory {
 
 img.storyContainer {
   max-width: 100%;
-  max-height: auto;
+  max-height: 90%;
 }
 
 h2.storyContainer {
   color: white;
+  line-height: 1;
 }
 
 .storyPanel {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   padding: 1rem;
 }
@@ -103,7 +107,6 @@ div.aboutUsText {
 
 p.aboutUsText1 {
   margin-right: 1rem;
-  line-height: 2;
 }
 
 img.aboutUsImg1 {
@@ -120,12 +123,10 @@ img.aboutUsImg2 {
 
 p.aboutUsText2 {
   margin-left: 1rem;
-  line-height: 2;
 }
 
 p.aboutUsTextBold {
   margin-left: 1rem;
-  line-height: 2;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -174,7 +175,6 @@ h4.statisticDiv {
   font-weight: bold;
   display: flex;
   justify-content: center;
-  margin-top: 5%;
   margin-bottom: 20%;
   margin-left: 10%;
 }
@@ -291,11 +291,17 @@ img.ourHospitalMainImage {
 
 div.ourHospitalGallery {
   display: flex;
-  align-items: center; 
+  justify-content: center; 
 }
 
-img.ourHospitalGallery {
-  max-width: 25%;
+img.ourHospitalGalleryVertical {
+  max-width: 20%;
+  margin-bottom: 1rem;
+}
+
+img.ourHospitalGalleryHorizontal {
+  max-width: 30%;
+  margin-bottom: 1rem;
 }
 
 h3.ourHospitalInfoBox {
@@ -326,17 +332,18 @@ li.ourHospitalTextContent {
   margin-left: 2rem;
 }
 
-p.ourHospitalTextContent {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-left: 1rem;
+h2.ourLocationTextContent {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  margin-top: 5rem;
 }
+
 /* Contact Us Styles */
 
 .contactUsHeading {
-  margin: auto;
-  height: auto;
-  width: 35%;
+  display: flex;
+  justify-content: center;
 }
 
 div.formInput {
@@ -350,9 +357,8 @@ div.formInput {
 }
 
 p.contactForm {
-  margin: auto;
-  width: 25%;
-  height: auto;
+  display: flex;
+  justify-content: center;
 }
 
 div.formMessage {
@@ -376,30 +382,44 @@ div.contactForm {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 div.contactUsBox {
   border-color: #9FA659;
   border-width: 0.5rem;
   width: 20%;
+  height: auto;
   padding: 1rem;
   margin: 1rem;
-  display: flex;
-  flex-direction: column;
 }
 
-p.contactUsBox {
-  margin: auto;
+
+li.contactUsBox {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.contactUsSocMedia {
+  display: flex;
+  justify-content: center;
 }
 
 a.contactUsBox {
   font-size: 1.2rem;
   text-decoration: underline;
-  margin: auto;
 }
 
 a.contactUsBox:hover {
   color: blue;
+}
+
+.socMediaIcon {
+  height: auto;
+  width: 10%;
+  color: #797641;
+  margin: 1rem;
 }
 
 .faqButton {
@@ -407,19 +427,21 @@ a.contactUsBox:hover {
   width: 100%;
   background-color: #9FA659;
   margin: auto;
-  font-size: 1.8rem;
+  margin-top: 5rem;
+  font-size: 2.5rem;
   font-weight: 700;
+  padding: 1rem;
 }
 
 h1.faq {
-  margin: auto;
-  width: 28%;
+  display: flex;
+  justify-content: center;
   margin-bottom: 1em;
   margin-top: 1em;
 }
 
 .faqContent {
-  padding: 1rem;
+  margin: 1rem;
 }
 
 
@@ -428,15 +450,10 @@ h1.faq {
 h1.emergencyHeading {
   color: red;
   font-weight: bold;
-  margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
-div.emergencyHeading {
-  width: 30%;
-  height: auto;
-  margin: auto;
-  padding: 1%
-}
 
 div.emergencySubtitle {
   width: 35%;
@@ -449,18 +466,17 @@ div.emergencyNumber {
   border-color:#9FA659;
   border-width: 0.5rem;
   padding: 1rem;
-  width: 15%;
-  margin-right: 7%;
-  margin-bottom: 2%;
-  margin-left: 7%;
+  width: 20%;
   height: auto;
   display: flex;
   flex-direction: column;
-  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  margin: 4rem;
 }
 
 a.emergencyNumber {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin: auto;
   text-decoration: underline;
 }
@@ -480,7 +496,7 @@ p.emergencyNumber {
 .emergencyNumberPanel {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 10%;
+  justify-content: center;
 }
 
 .emergencyButton {
@@ -625,6 +641,38 @@ p.emergencyNumber {
   min-width: 0;
 }
 
+/* Admin Date Filter */
+.adminDateFilter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.adminDateFilter label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4b4c2c;
+}
+
+.adminDateFilter select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #DDE3C3;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #4b4c2c;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.adminDateFilter select:focus {
+  outline: 2px solid #9FA659;
+  outline-offset: 2px;
+}
+
+
+
 /* Admin Layout */
 .adminPanelLayout {
   min-height: 100vh;
@@ -656,6 +704,58 @@ p.emergencyNumber {
   min-width: 0;
   padding: 1.5rem;
   background-color: #EEF2DB;
+}
+
+/* Admin Donations page */
+.adminDonationsTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+}
+
+.adminDonationsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.adminDonationsTable th,
+.adminDonationsTable td {
+  padding: 1rem;
+  border-bottom: 1px solid #DDE3C3;
+  white-space: nowrap;
+}
+
+.adminDonationsTable th {
+  background-color: #DDE3C3;
+  color: #4b4c2c;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.adminDonationsTable td {
+  font-size: 0.9rem;
+  color: #4b4c2c;
+}
+
+.adminDonationsTable tbody tr:nth-child(even) {
+  background-color: #F2F5E8;
+}
+
+.adminDonationsTable tbody tr:nth-child(even) {
+  background-color: #F2F5E8;
+}
+
+.adminDonationsTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.adminDonationsTableWrapper p {
+  padding: 1rem;
+  color: #4b4c2c;
+  font-size: 1rem;
+  text-align: center;
 }
 
 /* Admin Sidebar */
