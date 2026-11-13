@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+{/* Existing GiveNow URL that is used by the old website. */}
+const givenowURL = "https://www.givenow.com.au/backtothebushkoalascomau";
 
 const FormPopUp = ({ open, close }) => {
   const paypal = useRef(null);
@@ -106,8 +108,9 @@ const FormPopUp = ({ open, close }) => {
 
     if (donationMethod === "paypal") {
       paypal.current?.submit();
-    };
-
+    } else if (donationMethod === "givenow") {
+      window.location.href = givenowURL;
+    }
   };
 
   if (!open) return null;
@@ -147,7 +150,7 @@ const FormPopUp = ({ open, close }) => {
                 name="firstName"
                 className="bg-[#D9D9D9] h-12 p-2 mt-2 w-full border border-gray-500/30 rounded outline-none focus:border-indigo-300"
                 type="text"
-                maxLength={100}
+                maxLength={50}
                 required
               />
               {formErrors.firstName && (
@@ -162,7 +165,7 @@ const FormPopUp = ({ open, close }) => {
                 name="lastName"
                 className="bg-[#D9D9D9] h-12 p-2 mt-2 w-full border border-gray-500/30 rounded outline-none focus:border-indigo-300"
                 type="text"
-                maxLength={100}
+                maxLength={50}
                 required
               />
               {formErrors.lastName && (
@@ -209,7 +212,7 @@ const FormPopUp = ({ open, close }) => {
                   name="company"
                   type="text"
                   placeholder="Enter Company"
-                  maxLength={150}
+                  maxLength={100}
                   className="w-full border rounded-md p-2"
                   required
                 />
@@ -298,7 +301,7 @@ const FormPopUp = ({ open, close }) => {
                 name="suburb"
                 className="bg-[#D9D9D9] h-12 p-2 mt-2 w-full border border-gray-500/30 rounded outline-none focus:border-indigo-300"
                 type="text"
-                maxLength={100}
+                maxLength={50}
                 required
               />
               {formErrors.suburb && (
@@ -313,7 +316,7 @@ const FormPopUp = ({ open, close }) => {
                 name="state"
                 className="bg-[#D9D9D9] h-12 p-2 mt-2 w-full border border-gray-500/30 rounded outline-none focus:border-indigo-300"
                 type="text"
-                maxLength={100}
+                maxLength={50}
                 required
               />
               {formErrors.state && (
@@ -332,7 +335,7 @@ const FormPopUp = ({ open, close }) => {
                 name="postcode"
                 className="bg-[#D9D9D9] h-12 p-2 mt-2 w-full border border-gray-500/30 rounded outline-none focus:border-indigo-300"
                 type="text"
-                maxLength={10}
+                maxLength={20}
                 required
               />
               {formErrors.postcode && (
@@ -347,7 +350,7 @@ const FormPopUp = ({ open, close }) => {
                 name="country"
                 className="bg-[#D9D9D9] h-12 p-2 mt-2 w-full border border-gray-500/30 rounded outline-none focus:border-indigo-300"
                 type="text"
-                maxLength={100}
+                maxLength={50}
                 required
               />
               {formErrors.country && (
