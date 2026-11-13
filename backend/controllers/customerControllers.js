@@ -168,6 +168,18 @@ exports.createCustomer = async (req, res, next) => {
           field === "email" ? cleanValue.toLowerCase() : cleanValue;
       }
     }
+    // Check if email already exists, and will not create a new duplicate entry.
+    if (customerData.email) {
+      const existing = await Customer.findOne({ where: { email: customerData.email } });
+      if (existing) {
+        return res.status(200).json({
+          success: true,
+          status: 200,
+          message: "This email is already in use",
+          data: { customer_id: existing.customer_id },
+        });
+      }
+    }
 
     if (!Object.values(customerData).some(value => value !== null && value !== "")) {
       return res.status(400).json({
@@ -185,6 +197,19 @@ exports.createCustomer = async (req, res, next) => {
       data: customer,
     });
   } catch (error) {
+    // Similar duplicate email check but as an error handler
+    if (error.name === "SequelizeUniqueConstraintError") {
+      const email = String(req.body?.email || "").trim().toLowerCase();
+      const existing = await Customer.findOne({ where: { email } });
+      if (existing) {
+        return res.status(200).json({
+          success: true,
+          status: 200,
+          message: "This email is already in use",
+          data: { customer_id: existing.customer_id },
+        });
+      }
+    }
     next(error);
   }
 };
