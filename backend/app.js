@@ -31,7 +31,8 @@ app.use((req, res, next) => {
 // Configure CORS to allow request from frontend
 // Allow the browser to end and recieve auth cookies
 const allowedOrigins = [
-    process.env.FRONTEND_ORIGIN || "http://localhost:5173",
+    process.env.FRONTEND_ORIGIN || "http://localhost",
+    "http://localhost:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ];
