@@ -5,9 +5,7 @@ import hospitalPhoto from "../assets/KoalaHospital.JPG"
 function Home(){
     return(
         <div className="pageContainer">
-            <div className="homeHeading">
-                <h1>Home</h1>
-            </div>
+            <h1 className="homeHeading">Answering the need for a full-service koala hospital serving the Toowoomba and surrounding regions.</h1>
             <div className="storyPanel">
                 <div className="featuredStory">
                     <img src={hospitalPhoto} alt="example image" className="featuredStory"></img>
