@@ -1,14 +1,7 @@
-import { IoIosLink } from "react-icons/io";
-import { IconContext } from "react-icons";
-
-
-
 function Emergency(){
     return(
         <div className="pageContainer">
-            <div className="emergencyHeading">
-                <h1 className="emergencyHeading">Found a koala in distress?</h1>
-            </div>
+            <h1 className="emergencyHeading">Found a koala in distress?</h1>
             <div className="emergencySubtitle">
                 <p>For sick injured or orphaned koalas in immediate need of assistance:</p>
             </div>

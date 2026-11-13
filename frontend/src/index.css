@@ -382,30 +382,44 @@ div.contactForm {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 div.contactUsBox {
   border-color: #9FA659;
   border-width: 0.5rem;
   width: 20%;
+  height: auto;
   padding: 1rem;
   margin: 1rem;
-  display: flex;
-  flex-direction: column;
 }
 
-p.contactUsBox {
-  margin: auto;
+
+li.contactUsBox {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.contactUsSocMedia {
+  display: flex;
+  justify-content: center;
 }
 
 a.contactUsBox {
   font-size: 1.2rem;
   text-decoration: underline;
-  margin: auto;
 }
 
 a.contactUsBox:hover {
   color: blue;
+}
+
+.socMediaIcon {
+  height: auto;
+  width: 10%;
+  color: #797641;
+  margin: 1rem;
 }
 
 .faqButton {
@@ -427,9 +441,7 @@ h1.faq {
 }
 
 .faqContent {
-  padding: 0 1rem;
-  display: none;
-  overflow: hidden;
+  margin: 1rem;
 }
 
 
@@ -438,15 +450,10 @@ h1.faq {
 h1.emergencyHeading {
   color: red;
   font-weight: bold;
-  margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
-div.emergencyHeading {
-  width: 30%;
-  height: auto;
-  margin: auto;
-  padding: 1%
-}
 
 div.emergencySubtitle {
   width: 35%;
