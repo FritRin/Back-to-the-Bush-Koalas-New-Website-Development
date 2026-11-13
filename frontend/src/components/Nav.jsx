@@ -36,7 +36,7 @@ function Nav() {
                     to="/our-achievements"
                     className="hover:text-[#4B4C2C] transition"
                 >
-                    Our Archivements
+                    Our Achievements
                 </Link>
                 {/* <div className="
                     absolute 
@@ -79,7 +79,14 @@ function Nav() {
                 ">
                     <Link
                         className="block px-4 py-3 hover:bg-[#797641]"
-                        to="/adopt-a-koala"
+                        to="/donate/Wishlist"
+                    >
+                        Wishlist
+                    </Link>
+
+                    <Link
+                        className="block px-4 py-3 hover:bg-[#797641]"
+                        to="/donate/adopt-a-koala"
                     >
                         Adopt a Koala
                     </Link>
