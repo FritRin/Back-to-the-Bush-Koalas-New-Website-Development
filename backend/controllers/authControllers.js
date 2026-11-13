@@ -56,24 +56,24 @@ exports.login = async (req, res, next) => {
         });
 
         // User same response for an unknown email or incorrect pw
-        // if (!admin) {
-        //     return res.status(401).json ({
-        //         success: false,
-        //         message: "Invalid email or password"
-        //     });
-        // }
+        if (!admin) {
+            return res.status(401).json ({
+                success: false,
+                message: "Invalid email or password"
+            });
+        }
 
         const passwordMatches = await bcrypt.compare(
             password,
             admin.password_hash
         );
 
-        // if (!passwordMatches) {
-        //     return res.status(401).json ({
-        //         success: false,
-        //         message: "Invalid email or password"
-        //     });
-        // }
+        if (!passwordMatches) {
+            return res.status(401).json ({
+                success: false,
+                message: "Invalid email or password"
+            });
+        }
 
         const token = jwt.sign(
             { adminId: admin.admin_id },
