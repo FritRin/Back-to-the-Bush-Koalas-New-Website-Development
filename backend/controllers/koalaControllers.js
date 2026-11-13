@@ -108,6 +108,7 @@ exports.createKoala = async (req, res, next) => {
             });
         }
 
+        // allow to store only  one image in backend/public/images
         let image_url = null;
 
         if (req.files && req.files.length > 0) {
@@ -116,9 +117,7 @@ exports.createKoala = async (req, res, next) => {
 
         console.log(req.body);
         console.log(req.files);
-
         console.log("Before Koala.create");
-
         console.log("Image URL:", image_url);
 
         const koala = await Koala.create({
@@ -130,10 +129,10 @@ exports.createKoala = async (req, res, next) => {
         });
 
         console.log("After Koala.create");
-
-
         console.log(req.body);
         console.log(req.files);
+        console.log("Image URL:", image_url);
+
 
         return res.status(201).json({
             success: true,

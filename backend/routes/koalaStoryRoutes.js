@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const koalaStoryControllers = require("../controllers/koalaStoryControllers");
+const upload = require("../middleware/upload");
 
 // Retireve all koala stories
 router.get("/", koalaStoryControllers.getAllKoalaStories);
@@ -10,10 +11,19 @@ router.get("/", koalaStoryControllers.getAllKoalaStories);
 router.get("/:id", koalaStoryControllers.getKoalaStoryById);
 
 // Create a story
-router.post("/", koalaStoryControllers.createKoalaStory);
+router.post("/", upload.array("images", 10), koalaStoryControllers.createKoalaStory);
 
-//update a koala story
-router.put("/:id", koalaStoryControllers.updateKoalaStory);
+// create image
+router.post( "/:id/images", upload.single("image"), koalaStoryControllers.addStoryImage);
+
+// Update a story
+router.put("/:id",koalaStoryControllers.updateKoalaStory);
+
+// Remplace a specific images
+router.patch("/:id/images/:index", upload.single("image"), koalaStoryControllers.updateStoryImage );
+
+// delete specific Image
+router.delete("/:id/images/:index", koalaStoryControllers.deleteStoryImage);
 
 // Delete a story
 router.delete("/:id", koalaStoryControllers.deleteKoalaStory);

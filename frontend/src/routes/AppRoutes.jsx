@@ -9,6 +9,7 @@ import OurAchievements from "../pages/OurAchievements"
 import Donate from "../pages/Donate"
 import ContactUs from "../pages/ContactUs"
 import Emergency from "../pages/Emergency"
+import Story from "../pages/Story"
 
 //Sub-pages
 import KoalaStories from "../pages/KoalaStories";
@@ -21,6 +22,7 @@ import Login from "../pages/Login"
 import AdminPanelLayout from "../layouts/AdminPanelLayout"
 import AdminDashboard from "../pages/admin/AdminDashboard"
 import AdminManageKoalas from "../pages/admin/AdminManageKoalas";
+import AdminManageStories from "../pages/admin/AdminManageStories";
 
 
 function AppRoutes() {
@@ -29,6 +31,7 @@ function AppRoutes() {
       {/* Public Website */}
       <Route element={<MainLayout />}>
         <Route index element={<Home />} />
+        <Route path="story/:id" element={<Story />} />
         <Route path="our-story" element={<OurStory />} />
         <Route path="our-facilities" element={<OurFacilities />} />
 
@@ -59,6 +62,7 @@ function AppRoutes() {
       <Route path="/admin" element={<AdminPanelLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="manage-koalas" element={<AdminManageKoalas/>} />
+        <Route path="manage-stories" element={<AdminManageStories/>} />
       </Route>
     </Routes>
   );
