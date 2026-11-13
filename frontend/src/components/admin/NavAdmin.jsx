@@ -6,7 +6,7 @@ function NavAdmin() {
                 <nav>
                     <ul className="adminSidebarLinks">
                         <li>
-                            <NavLink to="/admin/donations-overview" end className="adminSidebarLink">
+                            <NavLink to="/admin" end className="adminSidebarLink">
                                 Donations Overview
                             </NavLink>
                         </li>

@@ -1,5 +1,5 @@
 function WebsiteTrafficOverview() {
-    retun (
+    return (
         <div>
             <h2>Website Traffic</h2>
         </div>
