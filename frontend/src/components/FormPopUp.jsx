@@ -7,8 +7,9 @@ const FormPopUp = ({ open, close }) => {
   const [donateWithCompany, setCompanyDonation] = useState("no");
   const [donationMethod, setDonationMethod] = useState("");
   const [formErrors, setFormErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  async (e) => {
     e.preventDefault();
 
     const form = e.currentTarget;
@@ -31,12 +32,12 @@ const FormPopUp = ({ open, close }) => {
 
     const errors = {};
 
-    if (!firstName || firstName.length > 100) {
-      errors.firstName = "First name is required (maximum 100 characters).";
+    if (!firstName || firstName.length > 50) {
+      errors.firstName = "First name is required (maximum 50 characters).";
     }
 
-    if (!lastName || lastName.length > 100) {
-      errors.lastName = "Last name is required (maximum 100 characters).";
+    if (!lastName || lastName.length > 50) {
+      errors.lastName = "Last name is required (maximum 50 characters).";
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
@@ -47,8 +48,8 @@ const FormPopUp = ({ open, close }) => {
       errors.phone = "Please enter a valid phone number.";
     }
 
-    if (donateWithCompany === "yes" && (!company || company.length > 150)) {
-      errors.company = "Company name is required (maximum 150 characters).";
+    if (donateWithCompany === "yes" && (!company || company.length > 100)) {
+      errors.company = "Company name is required (maximum 100 characters).";
     }
 
     if (!streetNumber || streetNumber.length > 20) {
@@ -59,19 +60,19 @@ const FormPopUp = ({ open, close }) => {
       errors.streetName = "Please enter a valid street name.";
     }
 
-    if (!suburb || suburb.length > 100) {
+    if (!suburb || suburb.length > 50) {
       errors.suburb = "Please enter a valid suburb.";
     }
 
-    if (!state || state.length > 100) {
+    if (!state || state.length > 50) {
       errors.state = "Please enter a valid state.";
     }
 
-    if (!postcode || postcode.length > 10) {
+    if (!postcode || postcode.length > 20) {
       errors.postcode = "Please enter a valid postcode.";
     }
 
-    if (!country || country.length > 100) {
+    if (!country || country.length > 50) {
       errors.country = "Please enter a valid country.";
     }
 
@@ -89,22 +90,36 @@ const FormPopUp = ({ open, close }) => {
       return;
     }
 
-    // Validation passed. Payment integration is handled separately.
-    console.log("Donation form validated", {
-      firstName,
-      lastName,
-      email,
-      phone,
-      company: donateWithCompany === "yes" ? company : "",
-      streetNumber,
-      streetName,
-      suburb,
-      state,
-      postcode,
-      country,
-      comments,
-      donationMethod,
-    })
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/customers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone,
+          street_number: streetNumber,
+          street_name: streetName,
+          suburb,
+          state,
+          postcode,
+          country,
+          comments,
+          company_name: donateWithCompany === "yes" ? company : "",
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to save customer information.");
+    } catch {
+        setFormErrors({
+          donationMethod: "Something went wrong, please try again.",
+      });
+      setSubmitting(false);
+      return;
+    }
 
     if (donationMethod === "paypal") {
       paypal.current?.submit();
