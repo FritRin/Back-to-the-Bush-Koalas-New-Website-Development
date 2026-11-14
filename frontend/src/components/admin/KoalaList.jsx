@@ -1,6 +1,5 @@
-import React from 'react'
 import { useEffect, useState } from "react";
-import { getAllKoalas, deleteKoala } from "../../api/Koala";
+import { getAllKoalas } from "../../api/Koala";
 import KoalaUpdate from './KoalaUpdate';
 import KoalaDelete from './KoalaDelete';
 
