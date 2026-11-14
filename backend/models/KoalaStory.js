@@ -12,7 +12,7 @@ const KoalaStory = sequelize.define(
         },
         koala_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         admin_id: {
             type: DataTypes.INTEGER,
@@ -25,6 +25,10 @@ const KoalaStory = sequelize.define(
         content: {
             type: DataTypes.TEXT,
             allowNull: false,
+        },
+        image_urls: {
+            type: DataTypes.ARRAY(DataTypes.TEXT),
+            allowNull: true,
         },
         created_at: {
             type: DataTypes.DATE,

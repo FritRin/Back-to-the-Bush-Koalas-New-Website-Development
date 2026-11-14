@@ -91,10 +91,25 @@ function KoalaCreate({ onClose }) {
                         />
                     </div>
 
+                    {/* Upload Images */}
                     <div className="max-w-xl">
-                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <label className="
+                            flex flex-col 
+                            items-center 
+                            justify-center 
+                            w-full 
+                            h-32 
+                            border-2 
+                            border-dashed 
+                            border-gray-300 
+                            rounded-lg 
+                            cursor-pointer 
+                            bg-gray-50 
+                            hover:bg-gray-100 
+                            transition-colors
+                        ">
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                <p className="mb-2 text-sm text-gray-500 font-semibold">Click to upload <span className="font-normal">or drag & drop</span></p>
+                                <p className="mb-2 text-sm text-gray-500 font-semibold">Click to upload </p>
                                 <p className="text-xs text-gray-400">PNG or JPG</p>
                             </div>
 
