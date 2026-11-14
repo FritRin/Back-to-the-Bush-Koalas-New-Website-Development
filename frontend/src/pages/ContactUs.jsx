@@ -77,8 +77,8 @@ function ContactUS(){
                 </div>
             </div>
                 <h1 className="faq">Frequently Asked Questions</h1>
-                <Collapsible label="Why are we just treating koalas instead of all wildlife?">
-                    <p>
+                <Collapsible label="Why are we just treating koalas instead of all wildlife?" className="faqButton">
+                    <p className="faqContent">
                         Wildlife hospitals operate within finite constraints, including available veterinary staff, treatment space, enclosure capacity, food supply and species-specific resources. 
                         These constraints can influence which animals can be accommodated and the treatment options available for individual cases. By creating dedicated capacity specifically for koalas,
                         Back to the Bush Koalas can help ensure that more koalas receive timely veterinary treatment and the extended rehabilitation they require. Our focus is therefore not about treating 
@@ -86,8 +86,8 @@ function ContactUS(){
                         network.
                     </p>
                 </Collapsible>
-                <Collapsible label="Why are we just treating koalas instead of all wildlife?">
-                    <p>
+                <Collapsible label="Why are we just treating koalas instead of all wildlife?" className="faqButton">
+                    <p className="faqContent">
                         Wildlife hospitals operate within finite constraints, including available veterinary staff, treatment space, enclosure capacity, food supply and species-specific resources. 
                         These constraints can influence which animals can be accommodated and the treatment options available for individual cases. By creating dedicated capacity specifically for koalas,
                         Back to the Bush Koalas can help ensure that more koalas receive timely veterinary treatment and the extended rehabilitation they require. Our focus is therefore not about treating 
@@ -95,8 +95,8 @@ function ContactUS(){
                         network.
                     </p>
                 </Collapsible>
-                <Collapsible label="Why are we just treating koalas instead of all wildlife?">
-                    <p>
+                <Collapsible label="Why are we just treating koalas instead of all wildlife?" className="faqButton">
+                    <p className="faqContent">
                         Wildlife hospitals operate within finite constraints, including available veterinary staff, treatment space, enclosure capacity, food supply and species-specific resources. 
                         These constraints can influence which animals can be accommodated and the treatment options available for individual cases. By creating dedicated capacity specifically for koalas,
                         Back to the Bush Koalas can help ensure that more koalas receive timely veterinary treatment and the extended rehabilitation they require. Our focus is therefore not about treating 
