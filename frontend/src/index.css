@@ -816,6 +816,35 @@ p.emergencyNumber {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* User engagement stats */
+.adminEngagementStats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+/* Individual cards */
+.adminEngagementStatCard {
+  background-color: #f8f8f5;
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 0;
+}
+
+/* Engagement stat headings */
+.adminEngagementStatCard h4 {
+  font-weight: 500;
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+}
+
+.adminEngagementStatCard p {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
 /* Admin Layout */
 .adminPanelLayout {
   min-height: 100vh;

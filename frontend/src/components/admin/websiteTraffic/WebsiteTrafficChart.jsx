@@ -21,6 +21,7 @@ function WebsiteTrafficChart() {
             />
             <XAxis 
                 dataKey="day"
+
             />
             <YAxis allowDecimals={false} />
             <Tooltip />

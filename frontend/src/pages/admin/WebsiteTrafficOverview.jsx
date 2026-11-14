@@ -1,6 +1,7 @@
 import VisitorDevicesChart from "../../components/admin/websiteTraffic/VisitorDevicesChart";
 import WebsiteTrafficChart from "../../components/admin/websiteTraffic/WebsiteTrafficChart";
 import TrafficSourcesChart from "../../components/admin/websiteTraffic/TrafficSourcesChart";
+import UserEngagementCard from "../../components/admin/websiteTraffic/UserEngagementCard";
 
 function WebsiteTrafficOverview() {
     return (
@@ -21,12 +22,8 @@ function WebsiteTrafficOverview() {
                         </div>
                     </div>
 
-                    <div className="adminTrafficAnalytics">
-                        <h3>User Engagement</h3>
-                        <div className="adminTrafficChart">
-                            {/* Engagement chart here */}
-                            </div>
-                    </div>
+                    <UserEngagementCard />
+                    
                 </div>
         
                 <div className="adminTrafficSecondaryGrid">
