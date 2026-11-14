@@ -18,13 +18,13 @@ import Wishlist from "../pages/Wishlist";
 
 // Login & Admin Panel pages
 import ProtectedRoute from "../components/ProtectedRoute";
-import LoginLayout from "../layouts/LoginLayout";
-import Login from "../pages/Login";
-import AdminPanelLayout from "../layouts/AdminPanelLayout";
-import AdminDashboard from "../pages/admin/AdminDashboard";
+import LoginLayout from "../layouts/LoginLayout"
+import Login from "../pages/Login"
+import AdminPanelLayout from "../layouts/AdminPanelLayout"
+import DonationsOverview from "../pages/admin/DonationsOverview";
+import WebsiteTrafficOverview from "../pages/admin/WebsiteTrafficOverview";
 import AdminManageKoalas from "../pages/admin/AdminManageKoalas";
 import AdminManageStories from "../pages/admin/AdminManageStories";
-import AdminDonations from "../pages/admin/AdminDonations";
 
 function AppRoutes() {
   return (
@@ -62,10 +62,10 @@ function AppRoutes() {
       {/* Admin */}
       <Route element={<ProtectedRoute />}>
         <Route path="/admin" element={<AdminPanelLayout />}>
-          <Route index element={<AdminDashboard />} />
+          <Route index element={<DonationsOverview />} />
+          <Route path="website-traffic" element={<WebsiteTrafficOverview />} />
           <Route path="manage-koalas" element={<AdminManageKoalas />} />
           <Route path="manage-stories" element={<AdminManageStories />} />
-          <Route path="donations" element={<AdminDonations />} />
         </Route>
       </Route>
     </Routes>
