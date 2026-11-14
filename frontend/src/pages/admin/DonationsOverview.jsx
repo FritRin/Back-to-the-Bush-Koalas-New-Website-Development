@@ -5,6 +5,7 @@ import DonationLineChart from "../../components/admin/donations/DonationLineChar
 import DonationPieChart from "../../components/admin/donations/DonationPieChart";
 import TotalDonations from "../../components/admin/donations/TotalDonations";
 import AdminDateFilter from "../../components/admin/donations/AdminDateFilter";
+import DonationRevenueChart from "../../components/admin/donations/DonationRevenueChart";
 
 import { getAllDonations } from "../../services/donationService";
 import filterDonationsByDate from "../../utils/filterDonationsByDate";
@@ -65,8 +66,18 @@ function DonationsOverview() {
                     </div>
 
                     <div className="adminDonationAnalytics">
-                        <h3>Donation Revenue Over Time</h3>
+                        <h3>Payment Method Breakdown</h3>
                         <DonationPieChart donations={filteredDonations} />
+                    </div>
+
+                    <div className="adminDonationAnalytics">
+                        <h3>Donation Revenue Over Time</h3>
+                        <DonationRevenueChart donations={filteredDonations} />
+                    </div>
+
+                    <div className="adminDonationAnalytics">
+                        <h3>Placeholder</h3>
+                     
                     </div>
                 </div>
             </div>
