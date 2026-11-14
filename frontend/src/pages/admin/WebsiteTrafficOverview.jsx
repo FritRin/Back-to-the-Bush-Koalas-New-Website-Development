@@ -1,3 +1,8 @@
+import VisitorDevicesChart from "../../components/admin/websiteTraffic/VisitorDevicesChart";
+import WebsiteTrafficChart from "../../components/admin/websiteTraffic/WebsiteTrafficChart";
+import TrafficSourcesChart from "../../components/admin/websiteTraffic/TrafficSourcesChart";
+import UserEngagementCard from "../../components/admin/websiteTraffic/UserEngagementCard";
+
 function WebsiteTrafficOverview() {
     return (
         <div className="adminDashboard">
@@ -13,16 +18,12 @@ function WebsiteTrafficOverview() {
                     <div className="adminTrafficAnalytics">
                         <h3>Website Traffic Over Time</h3>
                         <div className="adminTrafficChart">
-                            {/* Traffic chart here */}
+                            <WebsiteTrafficChart />
                         </div>
                     </div>
 
-                    <div className="adminTrafficAnalytics">
-                        <h3>User Engagement</h3>
-                        <div className="adminTrafficChart">
-                            {/* Engagement chart here */}
-                            </div>
-                    </div>
+                    <UserEngagementCard />
+                    
                 </div>
         
                 <div className="adminTrafficSecondaryGrid">
@@ -30,7 +31,7 @@ function WebsiteTrafficOverview() {
                         <h3>Traffic Sources</h3>
 
                         <div className="adminTrafficChart">
-                            {/* Traffic sources chart here */}
+                            <TrafficSourcesChart />
                         </div>
                     </div>
 
@@ -38,7 +39,7 @@ function WebsiteTrafficOverview() {
                         <h3>Visitor Devices</h3>
 
                         <div className="adminTrafficChart">
-                            {/* Visitor devices chart here */}
+                            <VisitorDevicesChart />
                         </div>
                     </div>
                 </div>

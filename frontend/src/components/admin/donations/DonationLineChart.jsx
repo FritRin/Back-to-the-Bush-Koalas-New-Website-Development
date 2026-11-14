@@ -1,27 +1,24 @@
 import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-function DonationLineChart({ donations }) {
+import getChartDateRange from "../../../utils/getChartDateRange";
+
+function DonationLineChart({ donations, dateRange }) {
     const donationsByDate = {};
 
     
     donations.forEach((donation) => {
-        const date = new Date(donation.donation_date)
-            .toLocaleDateString("en-AU", { timeZone: "UTC"});
-        
-        donationsByDate[date] = (donationsByDate[date] || 0) + 1;
+        const date = new Date(donation.donation_date);
+        date.setHours(0, 0, 0, 0);
+        const timestamp = date.getTime();
+        donationsByDate[timestamp] = (donationsByDate[timestamp] || 0) + 1;
     });
-        
-            // Convert the grouped donations into Recharts data
-            const chartData = Object.entries(donationsByDate)
-                .map(([date, count]) => ({
-                    day: date,
-                    donations: count
-                }))
-                .sort((a, b) => {
-                    const [dayA, monthA, yearA] = a.day.split("/");
-                    const [dayB, monthB, yearB] = b.day.split("/");
-                    return new Date(yearA, monthA - 1, dayA) - new Date(yearB, monthB - 1, dayB);
-                }); 
+
+    const dates = getChartDateRange(dateRange, donations);
+
+    const chartData = dates.map((date) => ({
+        day: date.toLocaleDateString("en-AU"),
+        donations: donationsByDate[date.getTime()] || 0
+    }));
 
     return (
         <div className="adminDonationChart">
@@ -33,7 +30,12 @@ function DonationLineChart({ donations }) {
                 />
                 <XAxis 
                     dataKey="day"
-                    interval={0}
+                    interval={
+                        dateRange === "7" ? 0 :
+                        dateRange === "30" ? 2 :
+                        dateRange === "90" ? 6 :
+                        29
+                    }
                     angle={-45}
                     textAnchor="end"
                     height={70}
@@ -46,7 +48,7 @@ function DonationLineChart({ donations }) {
                     dataKey="donations"
                     stroke="#9fa659"
                     strokeWidth={3}
-                    dot={{ fill: "#797641", r: 4}}
+                    dot={false}
                     activeDot={{ fill: "#9FA659", r: 6}}
                 />
                 </LineChart>
