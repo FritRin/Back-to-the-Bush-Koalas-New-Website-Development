@@ -1,25 +1,24 @@
 import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
-function WebsiteTrafficChart() {
-    const chartData = [
-        { day: 'Mon', visitors: 20 },
-        { day: 'Tue', visitors: 35 },
-        { day: 'Wed', visitors: 14 },
-        { day: 'Thu', visitors: 21 },
-        { day: 'Fri', visitors: 52 },
-        { day: 'Sat', visitors: 30 },
-        { day: 'Sun', visitors: 20 } 
-    ];
+function WebsiteTrafficChart({ traffic = [] }) {
+    const chartData = traffic.map((item) => ({
+        day: `${item.date.slice(6, 8)}/${item.date.slice(4, 6)}`,
+        visitors: item.activeUsers
+    }));
+
+    if (chartData.length === 0) {
+        return <p>No website traffic data available.</p>;
+    }
 
 
     return (
         <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData}>
-            
+
             <CartesianGrid
-                strokeDasharray="3 3" 
+                strokeDasharray="3 3"
             />
-            <XAxis 
+            <XAxis
                 dataKey="day"
 
             />
@@ -29,6 +28,7 @@ function WebsiteTrafficChart() {
             <Line
                 type="monotone"
                 dataKey="visitors"
+                name="Active Users"
                 stroke="#9fa659"
                 strokeWidth={3}
                 dot={{ fill: "#797641", r: 4}}
