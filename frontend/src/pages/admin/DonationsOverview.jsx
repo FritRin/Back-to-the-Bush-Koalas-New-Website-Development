@@ -62,12 +62,10 @@ function DonationsOverview() {
                 <div className="adminAnalyticsGrid">
                     <div className="adminDonationAnalytics">
                         <h3>Total Donations Over Time</h3>
-                        <DonationLineChart donations={filteredDonations} />
-                    </div>
-
-                    <div className="adminDonationAnalytics">
-                        <h3>Payment Method Breakdown</h3>
-                        <DonationPieChart donations={filteredDonations} />
+                        <DonationLineChart 
+                            donations={filteredDonations}
+                            dateRange={dateRange}
+                        />
                     </div>
 
                     <div className="adminDonationAnalytics">
@@ -75,6 +73,11 @@ function DonationsOverview() {
                         <DonationRevenueChart 
                             donations={filteredDonations}
                             dateRange={dateRange} />
+                    </div>
+                    
+                    <div className="adminDonationAnalytics">
+                        <h3>Payment Method Breakdown</h3>
+                        <DonationPieChart donations={filteredDonations} />
                     </div>
 
                     <div className="adminDonationAnalytics">
