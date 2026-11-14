@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getAllKoalas } from "../api/Koala";
+import FormPopUp from "./FormPopUp";
 
 function AdoptList() {
     const [Koalas, setKoalas] = useState([]);
+    const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
         const loadKoalas = async () => {
@@ -62,7 +64,9 @@ function AdoptList() {
                                         AU$50
                                     </p>
 
-                                    <button className="w-full bg-green-700 hover:bg-green-800 py-2 font-bold">
+                                    <button
+                                        onClick={() => setShowForm(true)}
+                                        className="w-full bg-green-700 hover:bg-green-800 py-2 font-bold">
                                         Adopt Now
                                     </button>
                                 </div>
@@ -71,9 +75,13 @@ function AdoptList() {
                     </div>
                 ))}
             </div>
+
+            <FormPopUp
+                open={showForm}
+                close={() => setShowForm(false)}
+            />
         </div>
     );
 }
-
 
 export default AdoptList;
