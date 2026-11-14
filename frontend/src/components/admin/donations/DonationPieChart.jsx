@@ -18,8 +18,6 @@ function DonationPieChart({ donations }) {
             value: count
         }));
 
-    console.log(chartData);
-
     const Colours = ["#9FA659", "#797641"]
     
     return (

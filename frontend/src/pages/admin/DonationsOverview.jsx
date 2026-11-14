@@ -5,9 +5,12 @@ import DonationLineChart from "../../components/admin/donations/DonationLineChar
 import DonationPieChart from "../../components/admin/donations/DonationPieChart";
 import TotalDonations from "../../components/admin/donations/TotalDonations";
 import AdminDateFilter from "../../components/admin/donations/AdminDateFilter";
+import DonationRevenueChart from "../../components/admin/donations/DonationRevenueChart";
 
 import { getAllDonations } from "../../services/donationService";
 import filterDonationsByDate from "../../utils/filterDonationsByDate";
+import AverageDonations from "../../components/admin/donations/AverageDonations";
+import TotalRevenue from "../../components/admin/donations/TotalRevenue";
 
 function DonationsOverview() {
     const [dateRange, setDateRange] = useState("30");
@@ -52,21 +55,35 @@ function DonationsOverview() {
             
             <div className="adminStatisticWrapper">
                 <TotalDonations donations={filteredDonations} />
-                <StatisticCard title="Average Donation" value="--" />
-                <StatisticCard title="Total Revenue" value="--" />
-                <StatisticCard title="Title" value="--" />
+                <AverageDonations donations={filteredDonations} />
+                <TotalRevenue donations={filteredDonations} />
             </div>
 
             <div className="adminChartsSection">
                 <div className="adminAnalyticsGrid">
                     <div className="adminDonationAnalytics">
                         <h3>Total Donations Over Time</h3>
-                        <DonationLineChart donations={filteredDonations} />
+                        <DonationLineChart 
+                            donations={filteredDonations}
+                            dateRange={dateRange}
+                        />
                     </div>
 
                     <div className="adminDonationAnalytics">
                         <h3>Donation Revenue Over Time</h3>
+                        <DonationRevenueChart 
+                            donations={filteredDonations}
+                            dateRange={dateRange} />
+                    </div>
+                    
+                    <div className="adminDonationAnalytics">
+                        <h3>Payment Method Breakdown</h3>
                         <DonationPieChart donations={filteredDonations} />
+                    </div>
+
+                    <div className="adminDonationAnalytics">
+                        <h3>Placeholder</h3>
+                     
                     </div>
                 </div>
             </div>
