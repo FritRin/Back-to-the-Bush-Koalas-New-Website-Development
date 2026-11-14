@@ -514,7 +514,7 @@ p.emergencyNumber {
   background-color: darkred;
 }
 
-
+/* Sets default lineheight for all admin styles */
 [class^="admin"] {
   line-height: 1.2;
 }

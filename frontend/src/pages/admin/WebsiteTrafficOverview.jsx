@@ -1,5 +1,6 @@
 import VisitorDevicesChart from "../../components/admin/websiteTraffic/VisitorDevicesChart";
 import WebsiteTrafficChart from "../../components/admin/websiteTraffic/WebsiteTrafficChart";
+import TrafficSourcesChart from "../../components/admin/websiteTraffic/TrafficSourcesChart";
 
 function WebsiteTrafficOverview() {
     return (
@@ -33,7 +34,7 @@ function WebsiteTrafficOverview() {
                         <h3>Traffic Sources</h3>
 
                         <div className="adminTrafficChart">
-                            {/* Traffic sources chart here */}
+                            <TrafficSourcesChart />
                         </div>
                     </div>
 
