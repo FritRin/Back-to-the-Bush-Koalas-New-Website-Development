@@ -7,7 +7,13 @@ function NavAdmin() {
                     <ul className="adminSidebarLinks">
                         <li>
                             <NavLink to="/admin" end className="adminSidebarLink">
-                                Dashboard
+                                Donations Overview
+                            </NavLink>
+                        </li>
+
+                        <li>
+                            <NavLink to="/admin/website-traffic" end className="adminSidebarLink">
+                                Website Traffic Overview
                             </NavLink>
                         </li>
 
@@ -18,17 +24,10 @@ function NavAdmin() {
                         </li>
 
                         <li>
-                            <NavLink to="/admin/stories" className="adminSidebarLink">
+                            <NavLink to="/admin/manage-stories" className="adminSidebarLink">
                                 Manage Stories
                             </NavLink>
                         </li>
-
-                        <li>
-                            <NavLink to="/admin/donations" className="adminSidebarLink">
-                                Donations
-                            </NavLink>
-                        </li>
-
                     </ul>
                 </nav>
             </aside>

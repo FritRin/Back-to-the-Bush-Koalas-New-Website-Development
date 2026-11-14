@@ -258,9 +258,9 @@ paths:
           description: Internal Server Error
 
   # KOALA STORIES
-  /api/koala-stories:
+  /api/stories:
     get:
-      summary: Retrieve all koala stories
+      summary: Retrieve all stories
       tags:
         - Koala Stories
       responses:
@@ -299,6 +299,7 @@ paths:
                 - admin_id
                 - title
                 - content
+                - image_urls
               properties:
                 koala_id:
                   type: integer
@@ -312,6 +313,13 @@ paths:
                 content:
                   type: string
                   example: This koala is recovering well after receiving care.
+                image_urls:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - "image1.png"
+                    - "image2.png"
       responses:
         "201":
           description: Koala story created successfully
@@ -333,7 +341,7 @@ paths:
         "500":
           description: Internal Server Error
 
-  /api/koala-stories/{id}:
+  /api/stories/{id}:
     parameters:
       - name: id
         in: path
@@ -384,6 +392,13 @@ paths:
                 content:
                   type: string
                   example: The koala has made further progress in recovery.
+                image_urls:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - "updated-image1.png"
+                    - "updated-image2.png"
       responses:
         "200":
           description: Koala story updated successfully
@@ -415,6 +430,353 @@ paths:
           description: Invalid Koala Story ID
         "404":
           description: Koala story not found
+        "500":
+          description: Internal Server Error
+
+  /api/stories/{id}/images:
+    post:
+      summary: Add a new image to a koala story
+      tags:
+        - Koala Stories
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Koala Story ID
+          schema:
+            type: integer
+
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - image
+              properties:
+                image:
+                  type: string
+                  format: binary
+
+      responses:
+        "200":
+          description: Image added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Image added successfully
+                  data:
+                    $ref: "#/components/schemas/KoalaStory"
+
+        "400":
+          description: Invalid Story ID or missing image
+
+        "404":
+          description: Story not found
+
+        "500":
+          description: Internal Server Error
+
+  /api/stories/{id}/images/{index}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Koala Story ID
+        schema:
+          type: integer
+
+      - name: index
+        in: path
+        required: true
+        description: Image index in image_urls array (0-based)
+        schema:
+          type: integer
+
+    patch:
+      summary: Replace a specific image in a koala story
+      tags:
+        - Koala Stories
+
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - image
+              properties:
+                image:
+                  type: string
+                  format: binary
+
+      responses:
+        "200":
+          description: Image updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Image updated successfully
+                  data:
+                    $ref: "#/components/schemas/KoalaStory"
+
+        "400":
+          description: Invalid story ID, image index or file
+
+        "404":
+          description: Story not found
+
+        "500":
+          description: Internal Server Error
+
+    delete:
+      summary: Delete a specific image from a koala story
+      tags:
+        - Koala Stories
+
+      responses:
+        "200":
+          description: Image deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: Image deleted successfully
+                  data:
+                    $ref: "#/components/schemas/KoalaStory"
+
+        "400":
+          description: Invalid story ID or image index
+
+        "404":
+          description: Story not found
+
+        "500":
+          description: Internal Server Error
+  
+  # BOX
+  /api/box-story:
+    get:
+      summary: Retrieve all box stories
+      tags:
+        - Box
+      description: Returns a list of all box story records.
+      responses:
+        '200':
+          description: Successfully retrieved all box stories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  count:
+                    type: integer
+                    example: 2
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BoxStory'
+
+    post:
+      summary: Create a new box story
+      tags:
+        - Box
+      description: Creates a new box story record with required valid IDs and a non-empty slot string.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - box_id
+                - story_id
+                - admin_id
+                - slot
+              properties:
+                box_id:
+                  type: integer
+                  minimum: 1
+                  example: 1
+                story_id:
+                  type: integer
+                  minimum: 1
+                  example: 5
+                admin_id:
+                  type: integer
+                  example: 1
+                slot:
+                  type: string
+                  example: "main"
+      responses:
+        '201':
+          description: Box story created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 201
+                  message:
+                    type: string
+                    example: "box has been created"
+                  data:
+                    $ref: '#/components/schemas/BoxStory'
+        '400':
+          description: Bad request - Missing or invalid required fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                status: 400
+                message: "Valid entries are required"
+
+  /api/box-story/{id}:
+    parameters:
+        - name: id
+          in: path
+          required: true
+          description: Box story ID
+          schema:
+            type: integer
+    get:
+      summary: Get a box story by ID
+      tags:
+        - Box
+      responses:
+        '200':
+          description: Box story retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  data:
+                    $ref: '#/components/schemas/BoxStory'
+        '400':
+          description: Invalid ID parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                status: 400
+                message: "Invalid box ID"
+        '404':
+          description: Box story not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                status: 404
+                message: "box not found"
+
+    put:
+      summary: Update a Box story
+      tags:
+        - Box
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              minProperties: 1
+              properties:
+                story_id:
+                  type: integer
+                  example: 1
+                admin_id:
+                  type: integer
+                  example: 1
+                slot:
+                  type: string
+                  example: secondary
+      responses:
+        "200":
+          description: Box updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoxStory"
+        "400":
+          description: Invalid request data
+        "404":
+          description: Box story not found
+        "500":
+          description: Internal Server Error
+
+    delete:
+      summary: Delete a Box story
+      tags:
+        - Box
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Box story deleted successfully
+        "400":
+          description: Invalid box Story ID
+        "404":
+          description: box story not found
         "500":
           description: Internal Server Error
 

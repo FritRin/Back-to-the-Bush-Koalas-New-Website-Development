@@ -37,12 +37,20 @@ CREATE TABLE koala (
 
 CREATE TABLE koala_story ( 
     story_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
-    koala_id INTEGER NOT NULL REFERENCES koala(koala_id),
+    koala_id INTEGER NULL REFERENCES koala(koala_id),
     admin_id INTEGER NOT NULL REFERENCES admins(admin_id),  
     title VARCHAR(150) NOT NULL, 
-    content TEXT NOT NULL, 
+    content TEXT NOT NULL,
+    image_urls TEXT[] NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP 
 ); 
+
+CREATE TABLE box_story (
+    box_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    story_id INTEGER NULL REFERENCES koala_story (story_id),
+    admin_id INTEGER NOT NULL REFERENCES admins(admin_id),  
+    slot VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE adoption ( 
     adoption_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
@@ -85,9 +93,3 @@ CREATE TABLE wishlist_purchase (
     payment_method VARCHAR(50),
     transaction_reference VARCHAR(100) 
 );
-
-
-
- 
-
- 
