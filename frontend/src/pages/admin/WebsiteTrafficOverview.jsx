@@ -1,3 +1,6 @@
+import VisitorDevicesChart from "../../components/admin/websiteTraffic/VisitorDevicesChart";
+import WebsiteTrafficChart from "../../components/admin/websiteTraffic/WebsiteTrafficChart";
+
 function WebsiteTrafficOverview() {
     return (
         <div className="adminDashboard">
@@ -13,7 +16,7 @@ function WebsiteTrafficOverview() {
                     <div className="adminTrafficAnalytics">
                         <h3>Website Traffic Over Time</h3>
                         <div className="adminTrafficChart">
-                            {/* Traffic chart here */}
+                            <WebsiteTrafficChart />
                         </div>
                     </div>
 
@@ -38,7 +41,7 @@ function WebsiteTrafficOverview() {
                         <h3>Visitor Devices</h3>
 
                         <div className="adminTrafficChart">
-                            {/* Visitor devices chart here */}
+                            <VisitorDevicesChart />
                         </div>
                     </div>
                 </div>
