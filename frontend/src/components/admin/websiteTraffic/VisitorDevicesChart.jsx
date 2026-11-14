@@ -6,7 +6,7 @@ const deviceData = [
     { name: "Tablet", value: 15 },
 ]
 
-const colours = ["#73845B", "#C49A65", "#A6B58C"]
+const colours = ["#797641", "#9FA659", "#A6B58C"]
 
 function VisitorDevicesChart() {
     return (

@@ -9,6 +9,8 @@ import DonationRevenueChart from "../../components/admin/donations/DonationReven
 
 import { getAllDonations } from "../../services/donationService";
 import filterDonationsByDate from "../../utils/filterDonationsByDate";
+import AverageDonations from "../../components/admin/donations/AverageDonations";
+import TotalRevenue from "../../components/admin/donations/TotalRevenue";
 
 function DonationsOverview() {
     const [dateRange, setDateRange] = useState("30");
@@ -53,9 +55,8 @@ function DonationsOverview() {
             
             <div className="adminStatisticWrapper">
                 <TotalDonations donations={filteredDonations} />
-                <StatisticCard title="Average Donation" value="--" />
-                <StatisticCard title="Total Revenue" value="--" />
-                <StatisticCard title="Title" value="--" />
+                <AverageDonations donations={filteredDonations} />
+                <TotalRevenue donations={filteredDonations} />
             </div>
 
             <div className="adminChartsSection">

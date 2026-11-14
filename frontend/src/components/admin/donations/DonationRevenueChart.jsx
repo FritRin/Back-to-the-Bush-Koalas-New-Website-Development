@@ -26,7 +26,12 @@ function DonationRevenueChart({ donations, dateRange }) {
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis 
                                 dataKey="day"
-                                interval={dateRange === "7" ? 0 : dateRange === "30" ? 2 : 6}
+                                interval={
+                                    dateRange === "7" ? 0 :
+                                    dateRange === "30" ? 2 :
+                                    dateRange === "90" ? 6 :
+                                    29
+                                }
                                 angle={-45}
                                 textAnchor="end"
                                 height={70}
