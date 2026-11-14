@@ -72,7 +72,9 @@ function DonationsOverview() {
 
                     <div className="adminDonationAnalytics">
                         <h3>Donation Revenue Over Time</h3>
-                        <DonationRevenueChart donations={filteredDonations} />
+                        <DonationRevenueChart 
+                            donations={filteredDonations}
+                            dateRange={dateRange} />
                     </div>
 
                     <div className="adminDonationAnalytics">
