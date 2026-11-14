@@ -18,6 +18,7 @@ const wishlistItemRoutes = require("./routes/wishlistItemRoutes");
 const adoptionRoutes = require("./routes/adoptionRoutes");
 const donationRoutes = require("./routes/donationRoutes");
 const authRoutes = require("./routes/authRoutes");
+const ga4Routes = require("./routes/ga4Routes");
 
 // start the Express application
 const app = express();
@@ -68,6 +69,9 @@ app.use("/api/koala-stories", koalaStoryRoutes);
 app.use("/api/wishlist-items", wishlistItemRoutes);
 app.use("/api/adoptions", adoptionRoutes);
 app.use("/api/donations", donationRoutes);
+
+// Google Analytics 4 - admin analytics
+app.use("/api/analytics", ga4Routes);
 
 // Api to allow upload PNG images in the DB and store in the
 // folder Public/images

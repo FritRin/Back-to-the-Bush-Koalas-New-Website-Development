@@ -1,3 +1,8 @@
 node_modules/
 
 .env
+# Local Docker configuration backups
+docker-compose.ga4-backup.yml
+
+# Local Docker overrides
+docker-compose.override.yml
