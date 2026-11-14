@@ -24,7 +24,7 @@ function NavAdmin() {
                         </li>
 
                         <li>
-                            <NavLink to="/admin/stories" className="adminSidebarLink">
+                            <NavLink to="/admin/manage-stories" className="adminSidebarLink">
                                 Manage Stories
                             </NavLink>
                         </li>

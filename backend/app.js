@@ -14,6 +14,7 @@ const errorHandler = require("./middleware/errorHandler");
 const koalaRoutes = require("./routes/koalaRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 const koalaStoryRoutes = require("./routes/koalaStoryRoutes");
+const boxStoryRoutes = require("./routes/boxStoryRoutes");
 const wishlistItemRoutes = require("./routes/wishlistItemRoutes");
 const adoptionRoutes = require("./routes/adoptionRoutes");
 const donationRoutes = require("./routes/donationRoutes");
@@ -31,7 +32,7 @@ app.use((req, res, next) => {
 // Configure CORS to allow request from frontend
 // Allow the browser to end and recieve auth cookies
 const allowedOrigins = [
-    process.env.FRONTEND_ORIGIN || "http://localhost:5173",
+    process.env.FRONTEND_ORIGIN || "http://localhost","http://localhost:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ];
@@ -64,7 +65,8 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerYAML, {swaggerOptions: 
 app.use("/api/auth", authRoutes);
 app.use("/api/koalas", koalaRoutes); 
 app.use("/api/customers", customerRoutes);
-app.use("/api/koala-stories", koalaStoryRoutes);
+app.use("/api/stories", koalaStoryRoutes);
+app.use("/api/box-story", boxStoryRoutes);
 app.use("/api/wishlist-items", wishlistItemRoutes);
 app.use("/api/adoptions", adoptionRoutes);
 app.use("/api/donations", donationRoutes);
