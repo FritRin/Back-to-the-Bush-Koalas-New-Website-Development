@@ -75,7 +75,7 @@ const Wishlist = () => {
                 onRemoveItem={handleRemoveItem}
                 onDonate={() => setShowForm(true)}
             />
-
+            
             <FormPopUp
                 open = {showForm}
                 close={() => setShowForm(false)}
