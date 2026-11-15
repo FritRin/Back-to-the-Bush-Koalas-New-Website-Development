@@ -11,12 +11,14 @@ function Donate() {
     const [showForm, setShowForm] = useState(false);
     return (
         <div className="pageContainer">
-            {/* Whichlist link */}
+            {/* Wishlist link */}
             <div className="
                 flex 
                 justify-center 
                 m-15 
                 gap-10
+                max-md:flex-col
+                max-md:m-5
                 ">
                 <Link to="/donate/wishlist">
                     <div className="
@@ -147,9 +149,9 @@ function Donate() {
                 close={() => setShowForm(false)}
             />
 
-            <h2 className="flex justify-center font-bold" >Your support will help fund</h2>
+            <h2 className="flex justify-center font-bold max-md: m-5" >Your support will help fund</h2>
             <Outlet />
-            <div className="flex justify-center">
+            <div className="flex justify-center max-md: m-5">
                 <ul class="list-disc">
                     <li>Hospital fit-out </li>
                     <li>Completing treatment areas and preparing the building for veterinary operations.</li>
@@ -166,10 +168,12 @@ function Donate() {
                 flex 
                 justify-center 
                 my-10
-                mx-50
+                md:mx-50
                 p-5
                 rounded
                 shadow-lg
+                max-md:w-80
+                max-md:m-5
             ">
                 <h3 className="
                     text-white 
@@ -184,7 +188,7 @@ function Donate() {
                 </h3>
             </div>
             <div className="my-10
-                mx-50
+                md:mx-50
                 p-5">
                 <p>
                     Every donation, no matter the size, brings us one step closer to
@@ -224,7 +228,7 @@ function Donate() {
 
                         <a
                             href="mailto:info@backtothebushkoalas.com.au"
-                            className="text-[#9FA659] text-2xl underline mb-2">
+                            className="text-[#9FA659] text-2xl underline mb-2 max-md:text-lg">
                             info@backtothebushkoalas.com.au
                         </a>
                         <p className="text-2xl">
