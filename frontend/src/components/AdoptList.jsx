@@ -5,6 +5,8 @@ import FormPopUp from "./FormPopUp";
 function AdoptList() {
     const [Koalas, setKoalas] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    // Selected koalas information (commented out at the moment)
+    // const [selectedKoala, setSelectedKoala] = useState(null);
 
     useEffect(() => {
         const loadKoalas = async () => {
@@ -65,7 +67,10 @@ function AdoptList() {
                                     </p>
 
                                     <button
-                                        onClick={() => setShowForm(true)}
+                                        onClick = {() => {
+                                           // setSelectedKoala(koala);
+                                            setShowForm(true);
+                                        }}
                                         className="w-full bg-green-700 hover:bg-green-800 py-2 font-bold">
                                         Adopt Now
                                     </button>
@@ -77,8 +82,14 @@ function AdoptList() {
             </div>
 
             <FormPopUp
-                open={showForm}
-                close={() => setShowForm(false)}
+            // Show the form once clicked on Adopt, and set donationType to adoption so that it will be set at $50.
+                open = {showForm}
+                close = {() => {
+                    setShowForm(false);
+                   // setSelectedKoala(null);
+                }}
+                donationType = "adoption"
+                // selectedKoala = {selectedKoala}
             />
         </div>
     );

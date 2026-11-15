@@ -77,8 +77,10 @@ const Wishlist = () => {
             />
 
             <FormPopUp
-                open={showForm}
+                open = {showForm}
                 close={() => setShowForm(false)}
+                donationType = "wishlist"
+                cartItems = {cartItems}
             />
         </div>
     );
