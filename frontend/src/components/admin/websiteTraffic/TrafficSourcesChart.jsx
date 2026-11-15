@@ -1,14 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const trafficData = [
-    { source: "Organic Search", sessions: 120 },
-    { source: "Direct", sessions: 70 },
-    { source: "Organic Social", sessions: 65 },
-    { source: "Referral", sessions: 50 },
-    { source: "Email", sessions: 30 }
-];
-
-function TrafficSourcesChart() {
+function TrafficSourcesChart({ trafficData = [] }) {
     return (
         <ResponsiveContainer width="100%" height="100%">
             <BarChart

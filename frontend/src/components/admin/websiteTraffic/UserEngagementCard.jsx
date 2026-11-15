@@ -1,6 +1,6 @@
 import EngagementStatCard from "./EngagementStatCard";
 
-function UserEngagement() {
+function UserEngagement({ engagementData = null }) {
     return (
         <div className="adminTrafficAnalytics">
             <h3>User Engagement</h3>
@@ -8,12 +8,20 @@ function UserEngagement() {
             <div className="adminEngagementStats">
                 <EngagementStatCard
                     title="Avg Engagement Time"
-                    value="--"
+                    value={
+                        engagementData
+                            ? `${Math.round(engagementData.averageEngagementTimeSeconds)} sec`
+                            : "--"
+                    }
                 />
 
                 <EngagementStatCard
                     title="Engagement Rate"
-                    value="--"
+                    value={
+                        engagementData
+                            ? `${(engagementData.engagementRate * 100).toFixed(1)}%`
+                            : "--"
+                    }
                 />
             </div>
         </div>
