@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react";
+import PayPalAdoptWishlist from "./PayPalAdoptWishlist";
+import { useNavigate } from "react-router-dom";
 
-const FormPopUp = ({ open, close }) => {
+  const FormPopUp = ({ open, close, donationType = "general", cartItems = [] }) => {
+  const navigate = useNavigate();
   const [donateWithCompany, setCompanyDonation] = useState("no");
   const [donationMethod, setDonationMethod] = useState("");
   const [formErrors, setFormErrors] = useState({});
-  // const [donationAmount, setDonationAmount] = useState("");
   const [showGiveNow, setShowGiveNow] = useState(false);
+  const [showPayPal, setShowPayPal] = useState(false);
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  
+  // Calculate the total cost of the items in cart to be used for PayPal.
+  const cartTotal = cartItems.reduce(
+    (total, item) => total + Number(item.donationAmount || 0),
+    0
+  );
 
   // Embedded form added once GiveNow is selected
   useEffect(() => {
@@ -130,22 +140,16 @@ const FormPopUp = ({ open, close }) => {
       return;
     }
 
-    // Validation passed. Payment integration is handled separately.
-    console.log("Donation form validated", {
-      firstName,
-      lastName,
-      email,
-      phone,
-      company: donateWithCompany === "yes" ? company : "",
-      streetNumber,
-      streetName,
-      suburb,
-      state,
-      postcode,
-      country,
-      comments,
-      donationMethod,
-    });
+    if (donationMethod === "paypal") {
+      // Generic donation page with custom amount if user does not buy from wishlist or adopt a koala
+      if (donationType === "general") {
+        // PLEASE replace the hosted_button_id with the proper id from the client's account and remove the sandbox text when in production
+        window.location.href = "https://www.sandbox.paypal.com/donate?hosted_button_id=AQMHG8VQ86H8Y";
+      } else {
+        // Show the regular payment modal from PayPalAdoptWishlist if the donation isn't a general
+        setShowPayPal(true);
+      }
+    }
   };
 
   if (!open) return null;
@@ -156,10 +160,13 @@ const FormPopUp = ({ open, close }) => {
       data-dialog-backdrop-close="true"
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
     >
+      {/* When no payment is made yet via PayPal, render the form as normal. */}
       <div
         data-dialog="modal-md"
-        className="relative m-4 p-4 w-full max-w-3xl max-h-[80vh] overflow-y-auto bg-[#EEF2DB] shadow-sm"
-      >
+        className={`relative m-4 p-4 w-full max-w-3xl max-h-[80vh] overflow-y-auto shadow-sm ${ showPaymentSuccess ? "bg-transparent border-0 shadow-none" : "bg-[#EEF2DB]" }`}
+        >
+    {!showPaymentSuccess && (
+      <>
         <form
           className="flex flex-col items-center text-sm"
           onSubmit={handleSubmit}
@@ -410,11 +417,15 @@ const FormPopUp = ({ open, close }) => {
           </div>
 
           {/* Buttons payment method */}
-          {/*TODO: Set the services link to paypal and giveNow  */}
           <div className="flex gap-4">
             <button
               type="button"
-              onClick={() => setDonationMethod("paypal")}
+              onClick={() => {
+                // Ensuring that selecting between the methods will automatically hide the other method's already loaded embed.
+                setDonationMethod("paypal");
+                setShowGiveNow(false);
+                setShowPayPal(false);
+              }}
               className={`flex-1 py-4 px-6 rounded-lg text-white font-semibold ${
                 donationMethod === "paypal"
                   ? "bg-green-700"
@@ -426,7 +437,12 @@ const FormPopUp = ({ open, close }) => {
 
             <button
               type="button"
-              onClick={() => setDonationMethod("givenow")}
+              onClick={() => {
+                // Same as above
+                setDonationMethod("givenow");
+                setShowGiveNow(false);
+                setShowPayPal(false);
+              }}
               className={`flex-1 py-4 px-6 rounded-lg text-white font-semibold ${
                 donationMethod === "givenow"
                   ? "bg-green-700"
@@ -463,6 +479,43 @@ const FormPopUp = ({ open, close }) => {
                 data-offset-bonus="0"
                 />
             </div>
+          )}
+          {/* When PayPal is selected and it is not a general donatoion, then show the modal from PayPalAdoptWishlist. */}
+          {showPayPal && (
+            <div className = "w-full mt-6">
+              <PayPalAdoptWishlist
+                donationType = {donationType}
+                // If it is an adoption, set the price to 50, otherwise whatever is the amount in the cart.
+                amount = {donationType === "adoption" ? 50 : cartTotal}
+                onPaymentSuccess={() => setShowPaymentSuccess(true)}
+              />
+            </div>
+          )}
+            </>
+          )}
+          {/* Once payment via PayPal is successful, hides the entire form and only show the success pop up. That is why the entire form is wrapped in !showPaymentSuccess. There's prolly a better way to do this but this is what I can come up with. */}
+          {showPaymentSuccess && (
+              <div className = "fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
+                  <div className = "bg-[#EEF2DB] rounded-xl p-8 mx-4 max-w-md w-full text-center shadow-xl">
+                      <h2 className = "text-2xl font-bold text-slate-700 mb-3">
+                          Donation Successful!
+                      </h2>
+                      <p className = "text-gray-600 mb-6">
+                          Thank you for your donation to Back to the Bush Koalas.
+                      </p>
+                      <button
+                          onClick = {() => {
+                              setShowPaymentSuccess(false);
+                              setShowPayPal(false);
+                              close();
+                              navigate("/"); 
+                          }}
+                          className = "bg-[#9FA659] hover:bg-[#8d9450] text-white font-semibold px-8 py-3 rounded-lg"
+                      >
+                          Home
+                      </button>
+                  </div>
+              </div>
           )}
       </div>
     </div>
