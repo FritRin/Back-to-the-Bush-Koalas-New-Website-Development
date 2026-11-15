@@ -1068,6 +1068,83 @@ paths:
         "500":
           description: Internal server error
 
+  # PAYPAL
+  /api/paypal/create:
+    post:
+      summary: Create a PayPal donation order
+      description: Creates a PayPal donation order for a koala adoption or wishlist donation.
+      tags:
+        - PayPal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - donationType
+                - amount
+              properties:
+                donationType:
+                  type: string
+                  enum:
+                    - adoption
+                    - wishlist
+                  example: adoption
+                amount:
+                  type: number
+                  format: double
+                  example: 50.00
+      responses:
+        "201":
+          description: PayPal order created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderID:
+                    type: string
+                    example: 5O190127TN364715T
+        "400":
+          description: Invalid donation type or amount
+        "500":
+          description: Failed to create PayPal donation order
+
+  /api/paypal/capture:
+    post:
+      summary: Capture a PayPal donation order
+      description: Captures an approved PayPal donation order and returns its payment status.
+      tags:
+        - PayPal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - orderID
+              properties:
+                orderID:
+                  type: string
+                  example: 5O190127TN364715T
+      responses:
+        "200":
+          description: PayPal order captured successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: COMPLETED
+        "400":
+          description: Invalid order ID or payment could not be captured
+        "500":
+          description: PayPal capture request failed
+
 components:
   schemas:
     Koala:
