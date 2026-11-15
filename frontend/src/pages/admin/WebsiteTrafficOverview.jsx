@@ -3,18 +3,36 @@ import WebsiteTrafficChart from "../../components/admin/websiteTraffic/WebsiteTr
 import TrafficSourcesChart from "../../components/admin/websiteTraffic/TrafficSourcesChart";
 import UserEngagementCard from "../../components/admin/websiteTraffic/UserEngagementCard";
 import { useEffect, useState } from "react";
-import { getWebsiteTraffic } from "../../services/ga4Service";
+import {
+    getWebsiteTraffic,
+    getTrafficSources,
+    getVisitorDevices,
+    getUserEngagement
+} from "../../services/ga4Service";
 
 function WebsiteTrafficOverview() {
     const [trafficData, setTrafficData] = useState([]);
+    const [sourcesData, setSourcesData] = useState([]);
+    const [devicesData, setDevicesData] = useState([]);
+    const [engagementData, setEngagementData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         async function loadTraffic() {
             try {
-                const result = await getWebsiteTraffic();
-                setTrafficData(result.data || []);
+                const [traffic, sources, devices, engagement] =
+                    await Promise.all([
+                        getWebsiteTraffic(),
+                        getTrafficSources(),
+                        getVisitorDevices(),
+                        getUserEngagement()
+                    ]);
+
+                setTrafficData(traffic.data || []);
+                setSourcesData(sources.data || []);
+                setDevicesData(devices.data || []);
+                setEngagementData(engagement.data || null);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -49,7 +67,7 @@ function WebsiteTrafficOverview() {
                         </div>
                     </div>
 
-                    <UserEngagementCard />
+                    <UserEngagementCard engagementData={engagementData} />
 
                 </div>
 
@@ -58,7 +76,7 @@ function WebsiteTrafficOverview() {
                         <h3>Traffic Sources</h3>
 
                         <div className="adminTrafficChart">
-                            <TrafficSourcesChart />
+                            <TrafficSourcesChart trafficData={sourcesData} />
                         </div>
                     </div>
 
@@ -66,7 +84,7 @@ function WebsiteTrafficOverview() {
                         <h3>Visitor Devices</h3>
 
                         <div className="adminTrafficChart">
-                            <VisitorDevicesChart />
+                            <VisitorDevicesChart deviceData={devicesData} />
                         </div>
                     </div>
                 </div>
