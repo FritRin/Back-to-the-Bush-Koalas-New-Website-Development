@@ -1,9 +1,12 @@
 import Logo from "./Logo";
-import Nav from "./Nav";
+import NavDesktop from "./Nav";
+import NavMobile from "./NavMobile";
 import FollowUs from "./FollowUs";
 import Flag from "../assets/flagIslander.png"
+import { useMediaQuery } from "react-responsive";
 
 function Footer() {
+    const isTabletOrMobile = useMediaQuery({maxWidth: 768});
     return (
         <div className="bg-[#9FA659]">
             <div className="
@@ -17,7 +20,8 @@ function Footer() {
                         flex items-center 
                         gap-10 
                         px-8 
-                        py-8"
+                        py-8
+                        max-md:flex-col"
                     >
 
                         <img src={Flag} alt="Flag" className="w-50 h-auto shrink-0" />
@@ -30,6 +34,7 @@ function Footer() {
                                 tracking-wide  
                                 leading-loose
                                 text-shadow-lg/100
+                                max-md:text-base
                                 ">
                                 Back to the Bush Koalas, Ltd endeavours to respectfully look after the land.
                                 In the spirit of reconciliation and honour, we acknowledge the Traditional
@@ -50,9 +55,9 @@ function Footer() {
                     info@backtothebushkoalas.com.au
                 </a>
             </div>
-            <div className="flex items-center justify-between shadow ">
+            <div className="flex items-center justify-between shadow max-md:flex-col">
                 <Logo />
-                <Nav />
+                {isTabletOrMobile ? <NavMobile /> : <NavDekstop />}
                 <FollowUs />
             </div>
             <div className="text-center bg-[#797641]">

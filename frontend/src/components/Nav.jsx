@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Nav() {
+function NavDesktop() {
     return (
         <nav className="
             flex justify-between 
@@ -103,4 +103,4 @@ function Nav() {
     );
 }
 
-export default Nav;
+export default NavDesktop;

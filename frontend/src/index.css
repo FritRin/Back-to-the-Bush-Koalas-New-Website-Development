@@ -591,11 +591,11 @@ a.contactUsBox {
 }
 }
 
-
 .contactUsSocMedia {
   display: flex;
   justify-content: center;
 }
+
 
 a.contactUsBox:hover {
   color: blue;
@@ -603,9 +603,9 @@ a.contactUsBox:hover {
 
 .socMediaIcon {
   height: auto;
-  width: 10%;
+  width: 40%;
   color: #797641;
-  margin: 1rem;
+  margin: auto;
 }
 
 h1.faq {
@@ -699,6 +699,15 @@ a.emergencyNumber {
   justify-content: center;
   flex-direction: column;
 }
+button.emergencyButton {
+  background-color: red; 
+  color: white ;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  padding: 2.4rem;
+}
 }
 
 a.emergencyNumber:hover {
@@ -712,9 +721,6 @@ p.emergencyNumber {
 .emergencyNumberLink {
   margin: auto;
 }
-
-
-
 
 .emergencyButton:hover {
   background-color: darkred;

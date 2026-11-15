@@ -64,12 +64,16 @@ function ContactUS(){
                 <div className="contactUsBox">
                     <p className="contactUsSocMedia">Follow Us</p>
                     <div className="contactUsSocMedia">
-                        <IconContext.Provider value={{className: "socMediaIcon" }}>
-                            <FaFacebookSquare />
-                        </IconContext.Provider>
-                        <IconContext.Provider value={{className: "socMediaIcon" }}>
-                            <FaInstagram />
-                        </IconContext.Provider>
+                        <a href="https://www.facebook.com/100072434361386/" className="socMediaIcon">
+                            <IconContext.Provider value={{className: "socMediaIcon" }}>
+                                <FaFacebookSquare />
+                            </IconContext.Provider>
+                        </a>
+                        <a href="https://www.instagram.com/back_to_the_bush_koalas/#%20" className="socMediaIcon">
+                            <IconContext.Provider value={{className: "socMediaIcon" }}>
+                                <FaInstagram />
+                            </IconContext.Provider>
+                        </a>
                     </div>
                 </div>
             </div>
