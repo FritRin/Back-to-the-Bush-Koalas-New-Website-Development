@@ -39,4 +39,68 @@ async function getWebsiteTraffic() {
   }));
 }
 
-module.exports = { getWebsiteTraffic };
+async function getTrafficSources() {
+  const propertyId = process.env.GA4_PROPERTY_ID;
+  if (!propertyId) throw new Error("GA4_PROPERTY_ID is not configured");
+
+  const [response] = await analyticsClient.runReport({
+    property: `properties/${propertyId}`,
+    dateRanges: [{ startDate: "7daysAgo", endDate: "yesterday" }],
+    dimensions: [{ name: "sessionDefaultChannelGroup" }],
+    metrics: [{ name: "sessions" }]
+  });
+
+  return (response.rows || []).map(row => ({
+    source: row.dimensionValues[0].value,
+    sessions: Number(row.metricValues[0].value)
+  }));
+}
+
+async function getVisitorDevices() {
+  const propertyId = process.env.GA4_PROPERTY_ID;
+  if (!propertyId) throw new Error("GA4_PROPERTY_ID is not configured");
+
+  const [response] = await analyticsClient.runReport({
+    property: `properties/${propertyId}`,
+    dateRanges: [{ startDate: "7daysAgo", endDate: "yesterday" }],
+    dimensions: [{ name: "deviceCategory" }],
+    metrics: [{ name: "activeUsers" }]
+  });
+
+  return (response.rows || []).map(row => ({
+    name: row.dimensionValues[0].value,
+    value: Number(row.metricValues[0].value)
+  }));
+}
+
+async function getUserEngagement() {
+  const propertyId = process.env.GA4_PROPERTY_ID;
+  if (!propertyId) throw new Error("GA4_PROPERTY_ID is not configured");
+
+  const [response] = await analyticsClient.runReport({
+    property: `properties/${propertyId}`,
+    dateRanges: [{ startDate: "7daysAgo", endDate: "yesterday" }],
+    metrics: [
+      { name: "userEngagementDuration" },
+      { name: "activeUsers" },
+      { name: "engagementRate" }
+    ]
+  });
+
+  const metrics = response.rows?.[0]?.metricValues || [];
+  const engagementSeconds = Number(metrics[0]?.value || 0);
+  const activeUsers = Number(metrics[1]?.value || 0);
+
+  return {
+    averageEngagementTimeSeconds:
+      activeUsers > 0 ? engagementSeconds / activeUsers : 0,
+    engagementRate: Number(metrics[2]?.value || 0)
+  };
+}
+
+module.exports = {
+  getWebsiteTraffic,
+  getTrafficSources,
+  getVisitorDevices,
+  getUserEngagement
+};
