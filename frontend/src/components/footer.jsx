@@ -57,7 +57,7 @@ function Footer() {
             </div>
             <div className="flex items-center justify-between shadow max-md:flex-col">
                 <Logo />
-                {isTabletOrMobile ? <NavMobile /> : <NavDekstop />}
+                {isTabletOrMobile ? <NavMobile /> : <NavDesktop />}
                 <FollowUs />
             </div>
             <div className="text-center bg-[#797641]">
