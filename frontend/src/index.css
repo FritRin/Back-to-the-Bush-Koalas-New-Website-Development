@@ -89,13 +89,13 @@ h1.homeHeading {
   img.aboutUsImg1 {
   height: auto;
   max-width: 20%;
-  margin-right: 5rem;
+  margin-right: 1rem;
   }
 
   img.aboutUsImg2 {
   height: auto;
   max-width: 20%;
-  margin-left: 5rem;
+  margin-left: 1rem;
 }
   li.aboutUsList {
   font-size: 1.5rem;
@@ -110,6 +110,7 @@ h1.homeHeading {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
   margin: 5rem;
   border-radius: 1rem;
 }
@@ -127,7 +128,6 @@ h1.homeHeading {
   display: flex;
   justify-content: center;
   margin-bottom: 20%;
-  margin-left: 10%;
 }
 
   .statisticPanel {
@@ -274,8 +274,17 @@ h1.ourStoryHeading {
   margin: auto;
   margin-bottom: 1rem;
 }
+  .directorPhoto {
+  max-width: 20%;
+  margin: 1rem;
+}
   .directorContent {
   display: flex;
+}
+.director {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
 }}
 
 @media (max-width: 768px){

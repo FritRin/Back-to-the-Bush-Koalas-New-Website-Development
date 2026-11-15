@@ -1,10 +1,10 @@
-import hospital from "../assets/KoalaHospital.JPG"
 import kristin from "../assets/Kristin.JPG"
 import timP from "../assets/TimPortasreal.jpg"
 import jenny from "../assets/jennybttb.jpg"
 import bernadette from "../assets/Bernadettenewphoto.jpg"
 import timD from "../assets/Timdoust.JPG"
 import rochelle from "../assets/Rochelle.jpg"
+import ourStoryPhoto from "../assets/OurStoryPhoto.jpg"
 
 function OurStory(){
     return(
@@ -13,7 +13,7 @@ function OurStory(){
             <div className="ourStoryHistory">
                 <h2 className="ourStoryHistory">Our History</h2>
                 <div className="ourStoryContainer">
-                    <img src={hospital} alt="example image" className="ourStoryHistory"/>
+                    <img src={ourStoryPhoto} alt="example image" className="ourStoryHistory"/>
                     <p className="ourStoryHistory">
                         During the devastating fire season of 2019/2020, Dr. Kristin Doust was working as a full-time wildlife veterinarian with a strong interest in koalas. 
                         She had begun to care for orphaned koalas at this time, and as the number of orphans grew, she and her husband Timothy began to build koala enclosures. Resting just south of Toowoomba 
