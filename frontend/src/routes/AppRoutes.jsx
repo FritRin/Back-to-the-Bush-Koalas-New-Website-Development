@@ -15,7 +15,7 @@ import Story from "../pages/Story";
 import KoalaStories from "../pages/KoalaStories";
 import AdoptKoala from "../pages/AdoptKoala";
 import Wishlist from "../pages/Wishlist";
-import Besquet from "../pages/Besquet"
+import Bequest from "../pages/Bequest"
 
 // Login & Admin Panel pages
 import ProtectedRoute from "../components/ProtectedRoute";
@@ -49,7 +49,7 @@ function AppRoutes() {
           <Route index element={<Donate />} />
           <Route path="adopt-a-koala" element={<AdoptKoala />} />
           <Route path="wishlist" element={<Wishlist />} />
-          <Route path="besquet" element={<Besquet />} />
+          <Route path="bequest" element={<Bequest />} />
         </Route>
 
         <Route path="contact-us" element={<ContactUs />} />

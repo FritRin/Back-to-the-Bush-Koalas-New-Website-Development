@@ -85,9 +85,9 @@ function NavMobile() {
                                 </Link>
                                 <Link
                                     className="block px-4 py-3 hover:bg-[#797641]"
-                                    to="/donate/besquet"
+                                    to="/donate/bequest"
                                 >
-                                    Besquet
+                                    Bequest
                                 </Link>
                             </div>
                         </div>

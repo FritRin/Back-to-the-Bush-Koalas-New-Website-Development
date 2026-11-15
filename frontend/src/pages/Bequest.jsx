@@ -8,7 +8,7 @@ const faqs = [
     },
 ];
 
-function Besquet() {
+function Bequest() {
     const [openIndex, setOpenIndex] = useState(null);
 
     return (
@@ -102,4 +102,4 @@ function Besquet() {
         </div>
     );
 }
-export default Besquet;
+export default Bequest;
