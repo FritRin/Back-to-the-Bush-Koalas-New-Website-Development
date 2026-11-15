@@ -5,10 +5,11 @@ const FormPopUp = ({ open, close }) => {
   const [donationMethod, setDonationMethod] = useState("");
   const [formErrors, setFormErrors] = useState({});
   // const [donationAmount, setDonationAmount] = useState("");
-  // const [showGiveNow, setShowGiveNow] = usestate(false);
+  const [showGiveNow, setShowGiveNow] = useState(false);
 
+  // Embedded form added once GiveNow is selected
   useEffect(() => {
-  if (donationMethod === "givenow") {
+  if (showGiveNow) {
     const timer = setTimeout(() => {
       if (window.iFrameResize) {
         window.iFrameResize(
@@ -41,7 +42,7 @@ const FormPopUp = ({ open, close }) => {
 
     return () => clearTimeout(timer);
   }
-}, [donationMethod]);
+}, [showGiveNow]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -124,6 +125,11 @@ const FormPopUp = ({ open, close }) => {
       return;
     }
 
+    if (donationMethod === "givenow") {
+      setShowGiveNow(true);
+      return;
+    }
+
     // Validation passed. Payment integration is handled separately.
     console.log("Donation form validated", {
       firstName,
@@ -155,7 +161,7 @@ const FormPopUp = ({ open, close }) => {
         className="relative m-4 p-4 w-full max-w-3xl max-h-[80vh] overflow-y-auto bg-[#EEF2DB] shadow-sm"
       >
         <form
-          class="flex flex-col items-center text-sm"
+          className="flex flex-col items-center text-sm"
           onSubmit={handleSubmit}
         >
           <button
@@ -434,7 +440,14 @@ const FormPopUp = ({ open, close }) => {
             <p className="text-red-600">{formErrors.donationMethod}</p>
           )}
 
-          {donationMethod === "givenow" && (
+          <button
+            type="submit"
+            className="mt-6 py-3 px-8 rounded-lg bg-[#9FA659] hover:bg-[#8d9450] text-white font-semibold"
+          >
+            Continue
+          </button>
+        </form>
+        {showGiveNow && (
             <div className="w-full mt-6">
               <iframe
                 id="cause10867" 
@@ -451,14 +464,6 @@ const FormPopUp = ({ open, close }) => {
                 />
             </div>
           )}
-
-          <button
-            type="submit"
-            className="mt-6 py-3 px-8 rounded-lg bg-[#9FA659] hover:bg-[#8d9450] text-white font-semibold"
-          >
-            Continue
-          </button>
-        </form>
       </div>
     </div>
   );
