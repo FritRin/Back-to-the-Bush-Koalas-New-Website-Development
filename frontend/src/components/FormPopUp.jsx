@@ -1,9 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const FormPopUp = ({ open, close }) => {
   const [donateWithCompany, setCompanyDonation] = useState("no");
   const [donationMethod, setDonationMethod] = useState("");
   const [formErrors, setFormErrors] = useState({});
+  // const [donationAmount, setDonationAmount] = useState("");
+  // const [showGiveNow, setShowGiveNow] = usestate(false);
+
+  useEffect(() => {
+  if (donationMethod === "givenow") {
+    const timer = setTimeout(() => {
+      if (window.iFrameResize) {
+        window.iFrameResize(
+          {
+            checkOrigin: false,
+            onScroll: function () {
+              const element = document.getElementById("cause10867");
+
+              if (element) {
+                const offsetBonus = element.getAttribute("data-offset-bonus");
+
+                if (offsetBonus !== null) {
+                  const offset =
+                    element.getBoundingClientRect().top + window.scrollY;
+
+                  window.scrollTo({
+                    top: offset - Number(offsetBonus),
+                    behavior: "smooth"
+                  });
+
+                  return false;
+                }
+              }
+            }
+          },
+          "#cause10867"
+        );
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }
+}, [donationMethod]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -394,6 +432,24 @@ const FormPopUp = ({ open, close }) => {
           </div>
           {formErrors.donationMethod && (
             <p className="text-red-600">{formErrors.donationMethod}</p>
+          )}
+
+          {donationMethod === "givenow" && (
+            <div className="w-full mt-6">
+              <iframe
+                id="cause10867" 
+                className="gn-iframe"
+                title="GiveNow Donation Form"
+                src="https://www.givenow.com.au/embed/Y2F1c2VpZD0xMDg2NyZkb21haW49YmFja3RvdGhlYnVzaGtvYWxhcy5jb20uYXUmdG9rZW49MTA4Njc6Nzg0MzU3YjJhMTA3NTk1MQ%3D%3D"
+                style={{
+                  width: "1px",
+                  minWidth: "100%",
+                  border: 0,
+                  height: "882px"
+                }}
+                data-offset-bonus="0"
+                />
+            </div>
           )}
 
           <button
