@@ -50,25 +50,6 @@ function NavMobile() {
                             >
                                 Our Achievements
                             </Link>
-                            {/* <div className="
-                                absolute 
-                                left-0 
-                                top-full 
-                                hidden 
-                                group-hover:block 
-                                bg-[#9FA659] 
-                                shadow-lg 
-                                rounded-md 
-                                min-w-64 
-                                border
-                            ">
-                                <Link
-                                    className="block px-4 py-3 hover:bg-[#797641]"
-                                    to="/tree-planting-engagements"
-                                >
-                                    Tree Planting Engagements
-                                </Link>
-                            </div> */}
                         </div>
 
                         {/* Donate Dropdown */}
@@ -101,6 +82,12 @@ function NavMobile() {
                                     to="/donate/adopt-a-koala"
                                 >
                                     Adopt a Koala
+                                </Link>
+                                <Link
+                                    className="block px-4 py-3 hover:bg-[#797641]"
+                                    to="/donate/bequest"
+                                >
+                                    Bequest
                                 </Link>
                             </div>
                         </div>
