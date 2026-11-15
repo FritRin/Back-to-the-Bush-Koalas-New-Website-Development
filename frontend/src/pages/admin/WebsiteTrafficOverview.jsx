@@ -2,8 +2,47 @@ import VisitorDevicesChart from "../../components/admin/websiteTraffic/VisitorDe
 import WebsiteTrafficChart from "../../components/admin/websiteTraffic/WebsiteTrafficChart";
 import TrafficSourcesChart from "../../components/admin/websiteTraffic/TrafficSourcesChart";
 import UserEngagementCard from "../../components/admin/websiteTraffic/UserEngagementCard";
+import { useEffect, useState } from "react";
+import {
+    getWebsiteTraffic,
+    getTrafficSources,
+    getVisitorDevices,
+    getUserEngagement
+} from "../../services/ga4Service";
 
 function WebsiteTrafficOverview() {
+    const [trafficData, setTrafficData] = useState([]);
+    const [sourcesData, setSourcesData] = useState([]);
+    const [devicesData, setDevicesData] = useState([]);
+    const [engagementData, setEngagementData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function loadTraffic() {
+            try {
+                const [traffic, sources, devices, engagement] =
+                    await Promise.all([
+                        getWebsiteTraffic(),
+                        getTrafficSources(),
+                        getVisitorDevices(),
+                        getUserEngagement()
+                    ]);
+
+                setTrafficData(traffic.data || []);
+                setSourcesData(sources.data || []);
+                setDevicesData(devices.data || []);
+                setEngagementData(engagement.data || null);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        loadTraffic();
+    }, []);
+
     return (
         <div className="adminDashboard">
             <div className="adminDashboardTop">
@@ -12,26 +51,32 @@ function WebsiteTrafficOverview() {
                     <p>Monitor website traffic and visitor activity</p>
                 </div>
             </div>
-            
+
             <div className="adminTrafficChartsSection">
                 <div className="adminTrafficMainGrid">
                     <div className="adminTrafficAnalytics">
                         <h3>Website Traffic Over Time</h3>
                         <div className="adminTrafficChart">
-                            <WebsiteTrafficChart />
+                            {loading ? (
+                                <p>Loading website traffic...</p>
+                            ) : error ? (
+                                 <p>Unable to load website traffic: {error}</p>
+                            ) : (
+                                 <WebsiteTrafficChart traffic={trafficData} />
+                            )}
                         </div>
                     </div>
 
-                    <UserEngagementCard />
-                    
+                    <UserEngagementCard engagementData={engagementData} />
+
                 </div>
-        
+
                 <div className="adminTrafficSecondaryGrid">
                     <div className="adminTrafficAnalytics">
                         <h3>Traffic Sources</h3>
 
                         <div className="adminTrafficChart">
-                            <TrafficSourcesChart />
+                            <TrafficSourcesChart trafficData={sourcesData} />
                         </div>
                     </div>
 
@@ -39,7 +84,7 @@ function WebsiteTrafficOverview() {
                         <h3>Visitor Devices</h3>
 
                         <div className="adminTrafficChart">
-                            <VisitorDevicesChart />
+                            <VisitorDevicesChart deviceData={devicesData} />
                         </div>
                     </div>
                 </div>
@@ -49,6 +94,3 @@ function WebsiteTrafficOverview() {
 }
 
 export default WebsiteTrafficOverview;
-    
-
-            

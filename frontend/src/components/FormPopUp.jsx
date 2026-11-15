@@ -1,13 +1,49 @@
-import { useState, useRef } from "react";
-{/* Existing GiveNow URL that is used by the old website. */}
-const givenowURL = "https://www.givenow.com.au/backtothebushkoalascomau";
+import { useState, useEffect } from "react";
 
 const FormPopUp = ({ open, close }) => {
   const paypal = useRef(null);
   const [donateWithCompany, setCompanyDonation] = useState("no");
   const [donationMethod, setDonationMethod] = useState("");
   const [formErrors, setFormErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
+  // const [donationAmount, setDonationAmount] = useState("");
+  const [showGiveNow, setShowGiveNow] = useState(false);
+
+  // Embedded form added once GiveNow is selected
+  useEffect(() => {
+  if (showGiveNow) {
+    const timer = setTimeout(() => {
+      if (window.iFrameResize) {
+        window.iFrameResize(
+          {
+            checkOrigin: false,
+            onScroll: function () {
+              const element = document.getElementById("cause10867");
+
+              if (element) {
+                const offsetBonus = element.getAttribute("data-offset-bonus");
+
+                if (offsetBonus !== null) {
+                  const offset =
+                    element.getBoundingClientRect().top + window.scrollY;
+
+                  window.scrollTo({
+                    top: offset - Number(offsetBonus),
+                    behavior: "smooth"
+                  });
+
+                  return false;
+                }
+              }
+            }
+          },
+          "#cause10867"
+        );
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }
+}, [showGiveNow]);
 
   const handleSubmit =  async (e) => {
     e.preventDefault();
@@ -90,42 +126,27 @@ const FormPopUp = ({ open, close }) => {
       return;
     }
 
-    setSubmitting(true);
-
-    try {
-      const res = await fetch("/api/customers", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          first_name: firstName,
-          last_name: lastName,
-          email,
-          phone,
-          street_number: streetNumber,
-          street_name: streetName,
-          suburb,
-          state,
-          postcode,
-          country,
-          comments,
-          company_name: donateWithCompany === "yes" ? company : "",
-        }),
-      });
-
-      if (!res.ok) throw new Error("Failed to save customer information.");
-    } catch {
-        setFormErrors({
-          donationMethod: "Something went wrong, please try again.",
-      });
-      setSubmitting(false);
+    if (donationMethod === "givenow") {
+      setShowGiveNow(true);
       return;
     }
 
-    if (donationMethod === "paypal") {
-      paypal.current?.submit();
-    } else if (donationMethod === "givenow") {
-      window.location.href = givenowURL;
-    }
+    // Validation passed. Payment integration is handled separately.
+    console.log("Donation form validated", {
+      firstName,
+      lastName,
+      email,
+      phone,
+      company: donateWithCompany === "yes" ? company : "",
+      streetNumber,
+      streetName,
+      suburb,
+      state,
+      postcode,
+      country,
+      comments,
+      donationMethod,
+    });
   };
 
   if (!open) return null;
@@ -141,7 +162,7 @@ const FormPopUp = ({ open, close }) => {
         className="relative m-4 p-4 w-full max-w-3xl max-h-[80vh] overflow-y-auto bg-[#EEF2DB] shadow-sm"
       >
         <form
-          class="flex flex-col items-center text-sm"
+          className="flex flex-col items-center text-sm"
           onSubmit={handleSubmit}
         >
           <button
@@ -427,12 +448,23 @@ const FormPopUp = ({ open, close }) => {
             Continue
           </button>
         </form>
-
-        {/* Please change action to https://www.paypal.com/donate and use the actual hosted_button_id for production */}
-        <form ref={paypal} action="https://www.sandbox.paypal.com/donate" method="post" target="_top" className="hidden">
-          <input type="hidden" name="hosted_button_id" value="AQMHG8VQ86H8Y"/>
-        </form>
-
+        {showGiveNow && (
+            <div className="w-full mt-6">
+              <iframe
+                id="cause10867" 
+                className="gn-iframe"
+                title="GiveNow Donation Form"
+                src="https://www.givenow.com.au/embed/Y2F1c2VpZD0xMDg2NyZkb21haW49YmFja3RvdGhlYnVzaGtvYWxhcy5jb20uYXUmdG9rZW49MTA4Njc6Nzg0MzU3YjJhMTA3NTk1MQ%3D%3D"
+                style={{
+                  width: "1px",
+                  minWidth: "100%",
+                  border: 0,
+                  height: "882px"
+                }}
+                data-offset-bonus="0"
+                />
+            </div>
+          )}
       </div>
     </div>
   );

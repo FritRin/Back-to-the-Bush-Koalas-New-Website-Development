@@ -1,14 +1,8 @@
 import { Pie, PieChart, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-const deviceData = [
-    { name: "Desktop", value: 55 },
-    { name: "Mobile", value: 35 },
-    { name: "Tablet", value: 15 },
-]
-
 const colours = ["#797641", "#9FA659", "#A6B58C"]
 
-function VisitorDevicesChart() {
+function VisitorDevicesChart({ deviceData = [] }) {
     return (
         <div className="adminTrafficChart">
             <ResponsiveContainer width="100%" height="100%">
