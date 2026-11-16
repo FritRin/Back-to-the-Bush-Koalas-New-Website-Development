@@ -1,5 +1,5 @@
 const baseURL = process.env.PAYPAL_BASE_URL || "https://api-m.sandbox.paypal.com";
-// Grab an Access Token using the clientID and Secret from .env.paypal to be able to utilise its service.
+// Retrieve an OAuth Access Token using the clientID and Secret from .env.paypal to be able to utilise its service.
 const PayPalAccessToken = async () => {
     const clientId = process.env.PAYPAL_CLIENT_ID;
     const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
@@ -41,7 +41,7 @@ const PayPalRequest = async (endpoint, method = "GET", body = null) => {
             method,
             headers: {
                 Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             ...(body && { body: JSON.stringify(body) }),
         }
@@ -51,7 +51,14 @@ const PayPalRequest = async (endpoint, method = "GET", body = null) => {
 
     if (!response.ok) {
         console.error("PayPal API error:", data);
-        throw new Error("PayPal request failed");
+
+        const error = new Error(data.message || "PayPal request failed");
+
+        error.paypalIssue = data.details?.[0]?.issue;
+        error.paypalDebugId = data.debug_id;
+        error.status = response.status;
+
+        throw error;
     }
 
     return data;
