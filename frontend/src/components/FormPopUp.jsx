@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PayPalAdoptWishlist from "./PayPalAdoptWishlist";
 import { useNavigate } from "react-router-dom";
 
-  const FormPopUp = ({ open, close, donationType = "general", cartItems = [] }) => {
+  const FormPopUp = ({ open, close, donationType = "general", selectedKoala, cartItems = [] }) => {
   const navigate = useNavigate();
   const [donateWithCompany, setCompanyDonation] = useState("no");
   const [donationMethod, setDonationMethod] = useState("");
@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
   const [showGiveNow, setShowGiveNow] = useState(false);
   const [showPayPal, setShowPayPal] = useState(false);
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const [customerDetails, setCustomerDetails] = useState(null);
+  const [donationAmount, setDonationAmount] = useState("");
   
   // Calculate the total cost of the items in cart to be used for PayPal.
   const cartTotal = cartItems.reduce(
@@ -129,6 +131,10 @@ import { useNavigate } from "react-router-dom";
       errors.donationMethod = "Please select a payment method.";
     }
 
+    if ( donationMethod === "paypal" && donationType === "general" && (!Number.isFinite(Number(donationAmount)) || Number(donationAmount) <= 0) ) {
+      errors.amount = "Please enter a valid donation amount.";
+    }
+
     setFormErrors(errors);
 
     if (Object.keys(errors).length > 0) {
@@ -141,15 +147,30 @@ import { useNavigate } from "react-router-dom";
     }
 
     if (donationMethod === "paypal") {
-      // Generic donation page with custom amount if user does not buy from wishlist or adopt a koala
-      if (donationType === "general") {
-        // PLEASE replace the hosted_button_id with the proper id from the client's account and remove the sandbox text when in production
-        window.location.href = "https://www.sandbox.paypal.com/donate?hosted_button_id=AQMHG8VQ86H8Y";
-      } else {
-        // Show the regular payment modal from PayPalAdoptWishlist if the donation isn't a general
-        setShowPayPal(true);
-      }
+      // If general donation, set to the user typed amount. If adoption, then 50 for the amount. Otherwise (wishlist) whatever is the total amount in cart.
+      const amount = donationType === "general" ? Number(donationAmount) : donationType === "adoption" ? 50 : cartTotal;
+      // Set the amount, customer information from the form to be passed later.
+      setDonationAmount(String(amount));
+      setCustomerDetails({
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone,
+        street_number: streetNumber,
+        street_name: streetName,
+        suburb,
+        state,
+        postcode,
+        country,
+        company_name: donateWithCompany === "yes" ? company : null
+      });
+      setShowPayPal(true);
     }
+  };
+  // Ensure that the success message shows properly, hiding the PayPal section and show the success modal.
+  const handlePaymentSuccess = () => {
+      setShowPayPal(false);
+      setShowPaymentSuccess(true);
   };
 
   if (!open) return null;
@@ -452,6 +473,36 @@ import { useNavigate } from "react-router-dom";
               GiveNow
             </button>
           </div>
+
+          { /* Show a text box to fill in the desired donation amount for general donations if user chooses PayPal. User then clicks continue to proceed. */ }
+          {donationMethod === "paypal" && donationType === "general" && (
+            <div className="mt-5 w-[350px] md:w-[700px]">
+              <label className="text-black/70 font-medium">
+                Donation Amount (in AUD)
+              </label>
+
+              <div className="flex items-center mt-2">
+                <span className="bg-[#D9D9D9] border border-gray-500/30 rounded-l px-4 py-3">
+                  A$
+                </span>
+
+                <input
+                  type="number"
+                  min="1"
+                  step="0.01"
+                  value={donationAmount}
+                  onChange={(e) => setDonationAmount(e.target.value)}
+                  placeholder="Enter donation amount in AUD"
+                  className="bg-[#D9D9D9] h-12 p-2 w-full border border-gray-500/30 rounded-r outline-none focus:border-indigo-300"
+                />
+              </div>
+
+          {formErrors.amount && (
+                <p className="text-red-600">{formErrors.amount}</p>
+              )}
+            </div>
+          )}
+
           {formErrors.donationMethod && (
             <p className="text-red-600">{formErrors.donationMethod}</p>
           )}
@@ -463,6 +514,7 @@ import { useNavigate } from "react-router-dom";
             Continue
           </button>
         </form>
+
         {showGiveNow && (
             <div className="w-full mt-6">
               <iframe
@@ -480,19 +532,22 @@ import { useNavigate } from "react-router-dom";
                 />
             </div>
           )}
-          {/* When PayPal is selected and it is not a general donatoion, then show the modal from PayPalAdoptWishlist. */}
+
           {showPayPal && (
             <div className = "w-full mt-6">
               <PayPalAdoptWishlist
+                // Pass all the required information to PayPalAdopWishList.jsx.
                 donationType = {donationType}
-                // If it is an adoption, set the price to 50, otherwise whatever is the amount in the cart.
-                amount = {donationType === "adoption" ? 50 : cartTotal}
-                onPaymentSuccess={() => setShowPaymentSuccess(true)}
+                amount = { donationType === "general" ? Number(donationAmount) : donationType === "adoption" ? 50 : cartTotal }
+                koalaId = {selectedKoala?.koala_id}
+                customerDetails = {customerDetails}
+                onPaymentSuccess = {handlePaymentSuccess}
               />
             </div>
           )}
             </>
           )}
+
           {/* Once payment via PayPal is successful, hides the entire form and only show the success pop up. That is why the entire form is wrapped in !showPaymentSuccess. There's prolly a better way to do this but this is what I can come up with. */}
           {showPaymentSuccess && (
               <div className = "fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
