@@ -1,7 +1,8 @@
+// Document was named PayPalAdoptWishlist as I originally have separate ones for adoptions/wishlist and regular donation, but I ended up combining them together. The name will remain the same.
 import { useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-const PayPalAdoptWishlist = ({ donationType, amount, onPaymentSuccess }) => {
+const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, onPaymentSuccess }) => {
     const [ paymentMessage, setPaymentMessage ] = useState("");
     // Request API to create new order.
     const createOrder = async () => {
@@ -12,7 +13,9 @@ const PayPalAdoptWishlist = ({ donationType, amount, onPaymentSuccess }) => {
             },
             body: JSON.stringify({
                 donationType,
-                amount
+                amount,
+                // Koala ID for adoptions.
+                koalaId
             })
         });
 
@@ -26,36 +29,58 @@ const PayPalAdoptWishlist = ({ donationType, amount, onPaymentSuccess }) => {
     };
     // Capture order request and if succesful then show success message on FormPopUp, if failed then show error.
     const onApprove = async (data) => {
-        setPaymentMessage("Processing...");
+        try {
+            // Payment pending message before anything is done.
+            setPaymentMessage("Processing payment...");
 
-        const response = await fetch("/api/paypal/capture", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                orderID: data.orderID
-            })
-        });
+            const response = await fetch("/api/paypal/capture", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    orderID: data.orderID,
+                    customer: customerDetails
+                })
+            });
 
-        const result = await response.json();
+            const result = await response.json();
+            // If payment is declined, shows the error message and let user try again by clicking the button again.
+            if (!response.ok) {
+                if (result.code === "INSTRUMENT_DECLINED") {
+                    setPaymentMessage(
+                        "Your payment was declined. Please try another payment method."
+                    );
+                }
 
-        if (!response.ok || result.status !== "COMPLETED") {
-            throw new Error("Payment failed.");
+                throw new Error(
+                    result.message || "Payment could not be completed."
+                );
+            }
+
+            if (result.status !== "COMPLETED") {
+                throw new Error(
+                    result.message || "Payment could not be completed."
+                );
+            }
+
+            onPaymentSuccess();
+
+        } catch (error) {
+            console.error("Payment approval error:", error);
+
+            setPaymentMessage(
+                error.message || "Something went wrong. Please try again."
+            );
         }
-
-        onPaymentSuccess();
     };
     // Show PayPal payment modal, with the cost being pre-filled from the respective chosen koala / items in cart.
     return (
         <div className="mt-6">
             <div className="mb-4 text-center">
                 <p className="text-gray-600">
-                    {donationType === "adoption"
-                        ? "Adoption Cost"
-                        : "Total Amount"}
+                    {donationType === "adoption" ? "Adoption Cost" : "Donation Amount"}
                 </p>
-
                 <p className="text-2xl font-bold">
                     A${Number(amount).toFixed(2)}
                 </p>
@@ -76,11 +101,13 @@ const PayPalAdoptWishlist = ({ donationType, amount, onPaymentSuccess }) => {
                     }}
                     createOrder={createOrder}
                     onApprove={onApprove}
+                    // Error handling for when user closes their PayPal window without paying.
+                    onCancel={() => {
+                        setPaymentMessage("No payment was made as it was cancelled.");
+                    }}
                     onError={(error) => {
                         console.error("PayPal error:", error);
-                        setPaymentMessage(
-                            "Something went wrong with PayPal. Please try again."
-                        );
+                        setPaymentMessage("Something went wrong with PayPal. Please try again.");
                     }}
                 />
             </PayPalScriptProvider>
