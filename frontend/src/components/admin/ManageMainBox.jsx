@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllBox } from "../../api/Box";
 import { getAllStories } from "../../api/Story";
-// import { sanitizeHTML } from "../../utils/sanitizeHTML";
+import { sanitizeHTML } from "../../utils/sanitizeHTML";
 import BoxStoryCreate from "./BoxStoryCreate";
 import BoxStoryUpdate from "./BoxStoryUpdate";
 import BoxStoryDelete from "./BoxStoryDelete";
@@ -70,12 +70,10 @@ function ManageMainBox() {
 
                         <div
                             className="line-clamp-3 text-gray-600 mb-6"
-                            // dangerouslySetInnerHTML={{
-                            //     __html: sanitizeHTML(mainBox.story?.content),
-                            // }}
                             dangerouslySetInnerHTML={{
-                                __html: mainBox.story?.content,
+                                __html: sanitizeHTML(mainBox.story?.content),
                             }}
+                            
                         />
 
                         <div className="flex gap-3 pt-4 border-t">
