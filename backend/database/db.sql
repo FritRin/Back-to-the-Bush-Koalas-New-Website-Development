@@ -55,13 +55,13 @@ CREATE TABLE box_story (
 CREATE TABLE adoption ( 
     adoption_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     customer_id INTEGER NOT NULL REFERENCES customer(customer_id), 
-    koala_id INTEGER NOT NULL REFERENCES koala(koala_id), 
-    status VARCHAR(50) NOT NULL, 
-    amount NUMERIC(18,2) NOT NULL, 
+    koala_id INTEGER NOT NULL REFERENCES koala(koala_id),
+    status VARCHAR(50) NOT NULL,
+    amount NUMERIC(18,2) NOT NULL,
     payment_method VARCHAR(50) NOT NULL, 
-    transaction_reference VARCHAR(255), 
+    transaction_reference VARCHAR(255),
     adoption_date TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
-); 
+);
 
 CREATE TABLE donation ( 
     donation_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
