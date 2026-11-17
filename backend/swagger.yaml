@@ -1067,6 +1067,155 @@ paths:
           description: Donation not found
         "500":
           description: Internal server error
+  
+  # PAYPAL
+  /api/paypal/create:
+    post:
+      summary: Create a PayPal payment donation order
+      description: Creates a PayPal donation order for a general donation, wishlist purchase or koala adoption.
+      tags:
+        - PayPal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - donationType
+                - amount
+              properties:
+                donationType:
+                  type: string
+                  enum:
+                    - general
+                    - wishlist
+                    - adoption
+                  example: adoption
+                amount:
+                  type: number
+                  format: double
+                  example: 50.00
+                  description: Payment amount in AUD. Adoption amounts are set to $50 by backend.
+                koalaId:
+                  type: integer
+                  example: 1
+                  description: Required when donationType is adoption.
+      responses:
+        "201":
+          description: PayPal order created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderID:
+                    type: string
+                    example: 82X22963M9132252M
+        "400":
+          description: Invalid donation type, amount or koala ID
+        "500":
+          description: Failed to create PayPal order
+
+  /api/paypal/capture:
+    post:
+      summary: Capture a PayPal payment order
+      description: Captures an approved PayPal order and records the successful payment in the Customer, Donation or Adoption database tables.
+      tags:
+        - PayPal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - orderID
+                - customer
+              properties:
+                orderID:
+                  type: string
+                  example: 82X22963M9132252M
+                customer:
+                  type: object
+                  required:
+                    - email
+                  properties:
+                    first_name:
+                      type: string
+                      example: Jake
+                    last_name:
+                      type: string
+                      example: Pham
+                    email:
+                      type: string
+                      format: email
+                      example: jakep@email.com
+                    phone:
+                      type: string
+                      example: "0412345678"
+                    street_number:
+                      type: string
+                      example: "123"
+                    street_name:
+                      type: string
+                      example: Sreet Street
+                    suburb:
+                      type: string
+                      example: Toowoomba
+                    state:
+                      type: string
+                      example: Queensland
+                    postcode:
+                      type: string
+                      example: "4350"
+                    country:
+                      type: string
+                      example: Australia
+                    company_name:
+                      type: string
+                      nullable: true
+                      example: A Company Inc.
+      responses:
+        "200":
+          description: PayPal payment captured and database record created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: COMPLETED
+                  message:
+                    type: string
+                    example: Payment completed successfully.
+                  recordType:
+                    type: string
+                    enum:
+                      - donation
+                      - adoption
+                    example: adoption
+                  recordID:
+                    type: integer
+                    example: 1
+        "400":
+          description: Missing or invalid order ID or customer details
+        "422":
+          description: PayPal payment method declined
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: INSTRUMENT_DECLINED
+                  message:
+                    type: string
+                    example: Your payment method was declined. Please try another payment method.
+        "500":
+          description: PayPal capture or database recording failed
 
 components:
   schemas:

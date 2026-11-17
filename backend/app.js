@@ -1,6 +1,8 @@
 // loading environment variables from a specific .env file
 const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
+// PayPal .env file
+require("dotenv").config({ path: path.join(__dirname, "../.env.paypal") });
 
 // TODO import The important neccessary modules of each deparments
 const express = require("express");
@@ -20,6 +22,7 @@ const adoptionRoutes = require("./routes/adoptionRoutes");
 const donationRoutes = require("./routes/donationRoutes");
 const authRoutes = require("./routes/authRoutes");
 const ga4Routes = require("./routes/ga4Routes");
+const paypalRoutes = require("./routes/paypalRoutes");
 
 // start the Express application
 const app = express();
@@ -72,6 +75,7 @@ app.use("/api/box-story", boxStoryRoutes);
 app.use("/api/wishlist-items", wishlistItemRoutes);
 app.use("/api/adoptions", adoptionRoutes);
 app.use("/api/donations", donationRoutes);
+app.use("/api/paypal", paypalRoutes);
 
 // Google Analytics 4 - admin analytics
 app.use("/api/analytics", ga4Routes);

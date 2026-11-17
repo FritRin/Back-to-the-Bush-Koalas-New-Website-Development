@@ -26,11 +26,11 @@ function Footer() {
 
                         <img src={Flag} alt="Flag" className="w-50 h-auto shrink-0" />
                         <div className="max-w-3xl">
-                            <p className="
+                            <span className="
                                 text-white 
                                 text-lg 
                                 text-center 
-                                font-extrabold 
+                                font-[1000]
                                 tracking-wide  
                                 leading-loose
                                 text-shadow-lg/100
@@ -43,7 +43,7 @@ function Footer() {
                                 We acknowledge the stories, traditions, and living cultures of Aboriginal and Torres
                                 Strait Islander peoples on this land and commit to working with all peoples to ensure
                                 better health for the koala population of our area.
-                            </p>
+                            </span>
                         </div>
                     </div>
                 </div>

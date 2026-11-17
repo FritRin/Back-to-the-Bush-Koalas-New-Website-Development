@@ -30,6 +30,10 @@ const Adoption = sequelize.define(
             type: DataTypes.STRING(255),
             allowNull: true,
         },
+        transaction_reference: {
+            type: DataTypes.STRING(255),
+            allowNull: true,
+        },
         adoption_date: {
             type: DataTypes.DATE,
             allowNull: false,

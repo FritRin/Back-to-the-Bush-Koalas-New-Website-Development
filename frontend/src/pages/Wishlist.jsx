@@ -75,10 +75,12 @@ const Wishlist = () => {
                 onRemoveItem={handleRemoveItem}
                 onDonate={() => setShowForm(true)}
             />
-
+            
             <FormPopUp
-                open={showForm}
+                open = {showForm}
                 close={() => setShowForm(false)}
+                donationType = "wishlist"
+                cartItems = {cartItems}
             />
         </div>
     );

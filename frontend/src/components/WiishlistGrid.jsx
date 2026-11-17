@@ -68,7 +68,7 @@ const wishlistItems = [
     image: WeichAllynOperating,
   },
   {
-    id: 8,
+    id: 9,
     title: "Temperature Compensated Urine S.G.",
     description: "",
     targetPrice: 156.00,

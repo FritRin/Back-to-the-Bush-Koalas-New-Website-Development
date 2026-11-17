@@ -41,6 +41,9 @@ services:
     networks:
       - frontend_net
       - backend_net
+    env_file:
+      - path: .env.paypal
+        required: false
     environment:
       PG_USER: ${PG_USER}
       PG_PASSWORD: ${PG_PASSWORD}
