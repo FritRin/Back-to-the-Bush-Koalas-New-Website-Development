@@ -1,8 +1,12 @@
 function StatisticCard({ title, value }) {
     return (
-        <div className="adminStatisticDiv">
-            <h3>{title}</h3>
-            <h2>{value}</h2>
+        <div className="adminStatisticCard">
+            <div className="adminStatisticValue">
+                {value}
+            </div>
+            <div className="adminStatisticTitle">
+                {title}
+            </div>
         </div>
     );
 }
