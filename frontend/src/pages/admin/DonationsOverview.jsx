@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import StatisticCard from "../../components/admin/donations/StatisticDisplay";
+import StatisticCard from "../../components/admin/payments/StatisticDisplay";
 import DonationLineChart from "../../components/admin/donations/DonationLineChart";
 import DonationPieChart from "../../components/admin/donations/DonationPieChart";
 import TotalDonations from "../../components/admin/donations/TotalDonations";

@@ -1,4 +1,4 @@
-import StatisticCard from "./StatisticDisplay";
+import StatisticCard from "../payments/StatisticDisplay";
 
 function AverageDonation({ donations }) {
     const totalAmount = donations.reduce((total, donation) => total + Number(donation.amount), 0);

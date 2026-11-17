@@ -1,4 +1,4 @@
-import StatisticCard from "./StatisticDisplay";
+import StatisticCard from "../payments/StatisticDisplay";
 
 function TotalDonations({ donations }) {
     const totalDonations = donations.length;
