@@ -5,9 +5,8 @@ const WishlistItem = sequelize.define(
     "WishlistItem",
     {
         item_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(20),
             primaryKey: true,
-            autoIncrement: true,
             allowNull: false,
         },
         item_name: {

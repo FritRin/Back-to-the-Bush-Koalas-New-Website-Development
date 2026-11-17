@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getStoryById, updateStory, updateStoryImage, addStoryImage, deleteStoryImage, } from "../../api/Story";
 import TextEditor from "./TextEditor";
-import { sanitizeHTML } from "../../utils/sanitizeHTML";
+// import { sanitizeHTML } from "../../utils/sanitizeHTML";
 
 function StoryUpdate({ storyId, onClose }) {
 
@@ -318,13 +318,12 @@ function StoryUpdate({ storyId, onClose }) {
                             */}
                                 <div
                                     className="story-preview-content"
-                                    dangerouslySetInnerHTML={{
-                                        __html: sanitizeHTML(content),
-                                    }}
+                                    // dangerouslySetInnerHTML={{
+                                    //     __html: sanitizeHTML(content),
+                                    // }}
+                                    dangerouslySetInnerHTML={{__html: content,}}
                                 />
-
                             </div>
-
                         </div>
                     </div>
                 </div>

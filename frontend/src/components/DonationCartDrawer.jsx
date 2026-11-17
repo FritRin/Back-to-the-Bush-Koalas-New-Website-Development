@@ -3,9 +3,10 @@ import DonationCartHeader from "./DonationCartHeader";
 import CartItem from "./CartItem";
 
 const DonationCartDrawer = ({ isOpen, onClose, cartItems, onRemoveItem, onDonate, }) => {
-  const totalAmount = cartItems.reduce((total, item) => total + item.donationAmount, 0);
-
-
+  const totalAmount = cartItems.reduce(
+    (total, item) => total + Number(item.donationAmount || 0), 0
+  );
+  console.log("cartItems:", cartItems);
 
   return (
     <>
@@ -47,10 +48,10 @@ const DonationCartDrawer = ({ isOpen, onClose, cartItems, onRemoveItem, onDonate
               <div className="space-y-4">
                 {cartItems.map((item) => (
                   <CartItem
-                    key={item.id}
+                    key={item.item_id}
                     item={item}
                     onRemove={() =>
-                      onRemoveItem(item.id)
+                      onRemoveItem(item.item_id)
                     }
                   />
                 ))}
