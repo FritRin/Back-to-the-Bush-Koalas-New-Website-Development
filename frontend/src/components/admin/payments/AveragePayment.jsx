@@ -13,4 +13,4 @@ function AveragePayment({ payments }) {
     );
 }
 
-export default Averagepayment;
+export default AveragePayment;

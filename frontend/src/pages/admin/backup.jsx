@@ -1,91 +1,38 @@
-// This page is a copy of the original DonationsOverview, with a section for total Payments
-// The total Payments is currently just donations and adoptions
-// as the wishlist purchases are currently just going in to the donations table.
-
 import { useState, useEffect } from "react";
 
-// Existing donations components
+import StatisticCard from "../../components/admin/payments/StatisticDisplay";
 import DonationLineChart from "../../components/admin/donations/DonationLineChart";
 import DonationPieChart from "../../components/admin/donations/DonationPieChart";
-import DonationRevenueChart from "../../components/admin/donations/DonationRevenueChart";
+import TotalDonations from "../../components/admin/donations/TotalDonations";
 import AdminDateFilter from "../../components/admin/donations/AdminDateFilter";
+import DonationRevenueChart from "../../components/admin/donations/DonationRevenueChart";
 
-// new components for combined payments
-import TotalPayments from "../../components/admin/payments/TotalPayments";
-import AveragePayment from "../../components/admin/payments/AveragePayment";
-import TotalPaymentRevenue from "../../components/admin/payments/TotalPaymentRevenue";
-
-// Services
 import { getAllDonations } from "../../services/donationService";
-import { getAllAdoptions } from "../../services/adoptionService";
-
-// Utils
-import filterPaymentsByDate from "../../utils/filterPaymentsByDate";
+import filterDonationsByDate from "../../utils/filterDonationsByDate";
+import AverageDonations from "../../components/admin/donations/AverageDonations";
+import TotalRevenue from "../../components/admin/donations/TotalRevenue";
 
 function DonationsOverview() {
     const [dateRange, setDateRange] = useState("30");
     const [donations, setDonations] = useState([]);
-    const [adoptions, setAdoptions] = useState([]);
-    // Add new state for wishlist purchases here
     const [loading, setLoading] = useState(true);
 
-    // Fetch donations and adoptions
     useEffect(() => {
-        async function fetchPayments() {
+        async function fetchDonations() {
             try {
-                const results = await Promise.allSettled([
-                    getAllDonations(),
-                    getAllAdoptions()
-                ]);
-
-                if (results[0].status === "fulfilled") {
-                    setDonations(results[0].value.data);
-                } else {
-                    console.error("Error fetching donations:", results[0].reason);
-                }
-
-                if (results[1].status === "fulfilled") {
-                    setAdoptions(results[1].value.data);
-                } else {
-                    console.error("Error fetching adoptions:", results[1].reason);
-                }
-             
+                const data = await getAllDonations();
+                setDonations(data.data);
             } catch (error) {
-                console.error("Error fetching payments:", error);
+                console.error("Error fetching donations:", error);
             } finally {
                 setLoading(false);
             }
         }
-        fetchPayments();
+        fetchDonations();
     }, []);
 
-    // Filter donations and adoptions using the shared date filter 
-    const filteredDonations = filterPaymentsByDate(donations, dateRange);
-    const filteredAdoptions = filterPaymentsByDate(adoptions, dateRange);
-
-    // convert adoptions and donations in a shared payment structure
-    const allPayments = [
-        ...filteredDonations.map((donation) => ({
-            id: `donation-${donation.donation_id}`,
-            customer_id: donation.customer_id,
-            date: donation.donation_date,
-            type: "Donation / Wishlist",
-            payment_method: donation.payment_method,
-            amount: donation.amount,
-            currency: donation.currency,
-            transaction_reference: donation.transaction_reference,
-        })),
-        ...filteredAdoptions.map((adoption) => ({
-            id: `adoption-${adoption.adoption_id}`,
-            customer_id: adoption.customer_id,
-            date: adoption.adoption_date,
-            type: "Adoption",
-            payment_method: adoption.payment_method,
-            amount: adoption.amount,
-            currency: adoption.currency,
-            transaction_reference: adoption.transaction_reference
-        }))
-    ];
+    // Filer donations whenever the dateRange is changed
+    const filteredDonations = filterDonationsByDate(donations, dateRange);
 
     // Sort donations newest first
     const sortedDonations = [...filteredDonations].sort(
@@ -106,14 +53,12 @@ function DonationsOverview() {
                 />
             </div>
             
-            {/* Overall payment statistics */}
             <div className="adminStatisticWrapper">
-                <TotalPayments payments={allPayments} />
-                <AveragePayment payments={allPayments} />
-                <TotalPaymentRevenue payments={allPayments} />
+                <TotalDonations donations={filteredDonations} />
+                <AverageDonations donations={filteredDonations} />
+                <TotalRevenue donations={filteredDonations} />
             </div>
 
-            {/* Donations analytics */}
             <div className="adminChartsSection">
                 <div className="adminAnalyticsGrid">
                     <div className="adminDonationAnalytics">
@@ -142,8 +87,6 @@ function DonationsOverview() {
                     </div>
                 </div>
             </div>
-
-            {/* Donations table */}
             <div className="adminDonationsSection">
                 <div className="adminDonationsHeading">
                     <div>
