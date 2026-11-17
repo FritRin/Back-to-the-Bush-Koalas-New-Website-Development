@@ -889,22 +889,27 @@ p.emergencyNumber {
   min-width: 0;
 }
 
-/* Admin Date Filter */
-.adminDateFilter {
+/* Admin Dashboard filters */
+.adminDashboardFilters {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 1rem;
+  align-items: flex-end;
+  gap: 15px;
 }
 
-.adminDateFilter label {
+/* Individual Filter containers */
+.adminFilter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.adminFilter label {
   font-size: 0.95rem;
   font-weight: 500;
   color: #4b4c2c;
 }
 
-.adminDateFilter select {
+.adminFilter select {
   padding: 0.5rem 0.75rem;
   border: 1px solid #DDE3C3;
   border-radius: 8px;
@@ -915,34 +920,11 @@ p.emergencyNumber {
   cursor: pointer;
 }
 
-.adminDateFilter select:focus {
+.adminFilter select:focus {
   outline: 2px solid #9FA659;
   outline-offset: 2px;
 }
 
-/* Admin Payment Type Filter */
-.adminPaymentHistoryControls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-}
-
-.adminPaymentTypeFilter {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #DDE3C3;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #4b4c2c;
-  background-color: #ffffff;
-  cursor: pointer;
-}
-
-.adminPaymentTypeFilter select:focus {
-  outline: 2px solid #9FA659;
-  outline-offset: 2px;
-}
 /* Admin Donations Table */
 .adminDonationsSection {
   background-color: #ffffff;

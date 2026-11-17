@@ -4,7 +4,7 @@ import StatisticCard from "../../components/admin/payments/StatisticDisplay";
 import DonationLineChart from "../../components/admin/donations/DonationLineChart";
 import DonationPieChart from "../../components/admin/donations/DonationPieChart";
 import TotalDonations from "../../components/admin/donations/TotalDonations";
-import AdminDateFilter from "../../components/admin/donations/AdminDateFilter";
+import AdminDateFilter from "../../components/admin/payments/AdminDateFilter";
 import DonationRevenueChart from "../../components/admin/donations/DonationRevenueChart";
 
 import { getAllDonations } from "../../services/donationService";

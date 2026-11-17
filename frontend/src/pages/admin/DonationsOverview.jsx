@@ -5,16 +5,17 @@
 import { useState, useEffect } from "react";
 
 // Existing donations components
-import DonationLineChart from "../../components/admin/donations/DonationLineChart";
 import DonationPieChart from "../../components/admin/donations/DonationPieChart";
-import DonationRevenueChart from "../../components/admin/donations/DonationRevenueChart";
-import AdminDateFilter from "../../components/admin/donations/AdminDateFilter";
+import AdminDateFilter from "../../components/admin/payments/AdminDateFilter";
 
 // new components for combined payments
 import TotalPayments from "../../components/admin/payments/TotalPayments";
 import AveragePayment from "../../components/admin/payments/AveragePayment";
 import TotalPaymentRevenue from "../../components/admin/payments/TotalPaymentRevenue";
-
+import PaymentTypePieChart from "../../components/admin/payments/PaymentTypePieChart";
+import PaymentRevenueChart from "../../components/admin/payments/PaymentRevenueChart";
+import PaymentLineChart from "../../components/admin/payments/PaymentLineChart";
+import PaymentTypeFilter from "../../components/admin/payments/PaymentTypeFilter";
 // Services
 import { getAllDonations } from "../../services/donationService";
 import { getAllAdoptions } from "../../services/adoptionService";
@@ -102,37 +103,44 @@ function DonationsOverview() {
             <div className="adminDashboardTop">
                 <div className="adminDashboardOverview">
                     <h2>Overview</h2>
-                    <p>Monitor donation activity</p>
+                    <p>Monitor payment activity</p>
                 </div>
 
-                <AdminDateFilter
-                    dateRange={dateRange}
-                    setDateRange={setDateRange}
-                />
+                <div className="adminDashboardFilters">
+                    <AdminDateFilter
+                        dateRange={dateRange}
+                        setDateRange={setDateRange}
+                    />
+
+                    <PaymentTypeFilter
+                        paymentType={paymentType}
+                        setPaymentType={setPaymentType}
+                    />  
+                </div>
             </div>
             
             {/* Overall payment statistics */}
             <div className="adminStatisticWrapper">
-                <TotalPayments payments={allPayments} />
-                <AveragePayment payments={allPayments} />
-                <TotalPaymentRevenue payments={allPayments} />
+                <TotalPayments payments={filteredPayments} />
+                <AveragePayment payments={filteredPayments} />
+                <TotalPaymentRevenue payments={filteredPayments} />
             </div>
 
             {/* Donations analytics */}
             <div className="adminChartsSection">
                 <div className="adminAnalyticsGrid">
                     <div className="adminDonationAnalytics">
-                        <h3>Total Donations Over Time</h3>
-                        <DonationLineChart 
-                            donations={filteredDonations}
+                        <h3>Payments Over Time</h3>
+                        <PaymentLineChart 
+                            payments={filteredPayments}
                             dateRange={dateRange}
                         />
                     </div>
 
                     <div className="adminDonationAnalytics">
                         <h3>Donation Revenue Over Time</h3>
-                        <DonationRevenueChart 
-                            donations={filteredDonations}
+                        <PaymentRevenueChart 
+                            payments={filteredPayments}
                             dateRange={dateRange} />
                     </div>
                     
@@ -142,7 +150,8 @@ function DonationsOverview() {
                     </div>
 
                     <div className="adminDonationAnalytics">
-                        <h3>Placeholder</h3>
+                        <h3>Payment Type Breakdown</h3>
+                        <PaymentTypePieChart payments={filteredPayments} />
                      
                     </div>
                 </div>
@@ -157,15 +166,7 @@ function DonationsOverview() {
                     </div>
 
                     <div className="adminPaymentHistoryControls">
-                        <select
-                            className="adminPaymentTypeFilter"
-                            value={paymentType}
-                            onChange={(e) => setPaymentType(e.target.value)}
-                        >
-                            <option value="All">All Payments</option>
-                            <option value="Donation / Wishlist">Donations / Wishlists</option>
-                            <option value="Adoption">Adoptions</option>
-                        </select>
+                        
                         <span className="adminDonationCount">
                         {filteredPayments.length} Payments
                         </span>
@@ -185,7 +186,6 @@ function DonationsOverview() {
                                     <th>Payment Type</th>
                                     <th>Payment Method</th>
                                     <th>Amount</th>
-                                    <th>Currency</th>
                                     <th>Transaction Reference</th>
                                 </tr>
                             </thead>
@@ -199,7 +199,6 @@ function DonationsOverview() {
                                     <td>{payment.type}</td>
                                     <td>{payment.payment_method}</td>
                                     <td>{Number(payment.amount).toFixed(2)}</td>
-                                    <td>{payment.currency}</td>
                                     <td>{payment.transaction_reference}</td>
                                 </tr>
                             ))}
