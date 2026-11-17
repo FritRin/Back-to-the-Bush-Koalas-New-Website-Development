@@ -485,6 +485,13 @@ p.contactForm {
   align-items: center;
 }
 
+div.contactForm {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 1rem;
+}
+
 @media (min-width: 768px){
   div.contactUsBox {
   border-color: #9FA659;
@@ -504,7 +511,7 @@ li.contactUsBox {
   width: 100%;
   background-color: #9FA659;
   margin: auto;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   font-size: 2.5rem;
   font-weight: 700;
   padding: 1rem;
@@ -513,16 +520,16 @@ input.formInput {
   margin-bottom: 1rem;
   width: 20em;
   height: 2em;
-  background-color: lightgray;
-  color: grey;
+  background-color: #B7B094;
+  color: white;
   margin: 1rem;
   font-size: 1.2rem;
 }
-input.formMessage {
+textarea.formMessage {
   width: 20em;
   height: 10em;
-  background-color: lightgrey;
-  color: grey;
+  background-color: #B7B094;
+  color: white;
   margin: 1rem;
   font-size: 1.2rem;
 }
@@ -533,6 +540,15 @@ form.contactForm {
 }
 label.contactForm {
   font-size: 1.3rem;
+}
+.formSubmit {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: #9FA659;
+  width: 15rem;
+  height: 4rem;
+  border-radius: 1rem;
 }
 a.contactUsBox {
   font-size: 1.2rem;
@@ -566,29 +582,24 @@ li.contactUsBox {
   font-weight: 700;
 }
 input.formInput {
-  margin-bottom: 1rem;
   width: 80%;
   height: 10%;
-  background-color: lightgray;
-  color: grey;
-  margin: 1rem;
+  background-color: #B7B094;
+  color: white;
+  margin-bottom: 1rem;
   font-size: 1.2rem;
 }
-input.formMessage {
+textarea.formMessage {
   width: 80%;
   height: 40%;
-  background-color: lightgrey;
-  color: grey;
-  margin-left: 1rem;
+  background-color: #B7B094;
+  color: white;
   font-size: 1.2rem;
 }
 div.contactForm {
   display: flex;
   justify-content: center;
-  margin-bottom: 12rem;
-}
-label.contactForm {
-  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 p.contactForm {
   display: flex;
@@ -597,6 +608,21 @@ p.contactForm {
 a.contactUsBox {
   font-size: 1rem;
   text-decoration: underline;
+}
+.formSubmit {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  background-color: #9FA659;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+}
+form.contactForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 }
 
