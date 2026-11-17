@@ -22,7 +22,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import LoginLayout from "../layouts/LoginLayout"
 import Login from "../pages/Login"
 import AdminPanelLayout from "../layouts/AdminPanelLayout"
-import DonationsOverview from "../pages/admin/DonationsOverview";
+import DonationsOverview from "../pages/admin/DonationsOverviewOld";
 import WebsiteTrafficOverview from "../pages/admin/WebsiteTrafficOverview";
 import AdminManageKoalas from "../pages/admin/AdminManageKoalas";
 import AdminManageStories from "../pages/admin/AdminManageStories";
