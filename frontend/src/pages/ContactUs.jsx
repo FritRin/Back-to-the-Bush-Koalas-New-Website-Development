@@ -2,52 +2,14 @@ import Collapsible from "../components/collapsible.jsx"
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import ContactForm from "../components/ContactForm.jsx";
 
 function ContactUS(){
     return(
         <div className="pageContainer">
             <h1 className="contactUsHeading">Contact Us</h1>
             <p className="contactForm">Ask a Question (all queries are sent to our email)</p>
-            <div className="contactForm">
-                <form className="contactForm">
-                    <label className="contactForm">First Name*</label>
-                        <input
-                        type="text"
-                        maxLength={20}
-                        required
-                        className="formInput"
-                        />
-                    <label className="contactForm">Last Name*</label>
-                        <input
-                        type="text"
-                        maxLength={20}
-                        required
-                        className="formInput"
-                        />
-                    <label className="contactForm">Email Address*</label>
-                    
-                        <input
-                        type="email"
-                        maxLength={50}
-                        required
-                        className="formInput"
-                        />
-                    <label className="contactForm">Phone*</label>
-                    
-                        <input
-                        type="tel"
-                        maxLength={20}
-                        required
-                        className="formInput"
-                        />
-                    <label className="contactForm">Message*</label>
-                        <input
-                        type="textarea"
-                        required
-                        className="formMessage"
-                        />
-                </form>
-            </div>
+            <ContactForm />
             <div className="contactUsPanel">
                 <div className="contactUsBox">
                     <li className="contactUsBox">Established: <p>2019</p></li>
