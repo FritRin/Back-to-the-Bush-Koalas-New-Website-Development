@@ -35,7 +35,7 @@ async function authenticateAdmin(req, res, next) {
     });
 
     if (!admin) {
-      res.clearCooki(COOKIE_NAME, {
+      res.clearCookie(COOKIE_NAME, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
