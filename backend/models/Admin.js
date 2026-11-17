@@ -27,6 +27,15 @@ const Admin = sequelize.define(
             type: DataTypes.TEXT,
             allowNull: false,
         },
+        failed_login_attempts: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+        },
+        locked_until: {
+            type: DataTypes.DATE,
+            allowNull: true,
+        },
     },
     {
         tableName: "admins",
