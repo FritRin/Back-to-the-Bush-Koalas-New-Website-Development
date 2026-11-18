@@ -4,9 +4,6 @@
 
 import { useState, useEffect } from "react";
 
-// Existing donations components
-
-import DonationPieChart from "../../components/admin/payments/DonationPieChart";
 import AdminDateFilter from "../../components/admin/payments/AdminDateFilter";
 
 // new components for combined payments
@@ -17,6 +14,7 @@ import PaymentTypePieChart from "../../components/admin/payments/PaymentTypePieC
 import PaymentRevenueChart from "../../components/admin/payments/PaymentRevenueChart";
 import PaymentLineChart from "../../components/admin/payments/PaymentLineChart";
 import PaymentTypeFilter from "../../components/admin/payments/PaymentTypeFilter";
+import PaymentPieChart from "../../components/admin/payments/PaymentPieChart";
 // Services
 import { getAllDonations } from "../../services/donationService";
 import { getAllAdoptions } from "../../services/adoptionService";
@@ -147,7 +145,7 @@ function DonationsOverview() {
                     
                     <div className="adminDonationAnalytics">
                         <h3>Payment Method Breakdown</h3>
-                        <DonationPieChart payments={filteredPayments} />
+                        <PaymentPieChart payments={filteredPayments} />
                     </div>
 
                     <div className="adminDonationAnalytics">
