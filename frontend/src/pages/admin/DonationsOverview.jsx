@@ -5,7 +5,7 @@
 import { useState, useEffect } from "react";
 
 // Existing donations components
-import DonationPieChart from "../../components/admin/donations/DonationPieChart";
+import DonationPieChart from "../../components/admin/payments/DonationPieChart";
 import AdminDateFilter from "../../components/admin/payments/AdminDateFilter";
 
 // new components for combined payments

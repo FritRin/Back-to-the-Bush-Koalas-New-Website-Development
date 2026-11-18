@@ -815,10 +815,10 @@ p.emergencyNumber {
 .adminStatisticCard {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
   min-width: 0;
-  height: 100px;
   min-height: 100px;
   background-color: #f7f7f2;
   border: 1px solid #eaeae2;
@@ -853,8 +853,8 @@ p.emergencyNumber {
 }
 
 /* Hover effects */
-.adminStatisticDiv:hover {
-  transform: translateY(-3px);
+.adminStatisticCard:hover {
+  transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -1068,7 +1068,7 @@ p.emergencyNumber {
 }
 
 .adminTrafficAnalytics:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
