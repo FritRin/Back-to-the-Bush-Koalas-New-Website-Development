@@ -1,7 +1,7 @@
 function AdminDateFilter({ dateRange, setDateRange }) {
     return (
-        <div className="adminDateFilter">
-            <label className="adminDateFilterLabel" htmlFor="dateRange">
+        <div className="adminFilter">
+            <label className="adminFilterLabel" htmlFor="dateRange">
                 Date Range:
             </label>
 

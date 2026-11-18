@@ -812,7 +812,7 @@ p.emergencyNumber {
 }
 
 /* Individual statistic cards */
-.adminStatisticDiv {
+.adminStatisticCard {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -820,7 +820,8 @@ p.emergencyNumber {
   min-width: 0;
   height: 100px;
   min-height: 100px;
-  background-color: #ffffff;
+  background-color: #f7f7f2;
+  border: 1px solid #eaeae2;
   border-radius: 10px;
   padding: 1.2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -828,21 +829,20 @@ p.emergencyNumber {
 }
 
 /* Statistic card headings */
-.adminStatisticDiv h3 {
-  font-size: 1rem;
+.adminStatisticTitle {
+  font-size: 0.8rem;
   font-weight: 500;
   line-height: 1.2;
   color: #4b4c2c;
-  margin: 0 0 10px 0;
+  margin: 0;
 }
 
-.adminStatisticDiv h2 {
-  font-size: 2.5rem;
+.adminStatisticValue {
+  font-size: 2rem;
   font-weight: 600;
   line-height: 1.2;
   color: #4b4c2c;
   margin: 0;
-  line-height: 1.2;
 }
 
 /* Hover effects */
@@ -867,7 +867,7 @@ p.emergencyNumber {
 
 /* Individual analytics cards */
 .adminDonationAnalytics {
-  background-color: #ffffff;
+  background-color: #f7f7f2;
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -889,41 +889,45 @@ p.emergencyNumber {
   min-width: 0;
 }
 
-/* Admin Date Filter */
-.adminDateFilter {
+/* Admin Dashboard filters */
+.adminDashboardFilters {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 1rem;
+  align-items: flex-end;
+  gap: 15px;
 }
 
-.adminDateFilter label {
+/* Individual Filter containers */
+.adminFilter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.adminFilter label {
   font-size: 0.95rem;
   font-weight: 500;
   color: #4b4c2c;
 }
 
-.adminDateFilter select {
+.adminFilter select {
   padding: 0.5rem 0.75rem;
   border: 1px solid #DDE3C3;
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 500;
   color: #4b4c2c;
-  background-color: #ffffff;
+  background-color: #f7f7f2;
   cursor: pointer;
 }
 
-.adminDateFilter select:focus {
+.adminFilter select:focus {
   outline: 2px solid #9FA659;
   outline-offset: 2px;
 }
 
-
 /* Admin Donations Table */
 .adminDonationsSection {
-  background-color: #ffffff;
+  background-color: #f7f7f2;
   border-radius: 10px;
   padding: 2%;
   margin: 0 1% 2rem;
