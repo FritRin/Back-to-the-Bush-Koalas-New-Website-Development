@@ -2,11 +2,14 @@ import { useState } from "react";
 import { createKoala } from "../../api/Koala";
 
 
-function KoalaCreate({ onClose }) {
+function KoalaCreate({ onClose, onSuccess }) {
     const [koalaName, setKoalaName] = useState("");
     const [description, setDescription] = useState("");
     const [status, setStatus] = useState("Available");
     const [images, setImages] = useState([]);
+    const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleImageChange = (e) => {
         setImages(Array.from(e.target.files));
@@ -15,10 +18,33 @@ function KoalaCreate({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const validationErrors = {};
+
+        if (!koalaName.trim()) {
+            validationErrors.koalaName = "Koala name is required";
+        }
+
+        if (!description.trim()) {
+            validationErrors.description = "Description is required";
+        }
+
+        if (images.length === 0) {
+            validationErrors.images = "At least one image is required";
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        setErrors({});
+
         try {
+            setLoading(true);
+
             const formData = new FormData();
 
-            formData.append("admin_id", 1); // remove this when TOKENS AND JWK is implemented to allow login as a admin.
+            formData.append("admin_id", 1);
             formData.append("koala_name", koalaName);
             formData.append("description", description);
             formData.append("status", status);
@@ -29,12 +55,24 @@ function KoalaCreate({ onClose }) {
 
             await createKoala(formData);
 
-            alert("Koala created successfully!");
+            setSuccessMessage(
+                "✅ Koala created successfully!"
+            );
 
-            onClose();
+            setTimeout(() => {
+                onSuccess?.();
+                onClose();
+            }, 1500);
+
         } catch (error) {
             console.error(error);
-            alert("Failed to create koala.");
+
+            setErrors({
+                submit:
+                    "Unable to create koala. Please try again.",
+            });
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -50,9 +88,15 @@ function KoalaCreate({ onClose }) {
                 <form onSubmit={handleSubmit}>
 
                     <div className="mb-4">
+
                         <label className="block mb-1">
                             Koala Name
                         </label>
+                        {errors.koalaName && (
+                            <p className="mb-1 text-sm text-red-500">
+                                {errors.koalaName}
+                            </p>
+                        )}
 
                         <input
                             type="text"
@@ -67,6 +111,11 @@ function KoalaCreate({ onClose }) {
                         <label className="block mb-1">
                             Description
                         </label>
+                        {errors.description && (
+                            <p className="mb-1 text-sm text-red-500">
+                                {errors.description}
+                            </p>
+                        )}
 
                         <textarea
                             value={description}
@@ -136,6 +185,12 @@ function KoalaCreate({ onClose }) {
                         </div>
                     )}
 
+                    {errors.images && (
+                        <p className="mb-2 text-sm text-red-500">
+                            {errors.images}
+                        </p>
+                    )}
+
                     <div className="flex justify-end gap-3">
 
                         <button
@@ -157,6 +212,17 @@ function KoalaCreate({ onClose }) {
 
                 </form>
 
+                {successMessage && (
+                    <div className="mb-4 rounded-lg border border-green-200 bg-green-100 p-3 text-green-700">
+                        {successMessage}
+                    </div>
+                )}
+
+                {errors.submit && (
+                    <div className="mb-4 rounded-lg border border-red-200 bg-red-100 p-3 text-red-700">
+                        {errors.submit}
+                    </div>
+                )}
             </div>
 
         </div>
