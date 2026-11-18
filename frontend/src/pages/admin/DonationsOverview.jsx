@@ -5,7 +5,6 @@
 import { useState, useEffect } from "react";
 
 // Existing donations components
-import DonationPieChart from "../../components/admin/donations/DonationPieChart";
 import AdminDateFilter from "../../components/admin/payments/AdminDateFilter";
 
 // new components for combined payments
@@ -146,7 +145,6 @@ function DonationsOverview() {
                     
                     <div className="adminDonationAnalytics">
                         <h3>Payment Method Breakdown</h3>
-                        <DonationPieChart donations={filteredDonations} />
                     </div>
 
                     <div className="adminDonationAnalytics">
