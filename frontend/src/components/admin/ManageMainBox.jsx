@@ -73,6 +73,7 @@ function ManageMainBox() {
                             dangerouslySetInnerHTML={{
                                 __html: sanitizeHTML(mainBox.story?.content),
                             }}
+                            
                         />
 
                         <div className="flex gap-3 pt-4 border-t">

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllWishlistItems } from "../api/Wishlist";
 
 import WishlistGrid from "../components/WiishlistGrid";
 import CartIcon from "../components/CartIcon";
@@ -9,16 +10,18 @@ const Wishlist = () => {
     const [cartItems, setCartItems] = useState([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [showForm, setShowForm] = useState(false);
+    const [wishlistItems, setWishlistItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const handleAddToCart = (item) => {
         setCartItems((prev) => {
             const existingItem = prev.find(
-                (cartItem) => cartItem.id === item.id
+                (cartItem) => cartItem.item_id === item.item_id
             );
 
             if (existingItem) {
                 return prev.map((cartItem) =>
-                    cartItem.id === item.id ? item : cartItem
+                    cartItem.item_id === item.item_id ? item : cartItem
                 );
             }
 
@@ -28,12 +31,34 @@ const Wishlist = () => {
 
     const handleRemoveItem = (itemId) => {
         setCartItems((prev) =>
-            prev.filter((item) => item.id !== itemId)
+            prev.filter((item) => item.item_id !== itemId)
         );
     };
 
-    const handleDonate = () => {
-        console.log("Donation Items:", cartItems);
+
+
+    // fetch data otherwise trowth an error
+    useEffect(() => {
+        console.log("useEffect running");
+
+        loadWishlistItems();
+    }, []);
+
+    const loadWishlistItems = async () => {
+        try {
+                    console.log("Calling API...");
+
+            const response = await getAllWishlistItems();
+                    console.log("API Response:", response);
+
+
+            setWishlistItems(response.data);
+        } catch (error) {
+                    console.error("API Error:", error);
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -63,9 +88,14 @@ const Wishlist = () => {
             </section>
 
             {/* Wishlist Items */}
-            <WishlistGrid
-                onAddToCart={handleAddToCart}
-            />
+            {loading ? (
+                <p>Loading wishlist...</p>
+            ) : (
+                <WishlistGrid
+                    items={wishlistItems}
+                    onAddToCart={handleAddToCart}
+                />
+            )}
 
             {/* Cart Drawer */}
             <DonationCartDrawer
@@ -75,12 +105,12 @@ const Wishlist = () => {
                 onRemoveItem={handleRemoveItem}
                 onDonate={() => setShowForm(true)}
             />
-            
+
             <FormPopUp
-                open = {showForm}
+                open={showForm}
                 close={() => setShowForm(false)}
-                donationType = "wishlist"
-                cartItems = {cartItems}
+                donationType="wishlist"
+                cartItems={cartItems}
             />
         </div>
     );

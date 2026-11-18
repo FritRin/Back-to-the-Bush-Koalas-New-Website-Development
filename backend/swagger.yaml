@@ -783,7 +783,7 @@ paths:
   # WHISHLIST
   /api/wishlist-items:
     get:
-      summary: Get all wishlist items
+      summary: Get all active wishlist items
       tags:
         - Wishlist Items
       responses:
@@ -816,7 +816,8 @@ paths:
         in: path
         required: true
         schema:
-          type: integer
+          type: string
+          example: WL001
 
     get:
       summary: Get a wishlist item by ID
@@ -865,6 +866,28 @@ paths:
           description: Wishlist item not found
         "409":
           description: Wishlist item is referenced by a purchase
+        "500":
+          description: Internal Server Error
+
+  /api/wishlist-items/{id}/decrement:
+    patch:
+      summary: Decrease wishlist item quantity by 1
+      tags:
+        - Wishlist Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: WL001
+      responses:
+        "200":
+          description: Wishlist item quantity decreased successfully
+        "400":
+          description: Item stock is already zero
+        "404":
+          description: Wishlist item not found
         "500":
           description: Internal Server Error
 

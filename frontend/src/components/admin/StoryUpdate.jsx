@@ -322,9 +322,7 @@ function StoryUpdate({ storyId, onClose }) {
                                         __html: sanitizeHTML(content),
                                     }}
                                 />
-
                             </div>
-
                         </div>
                     </div>
                 </div>

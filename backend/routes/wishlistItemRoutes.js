@@ -19,4 +19,6 @@ router.put("/:id", authenticateAdmin, wishlistItemControllers.updateWishlistItem
 // Delete a wishlist item
 router.delete("/:id", authenticateAdmin, wishlistItemControllers.deleteWishlistItem);
 
+router.patch("/:id/decrement", wishlistItemControllers.decrementItem);
+
 module.exports = router;
