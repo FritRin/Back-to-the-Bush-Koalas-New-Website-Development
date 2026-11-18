@@ -38,7 +38,7 @@ function ContactForm(){
             <input type="submit" value="Send" className="formSubmit" />
             {formSubmissionStatus === 'submitted' && (
             <div className="contactForm">
-                <h3>Thank you for your message and for supporting Back to the Bush Koalas! If you have sent an inquiry we will be sure to answer as soon as we can!</h3>
+                <h3>Thank you for your message and for supporting Back to the Bush Koalas! We will be sure to respond to your inquiry as soon as we can!</h3>
             </div>
             )}
         </form>
