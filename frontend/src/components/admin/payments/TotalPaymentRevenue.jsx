@@ -1,7 +1,7 @@
 import StatisticCard from "./StatisticDisplay";
 
-function TotalRevenue({ donations }) {
-    const totalRevenue = donations.reduce((total, donation) => total + Number(donation.amount), 0);
+function TotalRevenue({ payments }) {
+    const totalRevenue = payments.reduce((total, payment) => total + Number(payment.amount || 0), 0);
 
     return (
         <StatisticCard 

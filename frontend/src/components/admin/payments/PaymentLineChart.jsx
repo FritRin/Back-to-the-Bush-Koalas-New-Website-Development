@@ -2,22 +2,22 @@ import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Legend, Responsi
 
 import getChartDateRange from "../../../utils/getChartDateRange";
 
-function DonationLineChart({ donations, dateRange }) {
-    const donationsByDate = {};
+function PaymentLineChart({ payments, dateRange }) {
+    const paymentsByDate = {};
 
     
-    donations.forEach((donation) => {
-        const date = new Date(donation.donation_date);
+    payments.forEach((payment) => {
+        const date = new Date(payment.date);
         date.setHours(0, 0, 0, 0);
         const timestamp = date.getTime();
-        donationsByDate[timestamp] = (donationsByDate[timestamp] || 0) + 1;
+        paymentsByDate[timestamp] = (paymentsByDate[timestamp] || 0) + 1;
     });
 
-    const dates = getChartDateRange(dateRange, donations);
+    const dates = getChartDateRange(dateRange, payments);
 
     const chartData = dates.map((date) => ({
         day: date.toLocaleDateString("en-AU"),
-        donations: donationsByDate[date.getTime()] || 0
+        payments: paymentsByDate[date.getTime()] || 0
     }));
 
     return (
@@ -45,7 +45,8 @@ function DonationLineChart({ donations, dateRange }) {
                 <Legend />
                 <Line
                     type="monotone"
-                    dataKey="donations"
+                    dataKey="payments"
+                    name="Payments"
                     stroke="#9fa659"
                     strokeWidth={3}
                     dot={false}
@@ -57,4 +58,4 @@ function DonationLineChart({ donations, dateRange }) {
     );
 }
 
-export default DonationLineChart;
+export default PaymentLineChart;

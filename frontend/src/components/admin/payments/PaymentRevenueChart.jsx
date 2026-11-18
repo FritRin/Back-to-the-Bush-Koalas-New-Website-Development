@@ -1,21 +1,21 @@
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import getChartDateRange from "../../../utils/getChartDateRange";
 
-function DonationRevenueChart({ donations, dateRange }) {
-    const donationsByDate = {};
+function PaymentRevenueChart({ payments, dateRange }) {
+    const paymentsByDate = {};
 
-    donations.forEach((donation) => {
-        const date = new Date(donation.donation_date);
+    payments.forEach((payment) => {
+        const date = new Date(payment.date);
         date.setHours(0, 0, 0, 0);
         const timestamp = date.getTime();
-        donationsByDate[timestamp] = (donationsByDate[timestamp] || 0) + Number(donation.amount);
+        paymentsByDate[timestamp] = (paymentsByDate[timestamp] || 0) + Number(payment.amount);
     });
 
-    const dates = getChartDateRange(dateRange, donations);
+    const dates = getChartDateRange(dateRange, payments);
 
     const chartData = dates.map((date) => ({
         day: date.toLocaleDateString("en-AU"), 
-        amount: donationsByDate[date.getTime()] || 0
+        amount: paymentsByDate[date.getTime()] || 0
     }));
 
     return (
@@ -51,12 +51,12 @@ function DonationRevenueChart({ donations, dateRange }) {
                         </BarChart>
                     </ResponsiveContainer>
                 ) : (
-                    <p>No donation data available.</p>
+                    <p>No payment data available.</p>
                 )}
             </div>
 
     );
 }
 
-export default DonationRevenueChart;
+export default PaymentRevenueChart;
                             
