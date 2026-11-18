@@ -536,10 +536,11 @@ import { useNavigate } from "react-router-dom";
           {showPayPal && (
             <div className = "w-full mt-6">
               <PayPalAdoptWishlist
-                // Pass all the required information to PayPalAdopWishList.jsx.
+                // Pass all the required information to PayPalAdoptWishList.jsx.
                 donationType = {donationType}
                 amount = { donationType === "general" ? Number(donationAmount) : donationType === "adoption" ? 50 : cartTotal }
                 koalaId = {selectedKoala?.koala_id}
+                cartItems={cartItems}
                 customerDetails = {customerDetails}
                 onPaymentSuccess = {handlePaymentSuccess}
               />
