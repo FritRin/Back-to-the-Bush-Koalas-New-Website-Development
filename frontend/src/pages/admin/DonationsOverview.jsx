@@ -1,7 +1,3 @@
-// This page is a copy of the original DonationsOverview, with a section for total Payments
-// The total Payments is currently just donations and adoptions
-// as the wishlist purchases are currently just going in to the donations table.
-
 import { useState, useEffect } from "react";
 
 import AdminDateFilter from "../../components/admin/payments/AdminDateFilter";
@@ -18,7 +14,7 @@ import PaymentPieChart from "../../components/admin/payments/PaymentPieChart";
 // Services
 import { getAllDonations } from "../../services/donationService";
 import { getAllAdoptions } from "../../services/adoptionService";
-
+import { getAllWishlistPurchases } from "../../services/wishlistPurchaseService";
 // Utils
 import filterPaymentsByDate from "../../utils/filterPaymentsByDate";
 import filterPaymentsByType from "../../utils/filterPaymentsByType";
@@ -27,17 +23,19 @@ function DonationsOverview() {
     const [dateRange, setDateRange] = useState("30");
     const [donations, setDonations] = useState([]);
     const [adoptions, setAdoptions] = useState([]);
+    const [wishlistPurchases, setWishlistPurchases] = useState([]);
     const [paymentType, setPaymentType] = useState("All");
     // Add new state for wishlist purchases here
     const [loading, setLoading] = useState(true);
 
-    // Fetch donations and adoptions
+    // Fetch donations, adoptions, and wishlist purchases
     useEffect(() => {
         async function fetchPayments() {
             try {
                 const results = await Promise.allSettled([
                     getAllDonations(),
-                    getAllAdoptions()
+                    getAllAdoptions(),
+                    getAllWishlistPurchases()
                 ]);
 
                 if (results[0].status === "fulfilled") {
@@ -51,7 +49,13 @@ function DonationsOverview() {
                 } else {
                     console.error("Error fetching adoptions:", results[1].reason);
                 }
-             
+                
+                if (results[2].status === "fulfilled") {
+                    setWishlistPurchases(results[2].value.data);
+                } else {
+                    console.error("Error fetching wishlist purchases:", results[2].reason);
+                }
+
             } catch (error) {
                 console.error("Error fetching payments:", error);
             } finally {
@@ -64,19 +68,33 @@ function DonationsOverview() {
     // Filter donations and adoptions using the shared date filter 
     const filteredDonations = filterPaymentsByDate(donations, dateRange);
     const filteredAdoptions = filterPaymentsByDate(adoptions, dateRange);
-
+    const filteredWishlistPurchases = filterPaymentsByDate(wishlistPurchases, dateRange);
     // convert adoptions and donations in a shared payment structure
     const allPayments = [
         ...filteredDonations.map((donation) => ({
             id: `donation-${donation.donation_id}`,
             customer_id: donation.customer_id,
             date: donation.donation_date,
-            type: "Donation / Wishlist",
+            type: "Donation",
             payment_method: donation.payment_method,
             amount: donation.amount,
             currency: donation.currency,
             transaction_reference: donation.transaction_reference,
         })),
+
+        // REVIEW THIS AFTER WISHLIST_PURCHASE BACKEND HAS BEEN IMPLEMENETED
+        ...filteredWishlistPurchases.map((purchase) => ({
+            id: `wishlist-${purchase.purchase_id}`,
+            customer_id: purchase.customer_id,
+            date: purchase.purchase_date,
+            type: "Wishlist Purchase",
+            payment_method: purchase.payment_method, 
+            amount: Number(purchase.purchase_price) * Number(purchase.purchase_quantity),
+            currency: purchase.currency,
+            transaction_reference: purchase.transaction_reference,
+        })),
+
+
         ...filteredAdoptions.map((adoption) => ({
             id: `adoption-${adoption.adoption_id}`,
             customer_id: adoption.customer_id,
