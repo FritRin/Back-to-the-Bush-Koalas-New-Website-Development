@@ -9,6 +9,7 @@ function StoryCreate({ onClose, onSuccess }) {
     const [mainImage, setMainImage] = useState(null);
     const [galleryImages, setGalleryImages] = useState([]);
     const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState("");
 
     const handleMainImageChange = (event) => {
         const file = event.target.files[0];
@@ -21,10 +22,10 @@ function StoryCreate({ onClose, onSuccess }) {
     const handleGalleryImagesChange = (event) => {
         const files = Array.from(event.target.files);
 
-        if (files.length > 10) {
-            alert("Maximum 10 gallery images");
-            return;
-        }
+        setErrors((prev) => ({
+            ...prev,
+            gallery: "",
+        }));
 
         setGalleryImages(files);
     };
@@ -66,38 +67,59 @@ function StoryCreate({ onClose, onSuccess }) {
             formData.append("images", image);
         });
 
-        await createStory(formData);
+        try {
+            await createStory(formData);
 
-        if (onSuccess) {
-            onSuccess();
+            console.log("Story Created");
+
+
+            setSuccessMessage(
+                "✅ Story created successfully."
+            );
+
+            console.log("Success message set");
+
+
+            setTimeout(() => {
+                console.log("Calling onSuccess");
+
+                onSuccess?.();
+                console.log("Closing modal");
+
+                onClose();
+            }, 1500);
+
+        } catch (error) {
+            console.error(error);
+
+            setErrors((prev) => ({
+                ...prev,
+                submit:
+                    "Unable to create story. Please try again."
+            }));
         }
-        onClose();
     };
 
 
     return (
-        <div
-            className="
-        fixed
-        inset-0
-        z-50
-        bg-black/50
-        flex
-        justify-center
-        items-center
-      "
-        >
-            <div
-                className="
-          bg-white
-          w-[90vw]
-          h-[90vh]
-          rounded-xl
-          overflow-y-auto
-          p-8
-        "
-            >
-                <div className="flex justify-between mb-8">
+        <div className="
+            fixed
+            inset-0
+            z-50
+            bg-black/50
+            flex
+            justify-center
+            items-center
+        ">
+            <div className="
+                bg-white
+                w-[90vw]
+                h-[90vh]
+                rounded-xl
+                overflow-y-auto
+                p-8
+            ">
+                <div className="flex justify-between mb-4">
                     <h2 className="text-3xl font-bold">
                         Create Story
                     </h2>
@@ -105,10 +127,13 @@ function StoryCreate({ onClose, onSuccess }) {
                     <button
                         onClick={onClose}
                         type="button"
+                        className="bg-red-500 hover:bg-red-700 text-white font-extrabold  px-8 rounded"
                     >
                         Close
                     </button>
                 </div>
+
+
 
                 <form
                     onSubmit={handleSubmit}
@@ -209,6 +234,11 @@ function StoryCreate({ onClose, onSuccess }) {
                                 className="w-full border-2"
                             />
                         </label>
+                        {errors.gallery && (
+                            <p className="mt-1 text-sm text-red-500">
+                                {errors.gallery}
+                            </p>
+                        )}
                     </div>
 
                     {/* GALLERY PREVIEW */}
@@ -224,8 +254,8 @@ function StoryCreate({ onClose, onSuccess }) {
                         ))}
                     </div>
 
-                    {/* TIPTAP WILL BE INSERTED HERE */}
 
+                    {/* The Text Editor is Here */}
                     <div>
                         <label className="block mb-2 font-semibold">
                             Description
@@ -256,6 +286,18 @@ function StoryCreate({ onClose, onSuccess }) {
                         </button>
                     </div>
                 </form>
+
+                {successMessage && (
+                    <div className="mb-6 rounded-lg border border-green-200 bg-green-100 p-3 text-green-700">
+                        {successMessage}
+                    </div>
+                )}
+
+                {errors.submit && (
+                    <div className="mb-6 rounded-lg border border-red-200 bg-red-100 p-3 text-red-700">
+                        {errors.submit}
+                    </div>
+                )}
             </div>
         </div>
     );
