@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getStoryById } from "../api/Story";
+import { sanitizeHTML } from "../utils/sanitizeHTML";
 
 function Story() {
   const { id } = useParams();
@@ -96,7 +97,7 @@ function Story() {
       {/* 3. Rich Text Description / Content */}
       <div
         className="story-preview-content"
-        dangerouslySetInnerHTML={{ __html: story.content || "" }}
+        dangerouslySetInnerHTML={{ __html: sanitizeHTML(story.content) }}
       />
 
       {/* 4. Expanded Lightbox Modal */}

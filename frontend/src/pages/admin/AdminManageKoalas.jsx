@@ -7,7 +7,7 @@ function AdminManageKoalas() {
   return (
     <div>
       <div>
-        <h1>Management Koalas</h1>
+        <h1>Manage Koalas</h1>
       </div>
       <button
         onClick={() => setShowCreateModal(true)}
@@ -18,7 +18,12 @@ function AdminManageKoalas() {
 
       {showCreateModal && (
         <KoalaCreate
-          onClose={() => setShowCreateModal(false)}
+          onClose={() =>
+            setShowCreateModal(false)
+          }
+          onSuccess={() => {
+            window.location.reload();
+          }}
         />
       )}
       <KoalaList />
