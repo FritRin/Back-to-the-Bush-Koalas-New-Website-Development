@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllBox } from "../api/Box";
 import { getAllStories } from "../api/Story";
 import { Link } from "react-router-dom";
+import { sanitizeHTML } from "../utils/sanitizeHTML";
 
 
 function HomeStories() {
@@ -138,7 +139,7 @@ function StoryCard({ box, isMain }) {
                     {isMain && (
                         <div
                             className="line-clamp-3 text-xs md:text-sm text-gray-100 mb-2"
-                            dangerouslySetInnerHTML={{ __html: story.content || "" }}
+                            dangerouslySetInnerHTML={{ __html: sanitizeHTML(story.content) }}
                         />
                     )}
 

@@ -3,6 +3,8 @@ const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 // PayPal .env file
 require("dotenv").config({ path: path.join(__dirname, "../.env.paypal") });
+// Rate limting
+const { rateLimit } = require("express-rate-limit");
 
 // TODO import The important neccessary modules of each deparments
 const express = require("express");
@@ -33,6 +35,9 @@ app.use((req, res, next) => {
     next();
 });
 
+// Trust the configured reverse proxy network
+app.set("trust proxy", process.env.TRUST_PROXY || false);
+
 // Configure CORS to allow request from frontend
 // Allow the browser to end and recieve auth cookies
 const allowedOrigins = [
@@ -57,6 +62,19 @@ app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieParser());
 
+// API rate limit: 100 requests per 15 minutes per IP
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 100,
+    standardHeaders: "draft-8",
+    legacyHeaders: false,
+    message: {
+        success: false,
+        message: "Too many requests. Try again later",
+    },
+});
+
+app.use("/api", apiLimiter);
 
 //TODO Swagger or Postman ? up to you
 const swaggerUI = require('swagger-ui-express');

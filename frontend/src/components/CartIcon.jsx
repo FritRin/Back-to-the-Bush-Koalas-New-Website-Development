@@ -8,15 +8,17 @@ const CartIcon = ({
     <button
       type="button"
       onClick={onClick}
-      className="relative flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition hover:bg-gray-50 hover:shadow-md"
+      className={`relative flex h-16 w-16 items-center justify-center rounded-full bg-green-600 text-white shadow-lg transition
+      ${
+        itemCount > 0
+          ? "animate-bounce"
+          : ""
+      }`}
     >
-      <ShoppingCart
-        size={22}
-        className="text-gray-700"
-      />
+      <ShoppingCart size={30} />
 
       {itemCount > 0 && (
-        <span className="absolute -right-1 -top-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-xs font-semibold text-white">
+        <span className="absolute -right-1 -top-1 flex h-7 min-w-[28px] items-center justify-center rounded-full bg-red-500 px-1 text-sm font-bold text-white">
           {itemCount}
         </span>
       )}

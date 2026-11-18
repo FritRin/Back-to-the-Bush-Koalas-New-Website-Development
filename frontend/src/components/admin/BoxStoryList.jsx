@@ -1,7 +1,7 @@
 import BoxStoryCreate from "./BoxStoryCreate";
 import BoxStoryUpdate from "./BoxStoryUpdate";
 import BoxStoryDelete from "./BoxStoryDelete";
-import { sanitizeHTML } from "../../utils/sanitizeHTML";
+// import { sanitizeHTML } from "../../utils/sanitizeHTML";
 
 function BoxStoryList({ secondaryBoxes, stories, onRefresh }) {
     return (
@@ -27,9 +27,10 @@ function BoxStoryList({ secondaryBoxes, stories, onRefresh }) {
 
                             <div
                                 className="line-clamp-3 text-sm text-gray-600 mb-4"
-                                dangerouslySetInnerHTML={{
-                                    __html: sanitizeHTML(box.story?.content),
-                                }}
+                                // dangerouslySetInnerHTML={{
+                                //     __html: sanitizeHTML(box.story?.content),
+                                // }}
+                                dangerouslySetInnerHTML={{__html:box.story?.content}}
                             />
                         </div>
 

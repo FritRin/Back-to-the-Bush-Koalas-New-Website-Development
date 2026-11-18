@@ -1,4 +1,5 @@
 const WishlistItem = require("../models/WishlistItem");
+const { Op } = require("sequelize");
 
 // Validate that an ID is a postive
 const isValidId = (id) => {
@@ -32,7 +33,14 @@ const isValidPrice = (value) => {
 // GET /api/wishlist-items
 exports.getAllWishlistItems = async (req, res, next) => {
     try {
-        const items = await WishlistItem.findAll();
+        const items = await WishlistItem.findAll({
+            where: {
+                status: "A", // if is "A" mean Active "I" mean inactive won't show
+                number_of_items: {
+                    [Op.gt]: 0, // If the item reach 0 will be removed to not show anymore more details in the PATCH api/wishlistitem/:id/decrement
+                },
+            },
+        });
 
         return res.status(200).json({
             success: true,
@@ -41,9 +49,10 @@ exports.getAllWishlistItems = async (req, res, next) => {
             data: items,
         });
     } catch (error) {
-        next (error);
+        next(error);
     }
 };
+
 
 // GET api/wishlist-items/:id
 exports.getWishlistItemById = async (req, res, next) => {
@@ -80,6 +89,7 @@ exports.getWishlistItemById = async (req, res, next) => {
 exports.createWishlistItem = async (req, res, next) => {
     try {
         const {
+            item_id,
             item_name,
             item_description,
             item_image_url,
@@ -107,6 +117,7 @@ exports.createWishlistItem = async (req, res, next) => {
         }
 
         const item = await WishlistItem.create({
+            item_id: item_id.trim(),
             item_name: item_name.trim(),
             item_description: item_description.trim(),
             item_image_url: item_image_url?.trim() || null,
@@ -284,4 +295,46 @@ exports.deleteWishlistItem = async (req, res, next) => {
 
         next(error);
     }
+};
+
+
+// PATCH api/wishlistitem/:id/decrement
+
+exports.decrementItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const item = await WishlistItem.findByPk(id);
+
+    if (!item) {
+      return res.status(404).json({
+        message: "Wishlist item not found",
+      });
+    }
+
+    if (item.number_of_items <= 0) {
+      return res.status(400).json({
+        message: "Item is already sold out",
+      });
+    }
+
+    item.number_of_items -= 1;
+
+    if (item.number_of_items === 0) {
+      item.status = "I"; // "I" inactive when reach 0
+    }
+
+    await item.save();
+
+    return res.status(200).json({
+      message: "Quantity updated",
+      item,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
 };

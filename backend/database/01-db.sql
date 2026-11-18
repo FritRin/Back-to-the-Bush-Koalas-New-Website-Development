@@ -57,13 +57,13 @@ CREATE TABLE box_story (
 CREATE TABLE adoption ( 
     adoption_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     customer_id INTEGER NOT NULL REFERENCES customer(customer_id), 
-    koala_id INTEGER NOT NULL REFERENCES koala(koala_id), 
-    status VARCHAR(50) NOT NULL, 
-    amount NUMERIC(18,2) NOT NULL, 
+    koala_id INTEGER NOT NULL REFERENCES koala(koala_id),
+    status VARCHAR(50) NOT NULL,
+    amount NUMERIC(18,2) NOT NULL,
     payment_method VARCHAR(50) NOT NULL, 
-    transaction_reference VARCHAR(255), 
+    transaction_reference VARCHAR(255),
     adoption_date TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
-); 
+);
 
 CREATE TABLE donation ( 
     donation_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
@@ -76,7 +76,7 @@ CREATE TABLE donation (
 );
 
 CREATE TABLE wishlist_item ( 
-    item_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
+    item_id VARCHAR(20) PRIMARY KEY, 
     item_name VARCHAR(50) NOT NULL, 
     item_description VARCHAR(100) NOT NULL, 
     item_image_url VARCHAR(100), 
@@ -88,7 +88,7 @@ CREATE TABLE wishlist_item (
 CREATE TABLE wishlist_purchase ( 
     purchase_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     customer_id INTEGER NOT NULL REFERENCES customer(customer_id), 
-    item_id INTEGER NOT NULL REFERENCES wishlist_item(item_id), 
+    item_id VARCHAR(20) NOT NULL REFERENCES wishlist_item(item_id), 
     purchase_quantity INTEGER NOT NULL, 
     purchase_price DECIMAL(18, 2) NOT NULL, 
     purchase_date TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, 
