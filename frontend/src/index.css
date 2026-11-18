@@ -845,13 +845,18 @@ p.emergencyNumber {
   margin: 0;
 }
 
+.adminStatisticIcon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.7;
+  color: #797641;
+}
+
 /* Hover effects */
 .adminStatisticDiv:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-
-
 
 /* Donation Analytics */
 .adminChartsSection {

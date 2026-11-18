@@ -1,3 +1,4 @@
+import { Wallet } from "lucide-react";
 import StatisticCard from "./StatisticDisplay";
 
 function AveragePayment({ payments }) {
@@ -9,6 +10,7 @@ function AveragePayment({ payments }) {
         <StatisticCard 
             title="Average payment"
             value={`$${averagepayment.toFixed(2)}`}
+            icon={<Wallet />}
         />
     );
 }
