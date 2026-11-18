@@ -9,6 +9,7 @@ function StoryCreate({ onClose, onSuccess }) {
     const [mainImage, setMainImage] = useState(null);
     const [galleryImages, setGalleryImages] = useState([]);
     const [errors, setErrors] = useState({});
+    const [uploadError, setUploadError] = useState("");
 
     const handleMainImageChange = (event) => {
         const file = event.target.files[0];
@@ -66,14 +67,24 @@ function StoryCreate({ onClose, onSuccess }) {
             formData.append("images", image);
         });
 
-        await createStory(formData);
+        setUploadError("");
 
-        if (onSuccess) {
-            onSuccess();
+        try {
+            await createStory(formData);
+
+            if (onSuccess) {
+                onSuccess();
+            }
+
+            onClose();
+        } catch (error) {
+            setUploadError(
+                error.response?.data?.message ||
+                "Something went wrong while uploading your story."
+            );
         }
-        onClose();
-    };
 
+    }
 
     return (
         <div
@@ -161,7 +172,7 @@ function StoryCreate({ onClose, onSuccess }) {
 
                             <input
                                 type="file"
-                                accept="image/*"
+                                accept=".jpg,.jpeg,.png,image/jpeg,image/png"
                                 onChange={handleMainImageChange}
                                 className="w-full border-2"
                             />
@@ -245,6 +256,13 @@ function StoryCreate({ onClose, onSuccess }) {
                             )}
                         </div>
                     </div>
+                    
+                    {/* UPLOAD ERROR */}
+                    {uploadError && (
+                        <p className="text-red-600 text-sm font-semibold">
+                            {uploadError}
+                        </p>
+                    )}
 
                     {/* SAVE */}
                     <div className="flex justify-end">

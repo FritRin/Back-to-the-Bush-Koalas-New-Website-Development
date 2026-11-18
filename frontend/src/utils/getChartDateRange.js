@@ -7,10 +7,10 @@ function getChartDateRange(dateRange, donations) {
     if (dateRange === "year") {
         startDate = new Date(today.getFullYear(), 0, 1);
     } else if (dateRange === "all") {
-        if (donations.length === 0) return [];
+        if (payments.length === 0) return [];
 
-        const dates = donations.map((donation) => {
-            const date = new Date(donation.donation_date);
+        const dates = payments.map((payment) => {
+            const date = new Date(payment.date || payment.donation_date);
             date.setHours(0, 0, 0, 0);
             return date;
         });
