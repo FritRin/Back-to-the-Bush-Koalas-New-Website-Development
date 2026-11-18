@@ -2,7 +2,7 @@ const multer = require("multer");
 const path = require("path");
 const crypto = require("crypto");
 const fs = require("fs");
-const FileType = require("file-type");
+const FileType = import("file-type");
 
 const allowedTypes = {
     "image/jpeg": [".jpg", ".jpeg"],
@@ -47,7 +47,8 @@ const validateContent = async (req) => {
     const files = req.files || (req.file ? [req.file] : []);
 
     for (const file of files) {
-        const detectedType = await FileType.fromFile(file.path);
+        const { fileTypeFromFile } = await FileType;
+        const detectedType = await fileTypeFromFile(file.path);
 
         if (!detectedType || !allowedTypes[detectedType.mime]) {
             throw new Error("Invalid image content. Only JPEG and PNG allowed");
