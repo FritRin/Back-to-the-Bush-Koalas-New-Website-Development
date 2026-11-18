@@ -632,8 +632,8 @@ form.contactForm {
 }
 
 
-a.contactUsBox:hover {
-  color: blue;
+a:hover {
+  color: #4B4C2C;
 }
 
 .socMediaIcon {
@@ -745,9 +745,6 @@ button.emergencyButton {
 }
 }
 
-a.emergencyNumber:hover {
-  color: blue;
-}
 
 p.emergencyNumber {
   margin: auto;

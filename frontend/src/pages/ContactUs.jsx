@@ -3,6 +3,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import ContactForm from "../components/ContactForm.jsx";
+import constitution from "../assets/Final_Constitution_BTTB.pdf"
 
 function ContactUS(){
     return(
@@ -16,7 +17,7 @@ function ContactUS(){
                     <li className="contactUsBox">Incorporated Not-For-Profit: <p>8/05/2024</p></li>
                     <li className="contactUsBox">ABN: <p>93 677 191 865</p></li>
                     <li className="contactUsBox">Type: <p>Company</p></li>
-                    <li className="contactUsBox">Constitution</li>
+                    <li className="contactUsBox"><a href={constitution}>Constitution</a></li>
                     
                 </div>
                 <div className="contactUsBox">
