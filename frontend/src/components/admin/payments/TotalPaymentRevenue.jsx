@@ -1,3 +1,4 @@
+import { TrendingUp } from "lucide-react";
 import StatisticCard from "./StatisticDisplay";
 
 function TotalRevenue({ payments }) {
@@ -7,6 +8,7 @@ function TotalRevenue({ payments }) {
         <StatisticCard 
             title="Total Revenue"
             value={`$${totalRevenue.toFixed(2)}`}
+            icon={<TrendingUp />}
         />
     );
 }
