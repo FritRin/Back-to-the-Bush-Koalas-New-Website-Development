@@ -364,17 +364,7 @@ h1.ourHospitalHeading {
   max-height: auto;
   margin: auto;
   margin-bottom: 1rem;
-}}
-
-@media (max-width: 768px){
-  img.ourHospitalMainImage {
-  max-width: 95%;
-  max-height: auto;
-  margin: auto;
-  margin-bottom: 1rem;
-}}
-
-@media (min-width: 768px){
+}
   div.ourHospitalGallery {
   display: flex;
   justify-content: center;
@@ -386,10 +376,22 @@ h1.ourHospitalHeading {
 img.ourHospitalGalleryHorizontal {
   max-width: 30%;
   margin-bottom: 1rem;
-} 
+}
+  h2.ourLocationTextContent {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+  margin-top: 5rem;
+}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px){
+  img.ourHospitalMainImage {
+  max-width: 95%;
+  max-height: auto;
+  margin: auto;
+  margin-bottom: 1rem;
+}
   div.ourHospitalGallery {
     display: flex;
     flex-direction: column;
@@ -404,7 +406,16 @@ img.ourHospitalGalleryHorizontal {
     margin: auto;
     margin-bottom: 1rem;
   }
+  li.ourHospitalTextContent {
+  margin-left: 1rem;
+  font-size: 1rem;
 }
+  h2.ourLocationTextContent {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}}
+
 
 h3.ourHospitalInfoBox {
   color: white;
@@ -440,30 +451,9 @@ button.ourHospitalInfoBox {
 }
 
 li.ourHospitalTextContent {
-  margin-left: 1rem;
+  margin-left: 3rem;
 }
 
-@media (max-width: 768px){
-  li.ourHospitalTextContent {
-  margin-left: 1rem;
-  font-size: 1rem;
-}
-}
-
-@media (min-width: 768px){
-  h2.ourLocationTextContent {
-  display: flex;
-  justify-content: center;
-  margin: 1rem;
-  margin-top: 5rem;
-}}
-
-@media (max-width: 768px){
-  h2.ourLocationTextContent {
-  display: flex;
-  justify-content: center;
-  margin: 1rem;
-}}
 
 /* Contact Us Styles */
 
