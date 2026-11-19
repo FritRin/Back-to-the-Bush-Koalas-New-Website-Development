@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, onPaymentSuccess }) => {
+const PayPalAdoptWishlist = ({ donationType, amount, koalaId, cartItems = [], customerDetails, onPaymentSuccess }) => {
     const [ paymentMessage, setPaymentMessage ] = useState("");
     // Request API to create new order.
     const createOrder = async () => {
@@ -14,8 +14,13 @@ const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, o
             body: JSON.stringify({
                 donationType,
                 amount,
-                // Koala ID for adoptions.
-                koalaId
+                koalaId,
+                cartItems: donationType === "wishlist"
+                    ? cartItems.map((item) => ({
+                        item_id: item.item_id,
+                        quantity: 1
+                    }))
+                    : undefined
             })
         });
 
@@ -40,7 +45,13 @@ const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, o
                 },
                 body: JSON.stringify({
                     orderID: data.orderID,
-                    customer: customerDetails
+                    customer: customerDetails,
+                    cartItems: donationType === "wishlist"
+                    ? cartItems.map((item) => ({
+                        item_id: item.item_id,
+                        quantity: 1
+                    }))
+                    : undefined
                 })
             });
 
