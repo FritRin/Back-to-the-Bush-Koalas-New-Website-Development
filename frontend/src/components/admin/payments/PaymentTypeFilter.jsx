@@ -1,7 +1,7 @@
 function PaymentTypeFilter({ paymentType, setPaymentType }) {
     return (
         <div className="adminFilter">
-            <label className="adminFilterLabel" htmlFor="paymentType">
+            <label className="adminFilterLabel" htmlFor="paymentTypeFilter">
                 Payment Type:
             </label>
 
@@ -11,7 +11,8 @@ function PaymentTypeFilter({ paymentType, setPaymentType }) {
                 onChange={(e) => setPaymentType(e.target.value)}
             >
                 <option value="All">All Payments</option>
-                <option value="Donation / Wishlist">Donations / Wishlists</option>
+                <option value="Donation">Donations</option>
+                <option value="Wishlist Purchase">Wishlist Purchases</option>
                 <option value="Adoption">Adoptions</option>
             </select>
         </div>
