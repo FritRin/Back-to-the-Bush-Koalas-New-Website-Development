@@ -1,8 +1,8 @@
 // Document was named PayPalAdoptWishlist as I originally have separate ones for adoptions/wishlist and regular donation, but I ended up combining them together. The name will remain the same.
 import { useState } from "react";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
-const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, onPaymentSuccess }) => {
+const PayPalAdoptWishlist = ({ donationType, amount, koalaId, cartItems = [], customerDetails, onPaymentSuccess }) => {
     const [ paymentMessage, setPaymentMessage ] = useState("");
     // Request API to create new order.
     const createOrder = async () => {
@@ -14,8 +14,13 @@ const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, o
             body: JSON.stringify({
                 donationType,
                 amount,
-                // Koala ID for adoptions.
-                koalaId
+                koalaId,
+                cartItems: donationType === "wishlist"
+                    ? cartItems.map((item) => ({
+                        item_id: item.item_id,
+                        quantity: 1
+                    }))
+                    : undefined
             })
         });
 
@@ -40,7 +45,13 @@ const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, o
                 },
                 body: JSON.stringify({
                     orderID: data.orderID,
-                    customer: customerDetails
+                    customer: customerDetails,
+                    cartItems: donationType === "wishlist"
+                    ? cartItems.map((item) => ({
+                        item_id: item.item_id,
+                        quantity: 1
+                    }))
+                    : undefined
                 })
             });
 
@@ -86,13 +97,6 @@ const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, o
                 </p>
             </div>
 
-            <PayPalScriptProvider
-                options={{
-                    "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
-                    currency: "AUD",
-                    intent: "capture"
-                }}
-            >
                 <PayPalButtons
                     style={{
                         layout: "vertical",
@@ -110,7 +114,6 @@ const PayPalAdoptWishlist = ({ donationType, amount, koalaId, customerDetails, o
                         setPaymentMessage("Something went wrong with PayPal. Please try again.");
                     }}
                 />
-            </PayPalScriptProvider>
 
             {paymentMessage && (
                 <p className="mt-3 text-center">

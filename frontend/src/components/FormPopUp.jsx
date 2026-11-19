@@ -79,48 +79,50 @@ import { useNavigate } from "react-router-dom";
 
     const errors = {};
 
+    // Required fields
     if (!firstName || firstName.length > 100) {
       errors.firstName = "First name is required (maximum 100 characters).";
-    }
-
-    if (!lastName || lastName.length > 100) {
-      errors.lastName = "Last name is required (maximum 100 characters).";
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
       errors.email = "Please enter a valid email address.";
     }
 
-    if (!/^[+]?[\d\s()-]{8,20}$/.test(phone)) {
+    // Optional fields - validate only if entered
+    if (lastName && lastName.length > 100) {
+      errors.lastName = "Last name must not exceed 100 characters.";
+    }
+
+    if (phone && !/^[+]?[\d\s()-]{8,20}$/.test(phone)) {
       errors.phone = "Please enter a valid phone number.";
     }
 
-    if (donateWithCompany === "yes" && (!company || company.length > 150)) {
-      errors.company = "Company name is required (maximum 150 characters).";
+    if (donateWithCompany === "yes" && company && company.length > 150) {
+      errors.company = "Company name must not exceed 150 characters.";
     }
 
-    if (!streetNumber || streetNumber.length > 20) {
-      errors.streetNumber = "Please enter a valid street number.";
+    if (streetNumber && streetNumber.length > 20) {
+      errors.streetNumber = "Street number must not exceed 20 characters.";
     }
 
-    if (!streetName || streetName.length > 150) {
-      errors.streetName = "Please enter a valid street name.";
+    if (streetName && streetName.length > 150) {
+      errors.streetName = "Street name must not exceed 150 characters.";
     }
 
-    if (!suburb || suburb.length > 100) {
-      errors.suburb = "Please enter a valid suburb.";
+    if (suburb && suburb.length > 100) {
+      errors.suburb = "Suburb must not exceed 100 characters.";
     }
 
-    if (!state || state.length > 100) {
-      errors.state = "Please enter a valid state.";
+    if (state && state.length > 100) {
+      errors.state = "State must not exceed 100 characters.";
     }
 
-    if (!postcode || postcode.length > 10) {
-      errors.postcode = "Please enter a valid postcode.";
+    if (postcode && postcode.length > 10) {
+      errors.postcode = "Postcode must not exceed 10 characters.";
     }
 
-    if (!country || country.length > 100) {
-      errors.country = "Please enter a valid country.";
+    if (country && country.length > 100) {
+      errors.country = "Country must not exceed 100 characters.";
     }
 
     if (comments.length > 1000) {
@@ -131,7 +133,11 @@ import { useNavigate } from "react-router-dom";
       errors.donationMethod = "Please select a payment method.";
     }
 
-    if ( donationMethod === "paypal" && donationType === "general" && (!Number.isFinite(Number(donationAmount)) || Number(donationAmount) <= 0) ) {
+    if (
+      donationMethod === "paypal" &&
+      donationType === "general" &&
+      (!Number.isFinite(Number(donationAmount)) || Number(donationAmount) <= 0)
+    ) {
       errors.amount = "Please enter a valid donation amount.";
     }
 
@@ -189,6 +195,7 @@ import { useNavigate } from "react-router-dom";
     {!showPaymentSuccess && (
       <>
         <form
+          noValidate
           className="flex flex-col items-center text-sm"
           onSubmit={handleSubmit}
         >
@@ -207,7 +214,7 @@ import { useNavigate } from "react-router-dom";
           <div className="flex flex-col md:flex-row items-center gap-8 w-[350px] md:w-[700px]">
             <div className="w-full">
               <label className="text-black/70" for="name">
-                Your First Name
+                Your First Name *
               </label>
               <input
                 name="firstName"
@@ -290,7 +297,7 @@ import { useNavigate } from "react-router-dom";
           <div className="flex flex-col md:flex-row items-center gap-8 w-[350px] md:w-[700px]">
             <div className="w-full">
               <label className="text-black/70" for="name">
-                Email address
+                Email address *
               </label>
               <input
                 name="email"
@@ -536,10 +543,11 @@ import { useNavigate } from "react-router-dom";
           {showPayPal && (
             <div className = "w-full mt-6">
               <PayPalAdoptWishlist
-                // Pass all the required information to PayPalAdopWishList.jsx.
+                // Pass all the required information to PayPalAdoptWishList.jsx.
                 donationType = {donationType}
                 amount = { donationType === "general" ? Number(donationAmount) : donationType === "adoption" ? 50 : cartTotal }
                 koalaId = {selectedKoala?.koala_id}
+                cartItems={cartItems}
                 customerDetails = {customerDetails}
                 onPaymentSuccess = {handlePaymentSuccess}
               />

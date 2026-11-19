@@ -1,6 +1,9 @@
-function StatisticCard({ title, value }) {
+function StatisticCard({ title, value, icon }) {
     return (
         <div className="adminStatisticCard">
+            <div className="adminStatisticIcon">
+                {icon}
+            </div>
             <div className="adminStatisticValue">
                 {value}
             </div>

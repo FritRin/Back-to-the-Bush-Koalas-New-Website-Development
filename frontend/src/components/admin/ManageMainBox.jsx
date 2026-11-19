@@ -6,41 +6,42 @@ import BoxStoryCreate from "./BoxStoryCreate";
 import BoxStoryUpdate from "./BoxStoryUpdate";
 import BoxStoryDelete from "./BoxStoryDelete";
 
-function ManageMainBox() {
+function ManageMainBox(refreshKey) {
     const [mainBox, setMainBox] = useState(null);
     const [stories, setStories] = useState([]);
 
     useEffect(() => {
-        loadData();
+         console.log(
+        "ManageMainBox refresh:",
+        refreshKey
+    );
+        loadData(refreshKey);
     }, []);
 
     const loadData = async () => {
+
         try {
             const boxes = await getAllBox();
             const storiesData = await getAllStories();
-
             const boxList = Array.isArray(boxes) ? boxes : boxes.data || [];
             const storyList = Array.isArray(storiesData) ? storiesData : storiesData.data || [];
-
             const main = boxList.find((box) => box.slot === "main") || null;
 
             if (main) {
                 const matchedStory = storyList.find(
                     (story) => story.story_id === main.story_id
                 );
-                setMainBox({
-                    ...main,
-                    story: main.story || matchedStory || null,
-                });
+                setMainBox({ ...main, story: main.story || matchedStory || null, });
             } else {
                 setMainBox(null);
             }
-
             setStories(storyList);
         } catch (error) {
             console.error("Failed to load main box:", error);
         }
     };
+
+
 
     return (
         <div className="mb-8">
@@ -73,7 +74,7 @@ function ManageMainBox() {
                             dangerouslySetInnerHTML={{
                                 __html: sanitizeHTML(mainBox.story?.content),
                             }}
-                            
+
                         />
 
                         <div className="flex gap-3 pt-4 border-t">

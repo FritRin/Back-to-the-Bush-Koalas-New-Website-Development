@@ -1,18 +1,18 @@
 import { Pie, PieChart, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-function DonationPieChart({ donations }) {
+function PaymentPieChart({ payments }) {
     // Group donations by payment method
-    const donationsByMethod = {};
+    const paymentsByMethod = {};
 
-    donations.forEach((donation) => {
-        const method = donation.payment_method;
+    payments.forEach((payment) => {
+        const method = payment.payment_method;
 
-        donationsByMethod[method] = (donationsByMethod[method] || 0) + 1;
+        paymentsByMethod[method] = (paymentsByMethod[method] || 0) + 1;
     });
         
 
-    // Convert the grouped donations into Recharts data
-    const chartData = Object.entries(donationsByMethod)
+    // Convert the grouped payments into Recharts data
+    const chartData = Object.entries(paymentsByMethod)
         .map(([method, count]) => ({
             name: method,
             value: count
@@ -45,4 +45,4 @@ function DonationPieChart({ donations }) {
     );
 };
 
-export default DonationPieChart
+export default PaymentPieChart

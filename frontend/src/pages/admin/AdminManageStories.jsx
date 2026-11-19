@@ -7,60 +7,69 @@ import StoryCreate from "../../components/admin/StoryCreate";
 import StoryUpdate from "../../components/admin/StoryUpdate";
 import StoryDelete from "../../components/admin/StoryDelete";
 
-
 function AdminManageStories() {
-  const [selectedStory, setSelectedStory] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingStory, setEditingStory] = useState(null);
   const [deletingStory, setDeletingStory] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
   const handleStorySaved = () => {
-    setRefreshKey((prev) => prev + 1); // Triggers StoryList to re-fetch
+    console.log("Story Saved");
+
+    setRefreshKey((prev) => prev + 1);
+
     setShowCreateModal(false);
-};
+  };
 
   return (
     <div className="admin-manage-stories">
-
       <h1>Manage Homepage Stories</h1>
 
       <ManageMainBox
-        selectedStory={selectedStory}
+        refreshKey={refreshKey}
       />
 
       <ManageSecondaryBox
-        selectedStory={selectedStory}
+        refreshKey={refreshKey}
       />
 
       <StoryList
         refreshKey={refreshKey}
         onCreateStory={() => setShowCreateModal(true)}
-        onEditStory={(story) => setEditingStory(story)}
-        onDeleteStory={(story) => setDeletingStory(story)}
+        onEditStory={(story) =>
+          setEditingStory(story)
+        }
+        onDeleteStory={(story) =>
+          setDeletingStory(story)
+        }
       />
 
       {showCreateModal && (
         <StoryCreate
-          onClose={() => setShowCreateModal(false)}
-          
+          onClose={() =>
+            setShowCreateModal(false)
+          }
+          onSuccess={handleStorySaved}
         />
       )}
 
       {editingStory && (
         <StoryUpdate
           storyId={editingStory.story_id}
-          onClose={() => setEditingStory(null)}
+          onClose={() =>
+            setEditingStory(null)
+          }
         />
       )}
 
       {deletingStory && (
         <StoryDelete
           story={deletingStory}
-          onClose={() => setDeletingStory(null)}
+          onClose={() =>
+            setDeletingStory(null)
+          }
         />
       )}
-
     </div>
   );
 }
