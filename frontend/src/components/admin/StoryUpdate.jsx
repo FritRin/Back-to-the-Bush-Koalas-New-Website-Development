@@ -6,11 +6,11 @@ import { sanitizeHTML } from "../../utils/sanitizeHTML";
 function StoryUpdate({ storyId, onClose }) {
 
     const [loading, setLoading] = useState(true);
-
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-
     const [images, setImages] = useState([]);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         loadStory();
@@ -36,12 +36,29 @@ function StoryUpdate({ storyId, onClose }) {
     const handleSave = async () => {
         try {
 
-            await updateStory(storyId, { title, content, });
+            setErrorMessage("");
+            setSuccessMessage("");
 
-            alert("Story updated");
+            await updateStory(storyId, {
+                title,
+                content,
+            });
+
+            setSuccessMessage(
+                "Story updated successfully."
+            );
+
+            setTimeout(() => {
+                setSuccessMessage("");
+            }, 3000);
 
         } catch (error) {
+
             console.error(error);
+
+            setErrorMessage(
+                "Unable to update story."
+            );
         }
     };
 
@@ -129,6 +146,7 @@ function StoryUpdate({ storyId, onClose }) {
                             <button
                                 onClick={onClose}
                                 type="button"
+                                className="bg-red-500 hover:bg-red-700 text-white font-extrabold  px-8 rounded"
                             >
                                 Close
                             </button>
@@ -206,8 +224,8 @@ function StoryUpdate({ storyId, onClose }) {
                                         alt=""
                                         className="w-full h-28 object-cover rounded" />
                                     <button
-                                        onClick={() =>
-                                            handleDeleteImage(index + 1)}
+                                        onClick={() =>handleDeleteImage(index + 1)}
+                                        className="bg-red-500 hover:bg-red-700 text-white font-extrabold  px-5 my-5 rounded"
                                     >
                                         Delete
                                     </button>
@@ -259,19 +277,29 @@ function StoryUpdate({ storyId, onClose }) {
 
                         </div>
 
-                        <button
-                            type="button"
-                            onClick={handleSave}
-                            className="
-                                mt-8
-                                px-6
-                                py-3
-                                bg-green-600
-                                text-white
-                                rounded
+                        <div className="mt-8 flex items-center gap-4">
+
+                            <button
+                                type="button"
+                                onClick={handleSave}
+                                className="px-6 py-3 bg-green-600 text-white rounded
                             ">
-                            Save Changes
-                        </button>
+                                Save Changes
+                            </button>
+
+                            {successMessage && (
+                                <span className="text-green-600 font-medium">
+                                    {successMessage}
+                                </span>
+                            )}
+
+                            {errorMessage && (
+                                <span className="text-red-600 font-medium">
+                                    {errorMessage}
+                                </span>
+                            )}
+
+                        </div>
                     </div>
 
                     {/* LIVE PREVIEW */}

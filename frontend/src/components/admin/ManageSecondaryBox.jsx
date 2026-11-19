@@ -3,12 +3,12 @@ import { getAllBox } from "../../api/Box";
 import { getAllStories } from "../../api/Story";
 import BoxStoryList from "./BoxStoryList";
 
-function ManageSecundaryBox() {
+function ManageSecundaryBox(refreshKey) {
     const [secondaryBoxes, setSecondaryBoxes] = useState([]);
     const [stories, setStories] = useState([]);
 
     useEffect(() => {
-        loadData();
+        loadData(refreshKey);
     }, []);
 
     const loadData = async () => {
