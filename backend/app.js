@@ -22,6 +22,7 @@ const boxStoryRoutes = require("./routes/boxStoryRoutes");
 const wishlistItemRoutes = require("./routes/wishlistItemRoutes");
 const adoptionRoutes = require("./routes/adoptionRoutes");
 const donationRoutes = require("./routes/donationRoutes");
+const wishlistPurchaseRoutes = require("./routes/wishlistPurchaseRoutes");
 const authRoutes = require("./routes/authRoutes");
 const ga4Routes = require("./routes/ga4Routes");
 const paypalRoutes = require("./routes/paypalRoutes");
@@ -112,6 +113,7 @@ app.use("/api/box-story", boxStoryRoutes);
 app.use("/api/wishlist-items", wishlistItemRoutes);
 app.use("/api/adoptions", adoptionRoutes);
 app.use("/api/donations", donationRoutes);
+app.use("/api/wishlist-purchases", wishlistPurchaseRoutes);
 app.use("/api/paypal", paypalRoutes);
 
 // Google Analytics 4 - admin analytics
