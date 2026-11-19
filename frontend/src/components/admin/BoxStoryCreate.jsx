@@ -26,7 +26,7 @@ function BoxStoryCreate({ stories, slot = "secondary", onSuccess }) {
                 className="border-2 border-dashed border-gray-300 rounded-xl min-h-[240px] flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors p-4 bg-white"
             >
                 <div className="text-center">
-                    <h3 className="text-lg font-bold text-gray-700">+ Add Sub Story</h3>
+                    <h3 className="text-lg font-bold text-gray-700">+ Add Story</h3>
                     <p className="text-sm text-gray-500">Click to choose a story</p>
                 </div>
             </div>
@@ -36,11 +36,11 @@ function BoxStoryCreate({ stories, slot = "secondary", onSuccess }) {
                 <div className="fixed inset-0 bg-black/50 z-50 p-8">
                     <div className="bg-white rounded-xl p-6 h-full overflow-auto">
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold">Add Sub Story</h2>
+                            <h2 className="text-xl font-bold">Add Story</h2>
                             <button
                                 type="button"
                                 onClick={() => setIsOpen(false)}
-                                className="px-3 py-1 text-sm bg-gray-100 rounded-md hover:bg-gray-200"
+                                className="bg-red-500 hover:bg-red-700 text-white font-extrabold py-6 px-8 rounded"
                             >
                                 Close
                             </button>
