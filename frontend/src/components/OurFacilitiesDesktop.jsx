@@ -21,7 +21,7 @@ function OurFacilitiesDesktop(){
                             <li className="ourHospitalTextContent">Grants and Donations have allowed us to acquire much of our medical equipment and cages. We have a state-of-the-art Ultrasound machine, digital X-ray equipment, Critical care units, microscope, and other important diagnostic equipment. </li>
                     </div>
                     <div className="ourHospitalInfoBox">
-                        <h3 className="ourHospitalInfoBox">This project is already 50% complete. We are now seeking strategic partners to support the final stages of development including</h3>
+                        <h3 className="ourHospitalInfoBox">This project is already 50% complete. We are now seeking strategic partners to support the final stages of development including:</h3>
                     </div>
                     <div className="ourHospitalTextContent">
                             <li className="ourHospitalTextContent">Fit-out works of the existing building to meet all Veterinary Surgeons Board of Queensland criteria for veterinary hospitals.</li>
