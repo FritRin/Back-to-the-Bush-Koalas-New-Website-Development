@@ -65,11 +65,19 @@ const secureUpload = (middleware) => {
     return (req, res, next) => {
         middleware(req, res, async (err) => {
             if (err) {
+                let message = "Unable to upload images";
+
+                if (err.code === "LIMIT_FILE_SIZE") {
+                    message = "Images must be 5 MB or smaller.";
+                } else if (err.code === "LIMIT_FILE_COUNT") {
+                    message = "Too many images uploaded.";
+                } else if (err.message === "Only JPEG or PNG images are accepted") {
+                    message = err.message;
+                }
+
                 return res.status(400).json({
                     success: false,
-                    message: err.code === "LIMIT_FILE_SIZE"
-                        ? "Images must be 5 MB or smaller."
-                        : err.message,
+                    message,
                 });
             }
 
@@ -83,9 +91,16 @@ const secureUpload = (middleware) => {
                     files.map(file => fs.promises.unlink(file.path).catch(() => {}))
                 );
 
+                const allowedMessages = [
+                    "Invalid image content. Only JPEG and PNG allowed",
+                    "The uploaded file does not match its content",
+                ];
+
                 return res.status(400).json({
                     success: false,
-                    message: error.message,
+                    message: allowedMessages.includes(error.message)
+                        ? error.message
+                        : "Unable to validate uploaded images",
                 });
             }
         });

@@ -131,11 +131,6 @@ app.get("/", (req, res) => {
     })
 });
 
-//This will need to be updated later
-app.get("/test-error", (req, res, next) => {
-    const error = new Error("This is a test");
-    next(error);
-});
 
 // Error Handling
 app.use(notFoundHandler);
