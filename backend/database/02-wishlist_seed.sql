@@ -22,7 +22,7 @@ VALUES (
     'Quality Canine Spey Kit (Spay Pack)',
     '/images/whishlist/quality-canine-spey-kit.jpg',
     'A',
-    1,
+    2,
     667.00
 ),
 (
@@ -31,7 +31,7 @@ VALUES (
     'Surgical Stool, round seat with wheels',
     '/images/whishlist/surgical-stool-round-seat-with-wheels.jpg',
     'A',
-    1,
+    3,
     292.00
 ),
 (
@@ -40,7 +40,7 @@ VALUES (
     'Mayo table three leg',
     '/images/whishlist/mayo-table-three-leg.jpg',
     'A',
-    1,
+    2,
     950.00
 ),
 (
@@ -81,11 +81,11 @@ VALUES (
 ),
 (
     'DIAGW1',
-    'Operating Diagnostic',
-    'Welch Allyn Operating Diagnostic',
+    'Ophthalmoscope',
+    'Welch Allyn Operating Diagnostic Set',
     '/images/whishlist/welch-allyn-operating-diagnostic-set.jpg',
     'A',
     1,
-    00.00
+    1183.00
 )
 ON CONFLICT (item_id) DO NOTHING;
