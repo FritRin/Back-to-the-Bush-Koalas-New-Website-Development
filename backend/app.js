@@ -51,7 +51,7 @@ app.use(cors({
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
-            callback(new Error("Not allowed by CORS"));
+            callback(null, false);
         }
     },
     credentials: true,
@@ -60,6 +60,26 @@ app.use(cors({
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieParser());
+
+//CSRF protection
+app.use("/api", (req, res, next) => {
+    const safeMethods = ["GET", "HEAD", "OPTIONS"];
+
+    if (safeMethods.includes(req.method)) {
+        return next();
+    }
+
+    const origin = req.get("Origin");
+
+    if (!origin || !allowedOrigins.includes(origin)) {
+        return res.status(403).json({
+            success: false,
+            message: "CSRF validation failed",
+        });
+    }
+
+    next();
+})
 
 // API rate limit: 100 requests per 15 minutes per IP
 const apiLimiter = rateLimit({

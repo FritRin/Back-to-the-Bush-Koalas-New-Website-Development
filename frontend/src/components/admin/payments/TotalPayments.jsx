@@ -1,3 +1,4 @@
+import { CreditCard } from "lucide-react";
 import StatisticCard from "./StatisticDisplay";
 
 function TotalPayments({ payments }) {
@@ -7,6 +8,7 @@ function TotalPayments({ payments }) {
         <StatisticCard 
             title="Total Payments"
             value={totalPayments}
+            icon={<CreditCard />}
         />
     );
 }
