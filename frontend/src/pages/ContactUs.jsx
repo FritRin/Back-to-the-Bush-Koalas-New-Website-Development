@@ -18,7 +18,7 @@ function ContactUS(){
                     <li className="contactUsBox">Incorporated Not-For-Profit: <p>8/05/2024</p></li>
                     <li className="contactUsBox">ABN: <p>93 677 191 865</p></li>
                     <li className="contactUsBox">Type: <p>Company</p></li>
-                    <li className="contactUsBox underline text-blue-900"><a href={constitution}>Constitution </a><FaExternalLinkAlt/></li>
+                    <li className="contactUsBox underline text-[#4B4C2C]"><a href={constitution}>Constitution </a><FaExternalLinkAlt/></li>
                     
                 </div>
                 <div className="contactUsBox">
