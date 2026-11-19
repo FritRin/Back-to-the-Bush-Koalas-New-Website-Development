@@ -76,6 +76,7 @@ h1.homeHeading {
   font-size: 2.5rem;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 
@@ -425,12 +426,17 @@ h3.ourHospitalInfoBox {
 div.ourHospitalInfoBox {
   background-color: #9FA659;
   width: 95%;
-  height: 3rem;
+  height: 5rem;
   margin: auto;
   margin-top: 1rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  text-align: center;
+}
+
+h3.ourHospitalInfoBox {
+  margin: auto;
+  line-height: 1;
 }
 
 button.ourHospitalInfoBox {
@@ -440,6 +446,10 @@ button.ourHospitalInfoBox {
   margin-top: 1rem;
   font-weight: bold;
   color: white;
+}
+
+button.ourHospitalInfoBox:hover {
+  background-color: #797641;
 }
 
 .ourHospitalTextContent {
@@ -506,6 +516,7 @@ li.contactUsBox {
   font-weight: 700;
   padding: 1rem;
 }
+
 input.formInput {
   margin-bottom: 1rem;
   width: 20em;
@@ -540,6 +551,10 @@ label.contactForm {
   height: 4rem;
   border-radius: 1rem;
 }
+.formSubmit:hover {
+  background-color: #797641;
+}
+
 a.contactUsBox {
   font-size: 1.2rem;
   text-decoration: underline;
@@ -609,11 +624,18 @@ a.contactUsBox {
   border-radius: 1rem;
   margin-top: 2rem;
 }
+.formSubmit:hover {
+  background-color: #797641;
+}
 form.contactForm {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+}
+
+.faqButton:hover {
+  background-color: #797641;
 }
 
 .contactUsSocMedia {
@@ -631,6 +653,10 @@ a:hover {
   width: 40%;
   color: #797641;
   margin: auto;
+}
+
+.socMediaIcon:hover {
+  color: #4B4C2C;
 }
 
 h1.faq {

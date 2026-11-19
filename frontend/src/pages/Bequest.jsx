@@ -23,7 +23,7 @@ function Bequest() {
                 <div className="absolute inset-0 bg-black/40" />
 
                 <div className="absolute left-12 top-1/2 z-10 -translate-y-1/2 ">
-                    <span className="text-9xl font-bold text-white ">
+                    <span className="text-9xl font-bold text-white">
                         Leave A Legacy
                     </span>
                 </div>

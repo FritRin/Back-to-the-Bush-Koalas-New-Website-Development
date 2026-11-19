@@ -34,33 +34,6 @@ const timelineEvents = [
 ];
 
 export default function Timeline() {
-  const outerRef = useRef(null);
-  const scrollTrackRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerWidth < 768) return;
-      if (!outerRef.current || !scrollTrackRef.current) return;
-
-      const outerElement = outerRef.current;
-      const trackElement = scrollTrackRef.current;
-
-      const rect = outerElement.getBoundingClientRect();
-      const sectionHeight = outerElement.offsetHeight - window.innerHeight;
-
-      const scrollProgress = Math.min(
-        Math.max(-rect.top / sectionHeight, 0),
-        1
-      );
-
-      const maxHorizontalScroll =
-        trackElement.scrollWidth - trackElement.clientWidth;
-      trackElement.scrollLeft = scrollProgress * maxHorizontalScroll;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <section className=" overflow-visible">
@@ -72,16 +45,12 @@ export default function Timeline() {
         </p>
       </div>
 
-      <div ref={outerRef} className="relative h-auto md:h-[250vh]">
-        <div className="relative md:sticky md:top-0 flex h-auto md:min-h-screen items-center overflow-visible">
+      <div className="relative w-full py-10">
+        <div className="relative flex flex-col items-center">
           <div
-            ref={scrollTrackRef}
-            className="w-full overflow-x-visible md:overflow-x-hidden flex items-center px-4 md:px-0"
+            className="w-full items-center px-4 md:px-0"
           >
-            <div className="relative flex flex-col md:flex-row px-0 md:px-16 w-full md:w-max">
-              
-              {/* Mobile Vertical Line */}
-              <div className="block md:hidden absolute left-4 top-0 bottom-0 w-1 bg-[#789578] z-0" />
+            <div className="relative flex flex-col w-full max-w-4xl mx-auto">
 
               {timelineEvents.map((event, index) => {
                 const isTopOrLeft = index % 2 === 0;
@@ -89,37 +58,17 @@ export default function Timeline() {
                 return (
                   <div
                     key={index}
-                    className="w-full md:w-[350px] shrink-0 relative z-10 flex flex-col"
+                    className="w-full maxw-[180px] flex flex-col"
                   >
-                    {/* 1. TOP CARD (Desktop) */}
-                    <div className="hidden md:flex flex-col justify-end h-[280px] px-4 pb-4">
-                      {isTopOrLeft && (
-                        <div className="w-full bg-white p-5 rounded-xl border border-[#dce6d9] shadow-md text-center max-h-[260px] overflow-y-auto">
-                          <span className="text-lg font-bold text-[#547c52] block mb-1">
-                            {event.year}
-                          </span>
-                          <h3 className="font-bold text-[#344b37] mb-2 text-base leading-snug">
-                            {event.title}
-                          </h3>
-                          <p className="text-xs text-[#5e6b5e] leading-relaxed">
-                            {event.description}
-                          </p>
-                        </div>
-                      )}
-                    </div>
 
-                    {/* 2. CENTER ROW: LINE + DOT */}
-                    <div className="relative flex items-center justify-center h-8 my-2 md:my-0">
-                      <div className="hidden md:block absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1 bg-[#789578] z-0" />
-                      <div className="absolute left-4 md:static top-1/2 -translate-x-1/2 md:translate-x-0 -translate-y-1/2 md:translate-y-0 w-6 h-6 bg-[#547c52] border-4 border-[#f8faf6] rounded-full shadow-sm shrink-0 z-10" />
-                    </div>
+                    {/* 2. LINE + DOT */}
+                      <div className="absolute left-[11px] top-0 bottom-0 w-1 bg-[#789578] z-0" />
+                      <div className="relative w-6 h-6 mt-5 bg-[#547c52] border-4 border-[#f8faf6] rounded-full shadow-sm shrink-0 z-10" />
 
-                    {/* 3. BOTTOM CARD / MOBILE CARD */}
-                    <div className="w-full md:h-[280px] flex flex-col justify-start pl-12 md:pl-0 px-0 md:px-4 pt-0 md:pt-4">
+                    {/* 3. EVENT CARD */}
+                    <div className="flex-1 pl-6 pb-8">
                       <div
-                        className={`w-full bg-white p-5 rounded-xl border border-[#dce6d9] shadow-md text-left md:text-center max-h-[260px] overflow-y-auto ${
-                          !isTopOrLeft ? "" : "md:hidden"
-                        }`}
+                          className='w-full bg-white p-5 rounded-xl border border-[#dce6d9] shadow-md'
                       >
                         <span className="text-lg font-bold text-[#547c52] block mb-1">
                           {event.year}
