@@ -4,6 +4,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import ContactForm from "../components/ContactForm.jsx";
 import constitution from "../assets/Final_Constitution_BTTB.pdf"
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 function ContactUS(){
     return(
@@ -17,7 +18,7 @@ function ContactUS(){
                     <li className="contactUsBox">Incorporated Not-For-Profit: <p>8/05/2024</p></li>
                     <li className="contactUsBox">ABN: <p>93 677 191 865</p></li>
                     <li className="contactUsBox">Type: <p>Company</p></li>
-                    <li className="contactUsBox"><a href={constitution}>Constitution</a></li>
+                    <li className="contactUsBox underline text-blue-900"><a href={constitution}>Constitution </a><FaExternalLinkAlt/></li>
                     
                 </div>
                 <div className="contactUsBox">
