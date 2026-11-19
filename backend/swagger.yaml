@@ -891,6 +891,74 @@ paths:
         "500":
           description: Internal Server Error
 
+  # Wishlist Purchases
+  /api/wishlist-purchases:
+    get:
+      tags:
+        - Wishlist Purchases
+      summary: Retrieve all wishlist purchases
+      description: Retreives all recorded wishlist purchases
+      responses:
+        "200":
+          description: Wishlist purchases retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  count:
+                    type: integer
+                    example: 2
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WishlistPurchase'
+        "500":
+          description: Internal Server Error
+
+  /api/wishlist-purchases/{id}:
+    get:
+      tags:
+        - Wishlist Purchases
+      summary: Retrieve a wishlist purchase by ID
+      description: Retreives a recorded wishlist purchase using its purchase ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The ID of the wishlist purchase
+      responses:
+        "200":
+          description: Wishlist purchase retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  status:
+                    type: integer
+                    example: 200
+                  data:
+                    $ref: '#/components/schemas/WishlistPurchase'
+        "400":
+          description: Invalid purchase ID
+        "404":
+          description: Wishlist purchase not found
+        "500":
+          description: Internal Server Error
+  
   # Adoptions
   /api/adoptions:
     get:
@@ -1348,7 +1416,8 @@ components:
       type: object
       properties:
         item_id:
-          type: integer
+          type: string
+          maxlength: 20
         item_name:
           type: string
         item_description:
@@ -1420,6 +1489,31 @@ components:
           type: number
           minimum: 0
     
+    WishlistPurchase:
+      type: object
+      properties:
+        purchase_id:
+          type: integer
+        customer_id:
+          type: integer
+        item_id:
+          type: string
+          maxLength: 20
+        purchase_quantity:
+          type: integer
+        purchase_price:
+          type: number
+          format: double
+        purchase_date:
+          type: string
+          format: date-time
+        payment_method:
+          type: string
+          nullable: true
+        transaction_reference:
+          type: string
+          nullable: true
+ 
     Adoption:
       type: object
       properties:

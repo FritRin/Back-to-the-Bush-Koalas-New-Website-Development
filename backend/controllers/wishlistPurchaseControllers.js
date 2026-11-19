@@ -9,7 +9,7 @@ const isValidId = (id) => {
 exports.getAllWishlistPurchases = async (req, res, next) => {
     try {
         const purchases = await WishlistPurchase.findAll({
-            order: [["purchase_Date", "DESC"]],
+            order: [["purchase_date", "DESC"]],
         });
        
         return res.status(200).json({
