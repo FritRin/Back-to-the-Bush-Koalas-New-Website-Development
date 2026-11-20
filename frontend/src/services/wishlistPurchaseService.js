@@ -1,6 +1,6 @@
 // Get all wishlist Purchases
 export async function getAllWishlistPurchases() {
-    const response = await fetch("http://localhost:3000/api/wishlist-purchases", {
+    const response = await fetch("/api/wishlist-purchases", {
         method: "GET",
         credentials: "include",
     });

@@ -60,7 +60,7 @@ function StoryList({refreshKey, onCreateStory, onEditStory, onDeleteStory,}) {
                             <img
                                 src={
                                     story.image_urls?.[0]
-                                        ? `http://localhost:3000${story.image_urls[0]}`
+                                        ? story.image_urls[0]
                                         : "/placeholder-image.png"
                                 }
                                 alt={story.title}

@@ -40,7 +40,7 @@ function Story() {
   }
 
   const images = Array.isArray(story.image_urls) ? story.image_urls : [];
-  const mainImage = images[0] ? `http://localhost:3000${images[0]}` : null;
+  const mainImage = images[0] ? images[0] : null;
 
   return (
     <article className="max-w-5xl mx-auto px-4 py-8">
@@ -75,7 +75,7 @@ function Story() {
       {images.length > 1 && (
         <div className="flex gap-3 overflow-x-auto pb-3 mb-8">
           {images.map((imgPath, index) => {
-            const fullUrl = `http://localhost:3000${imgPath}`;
+            const fullUrl = {imgPath};
             return (
               <button
                 key={index}

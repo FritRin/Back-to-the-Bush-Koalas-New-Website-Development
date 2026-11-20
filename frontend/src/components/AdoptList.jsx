@@ -41,7 +41,7 @@ function AdoptList() {
                         <div className="flex flex-col sm:flex-row ">
                             <div className="sm:w-full h-80">
                                 <img
-                                    src={`http://localhost:3000${koala.image_url}`}
+                                    src={koala.image_url}
                                     alt={koala.koala_name}
                                     className="w-full h-full object-cover"
                                 />

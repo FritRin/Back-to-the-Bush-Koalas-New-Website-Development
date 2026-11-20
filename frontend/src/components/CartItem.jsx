@@ -8,7 +8,7 @@ const CartItem = ({
 
         {/* Image */}
         <img
-          src={`http://localhost:3000${item.item_image_url}`}
+          src={item.item_image_url}
           alt={item.item_name}
           className="h-20 w-20 rounded-lg object-cover"
         />

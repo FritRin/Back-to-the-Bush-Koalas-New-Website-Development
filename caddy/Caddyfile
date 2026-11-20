@@ -4,6 +4,10 @@
         reverse_proxy backend:3000
     }
 
+    handle /images/* {
+        reverse_proxy backend:3000
+    }
+
     handle /doc* {
         reverse_proxy backend:3000
     }

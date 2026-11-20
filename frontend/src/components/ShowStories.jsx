@@ -103,7 +103,7 @@ function StoryCard({ box, isMain }) {
     if (!story) return null;
 
     const imageUrl = story.image_urls?.[0]
-        ? `http://localhost:3000${story.image_urls[0]}`
+        ? story.image_urls[0]
         : "/placeholder-image.png";
 
     return (

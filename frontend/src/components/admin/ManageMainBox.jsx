@@ -58,7 +58,7 @@ function ManageMainBox(refreshKey) {
                 <div className="border-2 rounded-xl overflow-hidden bg-white">
                     {mainBox.story?.image_urls?.[0] && (
                         <img
-                            src={`http://localhost:3000${mainBox.story.image_urls[0]}`}
+                            src={mainBox.story.image_urls[0]}
                             alt={mainBox.story.title}
                             className="w-full h-80 object-cover"
                         />
