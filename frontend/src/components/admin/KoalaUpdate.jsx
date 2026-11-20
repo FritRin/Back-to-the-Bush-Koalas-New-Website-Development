@@ -94,7 +94,7 @@ function KoalaUpdate({ koala, onClose, onSuccess }) {
                         <label className="block mb-2 font-medium">Current Image</label>
                         {koala.image_url ? (
                             <img
-                                src={`http://localhost:3000${koala.image_url}`}
+                                src={koala.image_url}
                                 alt={koala.koala_name}
                                 className="w-full h-48 object-cover rounded mb-2 border"
                             />

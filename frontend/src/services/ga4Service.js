@@ -1,7 +1,7 @@
 
 export async function getWebsiteTraffic() {
     const response = await fetch(
-        "http://localhost:3000/api/analytics/traffic",
+        "/api/analytics/traffic",
         {
             method: "GET",
             credentials: "include",
@@ -17,7 +17,7 @@ export async function getWebsiteTraffic() {
 
 export async function getTrafficSources() {
   const response = await fetch(
-    "http://localhost:3000/api/analytics/sources",
+    "/api/analytics/sources",
     { method: "GET", credentials: "include" }
   );
 
@@ -30,7 +30,7 @@ export async function getTrafficSources() {
 
 export async function getVisitorDevices() {
   const response = await fetch(
-    "http://localhost:3000/api/analytics/devices",
+    "/api/analytics/devices",
     { method: "GET", credentials: "include" }
   );
 
@@ -43,7 +43,7 @@ export async function getVisitorDevices() {
 
 export async function getUserEngagement() {
   const response = await fetch(
-    "http://localhost:3000/api/analytics/engagement",
+    "/api/analytics/engagement",
     { method: "GET", credentials: "include" }
   );
 

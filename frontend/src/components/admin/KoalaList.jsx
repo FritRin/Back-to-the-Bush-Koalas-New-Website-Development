@@ -67,7 +67,7 @@ function KoalaList() {
                   <div className="sm:w-full">
                     {koala.image_url ? (
                       <img
-                        src={`http://localhost:3000${koala.image_url}`}
+                        src={koala.image_url}
                         alt={koala.koala_name}
                         className="h-24 w-24 object-cover rounded"
                       />

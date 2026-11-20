@@ -1,6 +1,6 @@
 // Get all donations
 export async function getAllDonations() {
-    const response = await fetch("http://localhost:3000/api/donations", {
+    const response = await fetch("/api/donations", {
         method: "GET",
         credentials: "include",
     });

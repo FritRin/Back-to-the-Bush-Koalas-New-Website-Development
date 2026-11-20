@@ -1,6 +1,6 @@
 // Get all adoptions
 export async function getAllAdoptions() {
-    const response = await fetch("http://localhost:3000/api/adoptions", {
+    const response = await fetch("/api/adoptions", {
         method: "GET",
         credentials: "include",
     });

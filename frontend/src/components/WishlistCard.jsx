@@ -19,7 +19,7 @@ const WishlistCard = ({ item, onAddToCart }) => {
       
       {/* Image */}
       <img
-        src={`http://localhost:3000${item.item_image_url}`}
+        src={item.item_image_url}
         alt={item.item_name}
         className="w-full object-cover"
       />

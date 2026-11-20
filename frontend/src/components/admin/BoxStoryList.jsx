@@ -13,7 +13,7 @@ function BoxStoryList({ secondaryBoxes, stories, onRefresh }) {
                 >
                     {box.story?.image_urls?.[0] && (
                         <img
-                            src={`http://localhost:3000${box.story.image_urls[0]}`}
+                            src={box.story.image_urls[0]}
                             alt={box.story.title}
                             className="w-full h-44 object-cover"
                         />

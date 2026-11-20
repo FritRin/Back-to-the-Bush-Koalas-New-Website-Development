@@ -54,7 +54,7 @@ function BoxStoryCreate({ stories, slot = "secondary", onSuccess }) {
                                 >
                                     {story.image_urls?.[0] && (
                                         <img
-                                            src={`http://localhost:3000${story.image_urls[0]}`}
+                                            src={story.image_urls[0]}
                                             alt={story.title}
                                             className="w-full h-40 object-cover"
                                         />

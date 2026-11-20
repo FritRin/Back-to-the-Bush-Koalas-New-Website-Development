@@ -176,7 +176,7 @@ function StoryUpdate({ storyId, onClose }) {
 
                         {images[0] && (
                             <img
-                                src={`http://localhost:3000${images[0]}`}
+                                src={images[0]}
                                 alt=""
                                 className="w-full h-64 object-cover rounded mb-3
                             "/>
@@ -220,7 +220,7 @@ function StoryUpdate({ storyId, onClose }) {
                             {images.slice(1).map((image, index) => (
                                 <div key={index}>
                                     <img
-                                        src={`http://localhost:3000${image}`}
+                                        src={image}
                                         alt=""
                                         className="w-full h-28 object-cover rounded" />
                                     <button
@@ -312,7 +312,7 @@ function StoryUpdate({ storyId, onClose }) {
                     >
                         {images[0] && (
                             <img
-                                src={`http://localhost:3000${images[0]}`}
+                                src={images[0]}
                                 alt=""
                                 className="
                                     w-full
@@ -327,7 +327,7 @@ function StoryUpdate({ storyId, onClose }) {
                             {images.slice(1).map((image, index) => (
                                 <img
                                     key={index}
-                                    src={`http://localhost:3000${image}`}
+                                    src={image}
                                     alt=""
                                     className="h-32 w-full object-cover rounded" />
                             ))}
