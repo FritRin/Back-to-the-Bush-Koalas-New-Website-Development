@@ -18,7 +18,7 @@ const WishlistCard = ({ item, onAddToCart }) => {
     <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-[#9FA659] shadow-sm transition hover:shadow-lg">
       
       {/* Image */}
-      <div className="mx-5 mt-5 mb-4 flex h-48 items-center justify-center rounded-lg bg-white p-2">
+      <div className="mx-5 mt-5 flex h-48 items-center justify-center rounded-lg bg-white p-2">
         <img
           src={item.item_image_url}
           alt={item.item_name}
@@ -27,14 +27,14 @@ const WishlistCard = ({ item, onAddToCart }) => {
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col px-5 pt-3 pb-5">
         {/* Header */}
-        <h3 className="mb-2 h-14 line-clamp-2 text-lg font-bold leading-snug text-white">
+        <h3 className="mb-1 h-14 line-clamp-2 text-lg font-bold leading-snug text-white">
           {item.item_name}
         </h3>
 
         {/* Subheader */}
-        <p className="mb-4 h-10 line-clamp-2 text-sm text-white">
+        <p className="mb-3 h-10 line-clamp-2 text-sm text-white">
           {item.item_description}
         </p>
 
@@ -45,7 +45,7 @@ const WishlistCard = ({ item, onAddToCart }) => {
 
         {/* Price */}
         <div className="mb-4 rounded-lg bg-gray-50 p-3">
-          <p className="text-sm text-gray-500">
+          <p className="text-xs font-medium text-gray-500">
             Wishlist Price
           </p>
 
