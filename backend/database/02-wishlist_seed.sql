@@ -11,7 +11,7 @@ VALUES (
     'SCALPLAT',
     'Platform Scale',
     'Platform Weigh Scale',
-    '/images/whishlist/Platform-weigh-scale.jpg',
+    '/images/wishlist/Platform-weigh-scale.jpg',
     'A',
     1,
     764.00
@@ -20,7 +20,7 @@ VALUES (
     'SPEYKITD',
     'Dog Spey Surgical Kit',
     'Quality Canine Spey Kit (Spay Pack)',
-    '/images/whishlist/quality-canine-spey-kit.jpg',
+    '/images/wishlist/quality-canine-spey-kit.jpg',
     'A',
     2,
     667.00
@@ -29,7 +29,7 @@ VALUES (
     'STOO07',
     'Clinic Stool Seat With Wheels',
     'Surgical Stool, round seat with wheels',
-    '/images/whishlist/surgical-stool-round-seat-with-wheels.jpg',
+    '/images/wishlist/surgical-stool-round-seat-with-wheels.jpg',
     'A',
     3,
     292.00
@@ -38,7 +38,7 @@ VALUES (
     'INSTMT2',
     'Mayo instrument table',
     'Mayo table three leg',
-    '/images/whishlist/mayo-table-three-leg.jpg',
+    '/images/wishlist/mayo-table-three-leg.jpg',
     'A',
     2,
     950.00
@@ -47,7 +47,7 @@ VALUES (
     'INSTT45',
     'Instrument trolley',
     'Mayo table three leg',
-    '/images/whishlist/inst-trolley-rail.jpg',
+    '/images/wishlist/inst-trolley-rail.jpg',
     'A',
     1,
     1282.00
@@ -56,7 +56,7 @@ VALUES (
     'CLIPCC1',
     'Cordless clippers',
     'Mayo table three leg',
-    '/images/whishlist/codos-clippers.jpg',
+    '/images/wishlist/codos-clippers.jpg',
     'A',
     3,
     70.00
@@ -65,7 +65,7 @@ VALUES (
     'LARYBM5',
     'Laryngoscope blade set',
     'Welch Allyn Fibre Optic Miller Laryngoscope set',
-    '/images/whishlist/welch-allyn-fibre-optic.jpg',
+    '/images/wishlist/welch-allyn-fibre-optic.jpg',
     'A',
     1,
     2591.00
@@ -74,7 +74,7 @@ VALUES (
     '000000',
     'Refractometer',
     '',
-    '/images/whishlist/temperature-compensated-urine.png',
+    '/images/wishlist/temperature-compensated-urine.png',
     'A',
     1,
     156.00
@@ -83,7 +83,7 @@ VALUES (
     'DIAGW1',
     'Ophthalmoscope',
     'Welch Allyn Operating Diagnostic Set',
-    '/images/whishlist/welch-allyn-operating-diagnostic-set.jpg',
+    '/images/wishlist/welch-allyn-operating-diagnostic-set.jpg',
     'A',
     1,
     1183.00
