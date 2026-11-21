@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllWishlistItems } from "../api/Wishlist";
 
-import WishlistGrid from "../components/WiishlistGrid";
+import WishlistGrid from "../components/WishlistGrid";
 import CartIcon from "../components/CartIcon";
 import DonationCartDrawer from "../components/DonationCartDrawer";
 import FormPopUp from "../components/FormPopUp"
