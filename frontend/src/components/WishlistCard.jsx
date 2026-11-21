@@ -15,22 +15,26 @@ const WishlistCard = ({ item, onAddToCart }) => {
   
   console.log("Card Item:", item);
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-[#9FA659] shadow-sm transition hover:shadow-lg">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-[#9FA659] shadow-sm transition hover:shadow-lg">
       
       {/* Image */}
-      <img
-        src={item.item_image_url}
-        alt={item.item_name}
-        className="w-full object-cover"
-      />
+      <div className="mx-5 mt-5 flex h-48 items-center justify-center rounded-lg bg-white p-2">
+        <img
+          src={item.item_image_url}
+          alt={item.item_name}
+          className="max-h-full max-w-full object-contain"
+        />
+      </div>
 
       {/* Content */}
-      <div className="p-5">
-        <h3 className="mb-2 text-lg font-semibold text-white">
+      <div className="flex flex-1 flex-col px-5 pt-3 pb-5">
+        {/* Header */}
+        <h3 className="mb-1 h-14 line-clamp-2 text-lg font-bold leading-snug text-white">
           {item.item_name}
         </h3>
 
-        <p className="mb-4 text-sm text-white">
+        {/* Subheader */}
+        <p className="mb-3 h-10 line-clamp-2 text-sm text-white">
           {item.item_description}
         </p>
 
@@ -41,7 +45,7 @@ const WishlistCard = ({ item, onAddToCart }) => {
 
         {/* Price */}
         <div className="mb-4 rounded-lg bg-gray-50 p-3">
-          <p className="text-sm text-gray-500">
+          <p className="text-xs font-medium text-gray-500">
             Wishlist Price
           </p>
 
@@ -53,7 +57,7 @@ const WishlistCard = ({ item, onAddToCart }) => {
         {/* Add To Cart */}
         <button
           onClick={handleAddToCart}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 font-semibold text-white transition hover:bg-green-700"
+          className="mt-auto flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-4 py-3 font-semibold text-white transition hover:bg-green-700"
         >
           <ShoppingCart size={18} />
           Add to Cart
