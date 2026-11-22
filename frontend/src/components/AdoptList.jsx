@@ -7,6 +7,7 @@ function AdoptList() {
     const [showForm, setShowForm] = useState(false);
     // Selected koalas information
     const [selectedKoala, setSelectedKoala] = useState(null);
+    const [expandedKoala, setExpandedKoala] = useState(null);
 
     useEffect(() => {
         const loadKoalas = async () => {
@@ -23,7 +24,7 @@ function AdoptList() {
 
     return (
         <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
 
                 {Koalas.map((koala) => (
                     <div
@@ -35,7 +36,7 @@ function AdoptList() {
                             shadow-sm border 
                             border-slate-200 
                             rounded-lg 
-                            overflow-hidden 
+                            overflow-visible
                             transition-all
                             duration-200
                             ease-in-out
@@ -43,7 +44,7 @@ function AdoptList() {
                             hover:shadow-lg
                         "
                     >
-                        <div className="w-1/2 shrink-0 self-stretch">
+                        <div className="w-1/2 shrink-0 self-stretch rounded-l-lg overflow-hidden">
                             <img
                                 src={koala.image_url}
                                 alt={koala.koala_name}
@@ -51,19 +52,36 @@ function AdoptList() {
                             />
                         </div>
 
-                        <div className="flex min-w-0 flex-1 flex-col p-2">
+                        <div className="relative flex min-w-0 flex-1 flex-col p-2">
                             
                             <div className="text-lg font-bold leading-tight mb-3 text-white">
                                 Meet {koala.koala_name}
                             </div>
 
-                            <div className="flex-1 rounded-lg bg-[#EEF2DB] p-3 shadow-inner">
-                                <div className="text-xs leading-tight text-left text-gray-700">
+                            <div className={`rounded-lg bg-[#EEF2DB] p-3 shadow-inner ${
+                                expandedKoala === koala.koala_id
+                                    ? "absolute top-[44px] left-2 right-2 z-10 min-h-40"
+                                    : "min-h-[170px]"
+                            }`}>
+                                <div className={`text-sm leading-tight text-left text-gray-700 ${
+                                    expandedKoala === koala.koala_id ? "" : "line-clamp-7"
+                                }`}>
                                     {koala.description}
                                 </div>
+                                
+                                {koala.description.length > 180 && (
+                                    <button
+                                        onClick={() => setExpandedKoala(
+                                            expandedKoala === koala.koala_id ? null : koala.koala_id 
+                                        )}
+                                        className="mt-2 text-sm font-bold text-green-800 hover:text-green-900 hover:underline underline-offset-2 cursor-pointer transition-colors duration-200" 
+                                    >
+                                        {expandedKoala === koala.koala_id ? "Read less" : "Read more"}
+                                    </button>
+                                )}
                             </div>
                               
-                            <div className="text-base font-bold leading-tight mb-1 mt-1 text-white">
+                            <div className="text-base font-bold leading-tight mb-1 mt-auto text-white">
                                 AU$50
                             </div>
 
