@@ -28,7 +28,7 @@ function PaymentPieChart({ payments }) {
                         data={chartData}
                         dataKey="value"
                         nameKey="name"
-                        cx="50%"
+                        cx="38%"
                         cy="50%"
                         outerRadius={100}
                         label
@@ -38,7 +38,11 @@ function PaymentPieChart({ payments }) {
                         ))}
                     </Pie>
                     <Tooltip />
-                    <Legend />
+                    <Legend
+                        layout="vertical"
+                        align="right"
+                        verticalAlign="middle"
+                    />
                 </PieChart>
             </ResponsiveContainer>
         </div>
