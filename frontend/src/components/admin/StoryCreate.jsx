@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createStory } from "../../api/Story";
 import TextEditor from './TextEditor';
 
@@ -11,6 +11,8 @@ function StoryCreate({ onClose, onSuccess }) {
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState("");
     const [uploadError, setUploadError] = useState("");
+    
+    const mainImageInputRef = useRef(null);
 
     const handleMainImageChange = (event) => {
         const file = event.target.files[0];
@@ -18,6 +20,11 @@ function StoryCreate({ onClose, onSuccess }) {
         if (file) {
             setMainImage(file);
         }
+    };
+
+    const handleMainImageRemove = () => {
+        setMainImage(null);
+        mainImageInputRef.current.value = "";
     };
 
     const handleGalleryImagesChange = (event) => {
@@ -186,6 +193,7 @@ function StoryCreate({ onClose, onSuccess }) {
                                 </div>
 
                                 <input
+                                    ref={mainImageInputRef}
                                     type="file"
                                     accept=".jpg,.jpeg,.png,image/jpeg,image/png"
                                     onChange={handleMainImageChange}
@@ -197,11 +205,22 @@ function StoryCreate({ onClose, onSuccess }) {
                         {/* MAIN IMAGE PREVIEW */}
 
                         {mainImage && (
-                            <img
-                                src={URL.createObjectURL(mainImage)}
-                                alt="Main Preview"
-                                className="w-64 h-64 object-cover rounded"
-                            />
+                            <div className="flex flex-col items-start gap-2">
+                                <img
+                                    src={URL.createObjectURL(mainImage)}
+                                    alt="Main Preview"
+                                    className="w-64 h-64 object-cover rounded"
+                                />
+
+                                <button 
+                                    type="button"
+                                    onClick={handleMainImageRemove}
+                                    className="bg-red-500 hover:bg-red-700 text-white font-extrabold  px-5 my-5 rounded"
+                                >
+                                    Remove Image
+                                </button>
+                            </div>
+
                         )}
 
                         {/* GALLERY */}

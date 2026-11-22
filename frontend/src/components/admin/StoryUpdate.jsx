@@ -49,8 +49,8 @@ function StoryUpdate({ storyId, onClose }) {
             );
 
             setTimeout(() => {
-                setSuccessMessage("");
-            }, 3000);
+                onClose();
+            }, 1500);
 
         } catch (error) {
 
@@ -175,11 +175,21 @@ function StoryUpdate({ storyId, onClose }) {
                         </h3>
 
                         {images[0] && (
-                            <img
-                                src={images[0]}
-                                alt=""
-                                className="w-full h-64 object-cover rounded mb-3
-                            "/>
+                            <div className="flex flex-col items-start gap-2">
+                                <img
+                                    src={images[0]}
+                                    alt=""
+                                    className="w-full h-64 object-cover rounded mb-3"
+                                />
+
+                                <button
+                                    type="button"
+                                    onClick={() => handleDeleteImage(0)}
+                                    className="bg-red-500 hover:bg-red-700 text-white font-extrabold  px-5 my-5 rounded"
+                                >
+                                    Delete
+                                </button>
+                            </div>
                         )}
 
                         <div className="max-w-xl">
