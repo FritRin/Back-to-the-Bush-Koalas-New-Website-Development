@@ -6,17 +6,15 @@ import BoxStoryCreate from "./BoxStoryCreate";
 import BoxStoryUpdate from "./BoxStoryUpdate";
 import BoxStoryDelete from "./BoxStoryDelete";
 
-function ManageMainBox(refreshKey) {
+function ManageMainBox({ refreshKey }) {
     const [mainBox, setMainBox] = useState(null);
     const [stories, setStories] = useState([]);
 
     useEffect(() => {
          console.log(
-        "ManageMainBox refresh:",
-        refreshKey
-    );
-        loadData(refreshKey);
-    }, []);
+        "ManageMainBox refresh:", refreshKey);
+        loadData();
+    }, [refreshKey]);
 
     const loadData = async () => {
 

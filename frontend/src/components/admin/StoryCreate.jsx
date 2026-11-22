@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createStory } from "../../api/Story";
 import TextEditor from './TextEditor';
 
@@ -11,6 +11,8 @@ function StoryCreate({ onClose, onSuccess }) {
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState("");
     const [uploadError, setUploadError] = useState("");
+    
+    const mainImageInputRef = useRef(null);
 
     const handleMainImageChange = (event) => {
         const file = event.target.files[0];
@@ -22,6 +24,7 @@ function StoryCreate({ onClose, onSuccess }) {
 
     const handleMainImageRemove = () => {
         setMainImage(null);
+        mainImageInputRef.current.value = "";
     };
 
     const handleGalleryImagesChange = (event) => {
@@ -190,6 +193,7 @@ function StoryCreate({ onClose, onSuccess }) {
                                 </div>
 
                                 <input
+                                    ref={mainImageInputRef}
                                     type="file"
                                     accept=".jpg,.jpeg,.png,image/jpeg,image/png"
                                     onChange={handleMainImageChange}
@@ -213,7 +217,7 @@ function StoryCreate({ onClose, onSuccess }) {
                                     onClick={handleMainImageRemove}
                                     className="text-sm font-semibold text-red-600 hover:text-red-800 hover:underline cursor-pointer"
                                 >
-                                    Deselect Image
+                                    Remove Image
                                 </button>
                             </div>
 
