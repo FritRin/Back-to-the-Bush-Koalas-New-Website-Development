@@ -25,88 +25,88 @@ function KoalaList() {
 
   return (
     <div>
-      <div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 shadow-md rounded-xl bg-clip-border">
-        <table className="w-full text-left table-auto min-w-max">
-          <thead className="bg-[#B7B094]">
+      <div className="w-full overflow-x-auto border border-[#DDE3C3] rounded-lg">
+        <table className="w-full text-left border-collapse">
+          <thead className="bg-[#DDE3C3] text-[#4B4C2C]">
             <tr>
-              <th scope="col" className="px-6 py-3 ">
+              <th scope="col" className="px-6 py-4 text-sm ">
                 ID
               </th>
-              <th scope="col" className="px-6 py-3 ">
-                img
+              <th scope="col" className="px-6 py-4 text-sm ">
+                Image
               </th>
-              <th scope="col" className="px-6 py-3 ">
-                name
+              <th scope="col" className="px-6 py-4 text-sm ">
+                Name
               </th>
-              <th scope="col" className="px-6 py-3 ">
-                status
+              <th scope="col" className="px-6 py-4 text-sm ">
+                Status
               </th>
-              <th scope="col" className="px-6 py-3 ">
-                description
+              <th scope="col" className="px-6 py-4 text-sm ">
+                Description
               </th>
-              <th scope="col" className="px-6 py-3 ">
-                date added
+              <th scope="col" className="px-6 py-4 text-sm ">
+                Date added
               </th>
-              <th scope="col" className="px-6 py-3 ">
+              <th scope="col" className="px-6 py-4 text-sm ">
                 Action
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-[#4B4C2C]">
             {koalas.map((koala) => (
               <tr
                 key={koala.koala_id}
-                className="
-                  border-b border-default
-                  hover:bg-neutral-secondary-medium"
+                className="border-b border-[#DDE3C3] even:bg-[#F2F5E8] transition-colors"
               >
-                <th scope="row" className="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                   {koala.koala_id}
                 </th>
                 <td className="px-6 py-4">
-                  <div className="sm:w-full">
                     {koala.image_url ? (
                       <img
                         src={koala.image_url}
                         alt={koala.koala_name}
-                        className="h-24 w-24 object-cover rounded"
+                        className="h-20 w-20 object-cover rounded-lg"
                       />
                     ) : (
                       <p>No Image</p>
                     )}
-                  </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 font-semibold">
                   {koala.koala_name}
                 </td>
                 <td className="px-6 py-4">
                   {koala.status}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 min-w-64">
                   {koala.description}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 whitespace-nowrap">
                   {new Date(koala.date_added).toLocaleDateString("en-GB")}
                 </td>
-                <td className="flex items-center px-6 py-4 font-bold gap-5">
-                  <button
-                    onClick={() => {
-                      setSelectedKoala(koala);
-                      setShowEditModal(true);
-                    }}
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSelectedKoala(koala);
-                      setShowDeleteModal(true);
-                    }}
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="flex items-center gap-4 font-semibold">
+                    <button
+                      onClick={() => {
+                        setSelectedKoala(koala);
+                        setShowEditModal(true);
+                      }}
+                      className="text-[#797641] hover:text-[#4B4C2C] hover:underline"
+                    >
+                      Update
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setSelectedKoala(koala);
+                        setShowDeleteModal(true);
+                      }}
                     className="text-red-700 hover:underline"
                   >
                     Remove
                   </button>
-                </td>
+                </div>
+              </td>
               </tr>
             ))}
           </tbody>
