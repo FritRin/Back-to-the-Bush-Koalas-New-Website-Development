@@ -20,6 +20,10 @@ function StoryCreate({ onClose, onSuccess }) {
         }
     };
 
+    const handleMainImageRemove = () => {
+        setMainImage(null);
+    };
+
     const handleGalleryImagesChange = (event) => {
         const files = Array.from(event.target.files);
 
@@ -197,11 +201,22 @@ function StoryCreate({ onClose, onSuccess }) {
                         {/* MAIN IMAGE PREVIEW */}
 
                         {mainImage && (
-                            <img
-                                src={URL.createObjectURL(mainImage)}
-                                alt="Main Preview"
-                                className="w-64 h-64 object-cover rounded"
-                            />
+                            <div className="flex flex-col items-start gap-2">
+                                <img
+                                    src={URL.createObjectURL(mainImage)}
+                                    alt="Main Preview"
+                                    className="w-64 h-64 object-cover rounded"
+                                />
+
+                                <button 
+                                    type="button"
+                                    onClick={handleMainImageRemove}
+                                    className="text-sm font-semibold text-red-600 hover:text-red-800 hover:underline cursor-pointer"
+                                >
+                                    Deselect Image
+                                </button>
+                            </div>
+
                         )}
 
                         {/* GALLERY */}
