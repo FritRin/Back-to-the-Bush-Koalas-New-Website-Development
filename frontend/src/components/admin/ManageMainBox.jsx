@@ -45,7 +45,7 @@ function ManageMainBox(refreshKey) {
 
     return (
         <div className="mb-8">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Main Story</h2>
+            <h2 className="text-xl font-bold mb-4 text-[#4B4C2C]">Main Story</h2>
 
             {!mainBox ? (
                 /* Reuse Create Component with slot="main" */

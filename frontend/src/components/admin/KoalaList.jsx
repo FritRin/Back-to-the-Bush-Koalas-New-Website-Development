@@ -25,7 +25,7 @@ function KoalaList() {
 
   return (
     <div>
-      <div className="w-full overflow-x-auto border border-[#DDE3C3] rounded-lg">
+      <div className="w-full overflow-x-auto border border-[#DDE3C3] rounded-lg bg-white shadow-sm">
         <table className="w-full text-left border-collapse">
           <thead className="bg-[#DDE3C3] text-[#4B4C2C]">
             <tr>

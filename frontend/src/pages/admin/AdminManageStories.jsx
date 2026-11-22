@@ -22,9 +22,12 @@ function AdminManageStories() {
   };
 
   return (
-    <div className="admin-manage-stories">
-      <h1>Manage Homepage Stories</h1>
-
+    <div className="adminDashboard">
+      <div className="adminDashboardTop">
+        <h1 className="adminManageHeading">
+          Manage Homepage Stories
+        </h1>
+      </div>
       <ManageMainBox
         refreshKey={refreshKey}
       />

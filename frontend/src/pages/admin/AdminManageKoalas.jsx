@@ -5,11 +5,11 @@ import KoalaCreate from "../../components/admin/KoalaCreate"
 function AdminManageKoalas() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   return (
-    <div className="min-h-screen bg-[#EEF2DB] p-4 md:p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="adminDashboard">
+      
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#4B4C2C] m-0">
+        <div className="adminDashboardTop">
+          <h1 className="adminManageHeading">
             Manage Koalas
           </h1>
           
@@ -33,7 +33,7 @@ function AdminManageKoalas() {
         )}
         <KoalaList />
       </div>
-    </div>
+    
   )
 }
 

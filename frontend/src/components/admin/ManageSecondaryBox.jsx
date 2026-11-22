@@ -42,7 +42,7 @@ function ManageSecundaryBox(refreshKey) {
 
     return (
         <div className="mb-8">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Sub Stories</h2>
+            <h2 className="text-xl font-bold mb-4 text-[#4B4C2C]">Sub Stories</h2>
 
             <BoxStoryList
                 secondaryBoxes={secondaryBoxes}
