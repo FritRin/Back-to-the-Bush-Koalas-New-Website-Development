@@ -29,34 +29,17 @@ function StoryList({refreshKey, onCreateStory, onEditStory, onDeleteStory,}) {
         <section className="story-library">
             {/* Header only contains the title now */}
             <div className="mb-5">
-                <h2 className="text-2xl font-bold">Story Library</h2>
+                <h2 className="text-xl font-semibold text-[#4B4C2C]">Story Library</h2>
             </div>
 
             {/* Grid container holding both the stories AND the Create button */}
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                    gap: "20px",
-                }}
-            >
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
                 {stories.map((story) => (
                     <div
                         key={story.story_id}
-                        style={{
-                            border: "1px solid #ddd",
-                            borderRadius: "10px",
-                            overflow: "hidden",
-                            background: "#fff",
-                            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                        }}
+                        className="overflow-hidden rounded-xl border border-[#DDE3C3] bg-white shadow-sm"
                     >
-                        <div
-                            style={{
-                                height: "220px",
-                                overflow: "hidden",
-                            }}
-                        >
+                        <div className="h-[220px] overflow-hidden">
                             <img
                                 src={
                                     story.image_urls?.[0]
@@ -64,28 +47,20 @@ function StoryList({refreshKey, onCreateStory, onEditStory, onDeleteStory,}) {
                                         : "/placeholder-image.png"
                                 }
                                 alt={story.title}
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
-                                }}
+                                className="h-full w-full object-cover"
                             />
                         </div>
 
-                        <div style={{ padding: "16px" }}>
-                            <h3>{story.title}</h3>
+                        <div className="p-4">
+                            <h3 className="mb-2 text-lg font-bold text-[#4B4C2C]">
+                                {story.title}
+                            </h3>
 
-                            <p>
+                            <p className="text-sm text-[#797641]">
                                 Images: {story.image_urls?.length || 0}
                             </p>
 
-                            <div
-                                style={{
-                                    display: "flex",
-                                    gap: "10px",
-                                    marginTop: "15px",
-                                }}
-                            >
+                            <div className="mt-4 flex gap-3">
                                 <button
                                     type="button"
                                     onClick={() => onEditStory(story)}
@@ -111,7 +86,7 @@ function StoryList({refreshKey, onCreateStory, onEditStory, onDeleteStory,}) {
                 <button
                     type="button"
                     onClick={onCreateStory}
-                    className="w-full h-full min-h-[320px] border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors p-4 bg-white"
+                    className="w-full h-full min-h-[320px] border-2 border-[#DDE3C3] rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors p-4 bg-white"
                 >
                     <div className="text-center">
                         <span className="block text-lg font-bold text-gray-700">

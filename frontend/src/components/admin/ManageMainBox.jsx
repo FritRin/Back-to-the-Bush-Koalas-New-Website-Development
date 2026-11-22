@@ -43,7 +43,7 @@ function ManageMainBox({ refreshKey }) {
 
     return (
         <div className="mb-8">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Main Story</h2>
+            <h2 className="text-xl font-bold mb-4 text-[#4B4C2C]">Main Story</h2>
 
             {!mainBox ? (
                 /* Reuse Create Component with slot="main" */
@@ -53,7 +53,7 @@ function ManageMainBox({ refreshKey }) {
                     onSuccess={loadData}
                 />
             ) : (
-                <div className="border-2 rounded-xl overflow-hidden bg-white">
+                <div className="border border-[#DDE3C3] rounded-xl overflow-hidden bg-white shadow-sm">
                     {mainBox.story?.image_urls?.[0] && (
                         <img
                             src={mainBox.story.image_urls[0]}
@@ -63,7 +63,7 @@ function ManageMainBox({ refreshKey }) {
                     )}
 
                     <div className="p-6">
-                        <h3 className="text-3xl font-bold mb-4">
+                        <h3 className="text-3xl font-bold mb-4 text-[#4B4C2C]">
                             {mainBox.story?.title}
                         </h3>
 

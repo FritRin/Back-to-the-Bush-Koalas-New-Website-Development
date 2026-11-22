@@ -32,7 +32,6 @@ function PaymentTypePieChart({ payments }) {
                         cy="50%"
                         innerRadius={65}
                         outerRadius={95}
-                        paddingAngle={3}
                         label
                     >
                         {chartData.map((entry, index) => (

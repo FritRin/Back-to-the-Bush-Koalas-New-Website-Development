@@ -9,7 +9,7 @@ SELECT
     'test',
     'admin',
     'testadmin@btbk.com',
-    'YOUR_HASH_HERE' -- REPLACE THIS WITH THE HASH
+    'PUT-HASH-HERE' -- REPLACE THIS WITH THE HASH
 WHERE NOT EXISTS (
     SELECT 1
     FROM admins
@@ -121,7 +121,9 @@ FROM (
         ('2026-10-02 09:41:00+10'::timestamptz, 'PayPal', 10.00),
         ('2026-10-15 10:14:00+10'::timestamptz, 'GiveNow', 100.00),
         ('2026-11-07 11:59:00+10'::timestamptz, 'GiveNow', 50.00),
-        ('2026-11-16 13:48:00+10'::timestamptz, 'PayPal', 150.00)
+        ('2026-11-16 13:48:00+10'::timestamptz, 'PayPal', 150.00),
+        ('2026-11-20 10:20:00+10'::timestamptz, 'PayPal', 35.00),
+        ('2026-11-22 12:15:00+10'::timestamptz, 'GiveNow', 75.00)
 ) AS d(donation_date, payment_method, amount)
 CROSS JOIN customer c
 WHERE c.email = 'test.customer@test.com'
@@ -161,7 +163,9 @@ FROM (
         ('2026-09-15 11:10:00+10'::timestamptz, 100.00, 'PayPal'),
         ('2026-10-09 13:40:00+10'::timestamptz, 60.00, 'GiveNow'),
         ('2026-10-25 10:05:00+10'::timestamptz, 80.00, 'PayPal'),
-        ('2026-11-18 15:30:00+10'::timestamptz, 100.00, 'GiveNow')
+        ('2026-11-18 15:30:00+10'::timestamptz, 100.00, 'GiveNow'),
+        ('2026-11-20 14:30:00+10'::timestamptz, 60.00, 'GiveNow'),
+        ('2026-11-21 11:45:00+10'::timestamptz, 100.00, 'PayPal')
 ) AS a(adoption_date, amount, payment_method)
 CROSS JOIN customer c
 CROSS JOIN koala k
@@ -206,7 +210,9 @@ VALUES
     ('2026-09-21 11:25:00+10'::timestamptz, 1, 'PayPal'),
     ('2026-10-12 16:05:00+10'::timestamptz, 2, 'PayPal'),
     ('2026-11-05 10:35:00+10'::timestamptz, 1, 'GiveNow'),
-    ('2026-11-19 14:55:00+10'::timestamptz, 3, 'PayPal')
+    ('2026-11-19 14:55:00+10'::timestamptz, 3, 'PayPal'),
+    ('2026-11-20 16:10:00+10'::timestamptz, 1, 'PayPal'),
+    ('2026-11-22 14:20:00+10'::timestamptz, 2, 'GiveNow')
 
 ) AS p(purchase_date, purchase_quantity, payment_method)
 CROSS JOIN customer c
