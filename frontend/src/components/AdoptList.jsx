@@ -7,6 +7,7 @@ function AdoptList() {
     const [showForm, setShowForm] = useState(false);
     // Selected koalas information
     const [selectedKoala, setSelectedKoala] = useState(null);
+    const [expandedKoala, setExpandedKoala] = useState(null);
 
     useEffect(() => {
         const loadKoalas = async () => {
@@ -23,61 +24,77 @@ function AdoptList() {
 
     return (
         <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
 
                 {Koalas.map((koala) => (
                     <div
                         key={koala.koala_id}
                         className="
-                        bg-[#9FA659] 
-                        shadow-sm border 
-                        border-slate-200 
-                        rounded-lg 
-                        overflow-hidden 
-                        transition-opacity 
-                        duration-300 
-                        hover:scale-110"
+                            flex
+                            min-h-64
+                            bg-[#9FA659] 
+                            shadow-sm border 
+                            border-slate-200 
+                            rounded-lg 
+                            overflow-visible
+                            transition-all
+                            duration-200
+                            ease-in-out
+                            hover:-translate-y-1
+                            hover:shadow-lg
+                        "
                     >
-                        <div className="flex flex-col sm:flex-row ">
-                            <div className="sm:w-full h-80">
-                                <img
-                                    src={koala.image_url}
-                                    alt={koala.koala_name}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
-
-                            <div className="p-2 flex flex-col justify-between">
-                                <div>
-                                    <h3 className="text-xl font-bold mb-3 text-white">
-                                        Meet {koala.koala_name}
-                                    </h3>
-
-                                    <div className="bg-[#EEF2DB]">
-                                        <p className="text-gray-700">
-                                            {koala.description}
-                                        </p>
-                                        <span> Status: {koala.status}</span>
-                                    </div>
-                                </div>
-
-                                <div className="text-white">
-                                    <p className="text-3xl font-bold mb-2">
-                                        AU$50
-                                    </p>
-
-                                    <button
-                                        onClick = {() => {
-                                            setSelectedKoala(koala);
-                                            setShowForm(true);
-                                        }}
-                                        className="w-full bg-green-700 hover:bg-green-800 py-2 font-bold">
-                                        Adopt Now
-                                    </button>
-                                </div>
-                            </div>
+                        <div className="w-1/2 shrink-0 self-stretch rounded-l-lg overflow-hidden">
+                            <img
+                                src={koala.image_url}
+                                alt={koala.koala_name}
+                                className="w-full h-full object-cover"
+                            />
                         </div>
-                    </div>
+
+                        <div className="relative flex min-w-0 flex-1 flex-col p-2">
+                            
+                            <div className="text-lg font-bold leading-tight mb-3 text-white">
+                                Meet {koala.koala_name}
+                            </div>
+
+                            <div className={`rounded-lg bg-[#EEF2DB] p-3 shadow-inner ${
+                                expandedKoala === koala.koala_id
+                                    ? "absolute top-[44px] left-2 right-2 z-10 min-h-40"
+                                    : "min-h-[170px]"
+                            }`}>
+                                <div className={`text-sm leading-tight text-left text-gray-700 ${
+                                    expandedKoala === koala.koala_id ? "" : "line-clamp-7"
+                                }`}>
+                                    {koala.description}
+                                </div>
+                                
+                                {koala.description.length > 180 && (
+                                    <button
+                                        onClick={() => setExpandedKoala(
+                                            expandedKoala === koala.koala_id ? null : koala.koala_id 
+                                        )}
+                                        className="mt-2 text-sm font-bold text-green-800 hover:text-green-900 hover:underline underline-offset-2 cursor-pointer transition-colors duration-200" 
+                                    >
+                                        {expandedKoala === koala.koala_id ? "Read less" : "Read more"}
+                                    </button>
+                                )}
+                            </div>
+                              
+                            <div className="text-base font-bold leading-tight mb-1 mt-auto text-white">
+                                AU$50
+                            </div>
+
+                            <button
+                                onClick = {() => {
+                                    setSelectedKoala(koala);
+                                    setShowForm(true);
+                                }}
+                                className="w-full rounded-lg bg-green-700 hover:bg-green-800 py-2 font-bold text-white">
+                                Adopt Now
+                            </button>
+                        </div>
+                    </div>   
                 ))}
             </div>
 
