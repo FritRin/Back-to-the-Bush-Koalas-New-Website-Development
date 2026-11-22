@@ -64,7 +64,7 @@ function StoryList({refreshKey, onCreateStory, onEditStory, onDeleteStory,}) {
                                 <button
                                     type="button"
                                     onClick={() => onEditStory(story)}
-                                    className="rounded-md bg-[#9FA659] px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-[#797641]"
+                                    className="px-3 py-1.5 text-sm font-medium bg-emerald-50 text-emerald-700 rounded-md hover:bg-emerald-100"
                                 >
                                     Edit
                                 </button>
@@ -86,7 +86,7 @@ function StoryList({refreshKey, onCreateStory, onEditStory, onDeleteStory,}) {
                 <button
                     type="button"
                     onClick={onCreateStory}
-                    className="w-full h-full min-h-[320px] border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors p-4 bg-white"
+                    className="w-full h-full min-h-[320px] border-2 border-[#DDE3C3] rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors p-4 bg-white"
                 >
                     <div className="text-center">
                         <span className="block text-lg font-bold text-gray-700">

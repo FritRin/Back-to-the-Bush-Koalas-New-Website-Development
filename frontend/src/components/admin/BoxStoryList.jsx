@@ -9,7 +9,7 @@ function BoxStoryList({ secondaryBoxes, stories, onRefresh }) {
             {secondaryBoxes.map((box) => (
                 <div
                     key={box.box_id}
-                    className="border-2 rounded-xl overflow-hidden bg-white flex flex-col justify-between"
+                    className="border border-[#DDE3C3] rounded-xl overflow-hidden bg-white flex flex-col justify-between"
                 >
                     {box.story?.image_urls?.[0] && (
                         <img
@@ -21,7 +21,7 @@ function BoxStoryList({ secondaryBoxes, stories, onRefresh }) {
 
                     <div className="p-4 flex flex-col flex-1 justify-between">
                         <div>
-                            <h3 className="text-xl font-bold mb-2">
+                            <h3 className="text-xl font-bold mb-2 text-[#4B4C2C]">
                                 {box.story?.title}
                             </h3>
 
