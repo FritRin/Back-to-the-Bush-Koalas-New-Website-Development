@@ -215,7 +215,7 @@ function StoryCreate({ onClose, onSuccess }) {
                                 <button 
                                     type="button"
                                     onClick={handleMainImageRemove}
-                                    className="text-sm font-semibold text-red-600 hover:text-red-800 hover:underline cursor-pointer"
+                                    className="bg-red-500 hover:bg-red-700 text-white font-extrabold  px-5 my-5 rounded"
                                 >
                                     Remove Image
                                 </button>
